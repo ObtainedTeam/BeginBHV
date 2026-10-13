@@ -1,0 +1,32 @@
+---
+import { usps } from '../data/site.js';
+const icons = {
+  map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',
+  certificate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2.5" width="16" height="15" rx="1.5"/><path d="M8 7h8M8 10.5h8"/><path d="M9 17.5V22l3-1.5 3 1.5v-4.5"/></svg>',
+  cap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 9l10-4 10 4-10 4z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>',
+  advice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>',
+};
+---
+<section class="usp" aria-label="Waarom BeginBHV">
+  <div class="container inner">
+    {usps.map((u) => (
+      <div class="item">
+        <span class="icon" set:html={icons[u.icon]} />
+        <span>{u.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+<style>
+  .usp { background: var(--c-light); }
+  .inner {
+    min-height: 114px; display: flex; align-items: center; justify-content: space-between;
+    padding-left: max(var(--gutter), 36px); padding-right: max(var(--gutter), 18px);
+  }
+  @media (min-width: 1420px) { .inner { padding-left: 36px; padding-right: 18px; } }
+  .item { display: flex; align-items: center; gap: 2px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-lg); white-space: nowrap; }
+  .icon { width: 21px; height: 21px; color: var(--c-black); flex: none; }
+  .icon :global(svg) { width: 100%; height: 100%; }
+  @media (max-width: 1024px) { .inner { flex-wrap: wrap; gap: 12px 32px; justify-content: center; padding-block: 20px; } .item { font-size: 18px; } }
+  @media (max-width: 600px) { .inner { display: grid; grid-template-columns: 1fr; justify-items: start; } .item { white-space: normal; } }
+</style>

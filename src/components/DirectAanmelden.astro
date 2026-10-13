@@ -1,0 +1,19 @@
+---
+const { href = '/contact', class: cls = '' } = Astro.props;
+---
+<a class={`direct ${cls}`} href={href}>
+  <img src="/images/icon-aanmelden.png" alt="" width="36" height="36" />
+  <span>Direct Aanmelden</span>
+</a>
+<style>
+  .direct {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 230px; height: 39.7px; border-radius: var(--r-md);
+    background: var(--c-green); color: var(--c-white);
+    font-family: var(--f-body); font-weight: 700; font-size: var(--t-lg); line-height: 1;
+    box-shadow: var(--sh-btn); padding-left: 32px;
+    transition: filter .15s;
+  }
+  .direct:hover { filter: brightness(1.06); }
+  .direct img { position: absolute; left: 5.3px; top: 2px; width: 35.7px; height: 35.7px; }
+</style>

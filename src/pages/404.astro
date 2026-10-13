@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Pagina niet gevonden" description="Deze pagina bestaat niet.">
+  <section class="pg">
+    <div class="container pg-inner">
+      <h1>Pagina niet gevonden</h1>
+      <p>De pagina die u zoekt bestaat niet of is verplaatst.</p>
+      <a class="btn btn-plan" href="/">Naar de homepage</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .pg-inner { padding-top: 120px; padding-bottom: 120px; max-width: 760px; }
+  h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.2; }
+  p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); margin: 20px 0 30px; }
+</style>

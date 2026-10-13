@@ -1,0 +1,80 @@
+---
+import '@fontsource-variable/lexend';
+import '@fontsource-variable/archivo/standard.css';
+import '@fontsource-variable/archivo/standard-italic.css';
+import '@fontsource/bad-script';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.js';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  navOnDark?: boolean; // nav zweeft over een donkere/gekleurde hero
+}
+const { title, description = site.description, image = '/images/og-default.jpg', navOnDark = true } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || Astro.site;
+const fullTitle = title.includes('BeginBHV') ? title : `${title} | BeginBHV`;
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BeginBHV" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {site.ga4 && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4}`}></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${site.ga4}');`}></script>
+      </>
+    )}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: site.name,
+      url: site.url,
+      telephone: site.phone,
+      email: site.email,
+      description: site.description,
+      areaServed: 'NL',
+    })} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Naar de inhoud</a>
+    <Nav onDark={navOnDark} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Reveal-animaties bij inscrollen (gericht, niet overal).
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach((e) => e.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+        }, { threshold: 0.15 });
+        els.forEach((e) => io.observe(e));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip { position: absolute; left: -999px; top: 8px; background: #fff; color: #000; padding: 8px 12px; z-index: 100; }
+  .skip:focus { left: 8px; }
+</style>

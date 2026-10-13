@@ -1,0 +1,105 @@
+---
+// Contactkaart (Figma "Laten we kennis maken!" en "Contact").
+// variant "wide" = kaart met opmerkingenveld rechts (home, sectie Dennis)
+// variant "narrow" = smalle kaart (home, naast FAQ)
+const { variant = 'wide', title = 'Laten we kennis maken!', source = 'home' } = Astro.props;
+const fields = [
+  { name: 'company', label: 'Bedrijfsnaam', auto: 'organization', required: true },
+  { name: 'email', label: 'E-mailadres', type: 'email', auto: 'email', required: true },
+  { name: 'address', label: 'Bedrijfsadres', auto: 'street-address' },
+  { name: 'postcode', label: 'Postcode', auto: 'postal-code' },
+  { name: 'city', label: 'Plaats', auto: 'address-level2' },
+];
+---
+<form class={`ccard ${variant}`} method="post" action="/api/aanvraag" data-form>
+  <h2>{title}</h2>
+  <input type="hidden" name="source" value={source} />
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+  <div class="cols">
+    <fieldset class="left">
+      <legend>Locatie</legend>
+      {fields.map((f) => (
+        <label>
+          <span>{f.label}</span>
+          <input type={f.type ?? 'text'} name={f.name} placeholder={f.label} autocomplete={f.auto} required={f.required} />
+        </label>
+      ))}
+    </fieldset>
+    {variant === 'wide' && (
+      <div class="right">
+        <label>
+          <span>Opmerking(en)</span>
+          <textarea name="message" placeholder="Opmerking(en)" rows="5"></textarea>
+        </label>
+        <button class="btn btn-send" type="submit">Verstuur</button>
+      </div>
+    )}
+  </div>
+  {variant === 'narrow' && <button class="btn btn-send big" type="submit">Verstuur</button>}
+  <p class="status" role="status" aria-live="polite"></p>
+</form>
+
+<style>
+  .ccard { background: var(--c-light); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.45); }
+  .hp { position: absolute; left: -9999px; }
+  h2 { font-family: var(--f-head); font-weight: 900; text-align: center; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { font-family: var(--f-head); font-weight: 700; padding: 0; }
+  label { display: block; }
+  label span { display: block; font-family: var(--f-body); font-weight: 100; color: var(--c-black); }
+  input, textarea {
+    width: 100%; border: 0; background: var(--c-white); box-shadow: var(--sh-input);
+    font-family: var(--f-body); font-weight: 100; color: var(--c-black);
+  }
+  input::placeholder, textarea::placeholder { color: rgba(0,0,0,.53); }
+  textarea { resize: vertical; }
+  .status { font-family: var(--f-head); font-weight: 300; font-size: 14px; min-height: 1em; margin-top: 8px; }
+  .status.ok { color: var(--c-green-dark); } .status.err { color: var(--c-red-dark); }
+
+  /* wide: 466 x 299 */
+  .wide { width: 100%; max-width: 466.3px; padding: 22px 16px 16px 19.3px; }
+  .wide h2 { font-size: var(--t-h3); margin-bottom: 25px; }
+  @media (max-width: 560px) { .wide h2 { font-size: 24px; } }
+  .wide .cols { display: grid; grid-template-columns: 206px 192px; gap: 33px; }
+  .wide legend { font-size: var(--t-lg); margin-bottom: 7px; }
+  .wide label span { font-size: var(--t-xs); margin-bottom: 1px; }
+  .wide label + label { margin-top: 5px; }
+  .wide input { height: 21.3px; border-radius: 5px; padding: 0 10px; font-size: var(--t-xs); }
+  .wide .right { display: flex; flex-direction: column; }
+  .wide .right label { margin-top: 26px; }
+  .wide textarea { height: 88px; border-radius: var(--r-md); padding: 6px 9px; font-size: var(--t-xs); }
+  .wide .right .btn { align-self: center; margin-top: 19px; }
+
+  /* narrow: 319 x 471 */
+  .narrow { width: 100%; max-width: 318.7px; padding: 16px 22px 24px; }
+  .narrow h2 { font-size: var(--t-h1); margin-bottom: 14px; }
+  .narrow legend { font-size: var(--t-lg); margin-bottom: 14px; }
+  .narrow label span { font-size: var(--t-md); margin-bottom: 2px; }
+  .narrow label + label { margin-top: 7px; }
+  .narrow input { height: 28.3px; border-radius: 5px; padding: 0 7px; font-size: var(--t-md); }
+  .narrow .big { height: 55.3px; min-width: 203px; font-size: var(--t-h3); margin: 20px auto 0; display: flex; }
+
+  @media (max-width: 560px) {
+    .wide .cols { grid-template-columns: 1fr; gap: 12px; }
+    .wide .right label { margin-top: 0; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = form.querySelector('.status')!;
+      const btn = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+      btn.disabled = true; status.className = 'status'; status.textContent = 'Versturen…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+        if (!res.ok) throw new Error();
+        status.className = 'status ok'; status.textContent = 'Bedankt! We nemen binnen één werkdag contact met u op.';
+        form.reset();
+      } catch {
+        status.className = 'status err'; status.textContent = 'Versturen is niet gelukt. Bel ons of mail naar info@beginbhv.nl.';
+      } finally { btn.disabled = false; }
+    });
+  });
+</script>

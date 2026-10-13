@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import National from '../components/National.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const blocks = [
+  {
+    title: 'Een ervaren specialist in bedrijfsbeveiliging',
+    text: 'Elk jaar trainen we honderden deelnemers volgens de wettelijke voorschriften. We waarborgen de kwaliteit van onze trainingen via erkenning door BVBN, Kiwa-certificering en een trainer die zelf jarenlang in de praktijk heeft gestaan. Elke sector heeft eigen risico’s; wij leggen je precies uit welke gevaren bij jouw werkvloer horen en welke oplossingen daarbij passen.',
+    image: '/images/cursus-bhv-herhaling.webp',
+    reverse: false,
+  },
+  {
+    title: 'Een vooruitstrevende onderneming die de toon zet',
+    text: 'Innovatie en continue verbetering zijn essentieel bij de opleiding van deelnemers. We onderzoeken voortdurend de beste leermethoden en vertalen die naar realistische oefeningen. Naast standaardopleidingen voor je bedrijfsnoodorganisatie bieden we modules op maat, afgestemd op de risico’s uit jouw RI&E. Zo worden deelnemers effectief en efficiënt getraind.',
+    image: '/images/cursus-bhv-nibhv.webp',
+    reverse: true,
+  },
+  {
+    title: 'Een individuele aanpak voor onze cliënten',
+    text: 'Bij ons komt de deelnemer op de eerste plaats. We vinden een persoonlijke aanpak belangrijk en zijn graag nauw betrokken om je zoveel mogelijk te ontlasten. Zo kunnen je medewerkers zich concentreren op veiligheid en met vertrouwen optreden bij een noodsituatie. Om de trainingen optimaal in te vullen, hanteren we een aanpak die gericht is op de risico’s in jouw organisatie.',
+    image: '/images/cursus-ontruiming.webp',
+    reverse: false,
+  },
+];
+---
+<Base title="Over ons" description="BeginBHV is het BHV-opleidingsbedrijf van Dennis Sluijmer: erkende, praktijkgerichte trainingen door heel Nederland, Kiwa-gecertificeerd en aangesloten bij BVBN.">
+  <!-- Figma 111:1707 -->
+  <section class="oh">
+    <div class="oh-stage">
+      <h1><span>Over ons</span></h1>
+      <p class="oh-text">BeginBHV is opgericht door Dennis Sluijmer met één doel: BHV-trainingen die mensen écht voorbereiden op een noodsituatie. Geen dikke readers of eindeloze theorie, maar een praktijkdag waarin je oefent met realistische scenario’s, onder begeleiding van een trainer die weet waar het in de praktijk op aankomt.<br />We trainen door heel Nederland, op onze eigen locaties en bij bedrijven op de werkvloer, en zijn erkend door BVBN en Kiwa-gecertificeerd.</p>
+      <div class="oh-photo"><img src="/images/overons-foto.webp" alt="Dennis geeft uitleg tijdens een BHV-training" width="481" height="321" fetchpriority="high" /></div>
+      <img class="oh-map" src="/images/map-nl.png" alt="" width="467" height="467" />
+    </div>
+    <div class="oh-bar"></div>
+  </section>
+
+  <!-- Figma 111:1517 -->
+  <section class="ob">
+    <div class="container">
+      {blocks.map((b, i) => (
+        <div class={`ob-row ${b.reverse ? 'rev' : ''}`}>
+          <article class="ob-card reveal">
+            <h2>{b.title}</h2>
+            <p>{b.text}</p>
+            <a class="btn btn-primary ob-btn" href="/cursussen">Lees meer &gt;</a>
+          </article>
+          <img class="ob-photo" src={b.image} alt="" width="474" height="316" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <National />
+  <CtaBand />
+</Base>
+
+<style>
+  .oh { background: linear-gradient(180deg, var(--c-coral) 0%, #fff 91.3%); }
+  .oh-stage { position: relative; width: var(--w-page); max-width: 100%; height: 599px; margin-inline: auto; }
+  h1 { position: absolute; left: 148.7px; top: 115.7px; margin: 0; }
+  h1 span {
+    display: inline-flex; align-items: center; height: 67px; padding: 0 31px 0 31px; border-radius: 24px;
+    background: var(--c-red); color: var(--c-white); font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1;
+  }
+  .oh-text { position: absolute; left: 113px; top: 308px; width: 476px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; }
+  .oh-photo { position: absolute; left: 629px; top: 183px; width: 480.7px; height: 320.7px; border-radius: 38.3px; overflow: hidden; box-shadow: var(--sh-card); }
+  .oh-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .oh-photo::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.26); }
+  .oh-map { position: absolute; left: 830px; top: 138.7px; width: 467.3px; height: 467.3px;  }
+  .oh-bar { height: 60.3px; background: var(--c-red); }
+
+  .ob { background: linear-gradient(180deg, rgba(255,0,0,.07) 0%, rgba(0,0,0,0) 100%), #fff; padding: 66.7px 0 65px; }
+  .ob-row { display: grid; grid-template-columns: 679.7px 473.7px; gap: 25px; justify-content: center; margin-left: -1px; }
+  .ob-row + .ob-row { margin-top: 42.7px; }
+  .ob-row.rev { grid-template-columns: 473.7px 679.7px; }
+  .ob-row.rev .ob-card { order: 2; }
+  .ob-card { position: relative; height: 315.7px; background: var(--c-light); border-radius: var(--r-xl); box-shadow: var(--sh-card); padding: 10px 36px 0 36px; }
+  .ob-card h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-lg); color: var(--c-red); line-height: 1.25; width: 401px; }
+  .ob-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; width: 476px; margin-top: 18px; }
+  .ob-btn { position: absolute; left: 36px; top: 251.3px; min-width: 217px; }
+  .ob-photo { width: 100%; height: 315.7px; object-fit: cover; border-radius: var(--r-xl); box-shadow: var(--sh-card); filter: brightness(.8); }
+
+  @media (max-width: 1250px) {
+    .ob-row, .ob-row.rev { grid-template-columns: 1fr 1fr; }
+    .ob-card { height: auto; padding-bottom: 80px; }
+    .ob-card h2, .ob-card p { width: auto; }
+    .ob-btn { top: auto; bottom: 20px; }
+  }
+  @media (max-width: 1100px) {
+    .oh-stage { height: auto; display: flex; flex-direction: column; gap: 24px; padding: 90px var(--gutter) 40px; }
+    h1, .oh-text, .oh-map { position: static; }
+    .oh-photo { position: relative; left: auto; top: auto; }
+    .oh-text { width: auto; }
+    .oh-photo { width: 100%; max-width: 480px; height: auto; aspect-ratio: 3/2; }
+    .oh-map { width: 300px; height: 300px; align-self: flex-end; margin-top: -120px; }
+  }
+  @media (max-width: 800px) {
+    .ob-row, .ob-row.rev { grid-template-columns: 1fr; }
+    .ob-row.rev .ob-card { order: 0; }
+    .ob-photo { height: auto; }
+    h1 span { font-size: 30px; height: 52px; }
+    .oh-map { display: none; }
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import { nav, navRight } from '../data/site.js';
+const { onDark = true } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <a class="brand" href="/" aria-label="BeginBHV home">
+      <img src="/images/logo.png" alt="" width="40" height="38" />
+      <span>BeginBHV</span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="menu" class="menu">
+      <li class="group">
+        {nav.map((i) => (
+          <a href={i.href} aria-current={isActive(i.href) ? 'page' : undefined}>{i.label}</a>
+        ))}
+      </li>
+      <li class="group right">
+        {navRight.map((i) => (
+          <a href={i.href} aria-current={isActive(i.href) ? 'page' : undefined}>{i.label}</a>
+        ))}
+        <a class="mobile-cta" href="/contact">Direct aanmelden</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-wrap { position: absolute; inset: 0 0 auto 0; z-index: 50; pointer-events: none; }
+  .nav {
+    pointer-events: auto;
+    position: relative;
+    width: 910.7px; max-width: calc(100% - 2 * var(--gutter));
+    height: 48.7px; margin-inline: auto;
+    background: var(--c-light);
+    border-radius: 0 0 var(--r-md) var(--r-md);
+    display: flex; align-items: center;
+    padding: 0 0 0 38px;
+  }
+  /* rode rand: 3px links, 4px rechts, 3.3px onder (Figma rect 10 t.o.v. rect 19) */
+  .nav::before {
+    content: ''; position: absolute; z-index: -1;
+    left: -3px; right: -4px; top: 0; bottom: -3.3px;
+    background: var(--c-red); border-radius: 0 0 var(--r-md) var(--r-md);
+  }
+  .brand { display: none; align-items: center; gap: 8px; font-family: var(--f-head); font-weight: 800; }
+  .brand img { width: 40px; height: auto; }
+  .menu { list-style: none; margin: 0; padding: 0; display: flex; flex: 1; align-items: center; height: 100%; }
+  .group { display: flex; align-items: center; gap: 19.3px; }
+  .group.right { margin-left: auto; padding-right: 22.3px; gap: 20px; }
+  .menu a {
+    font-family: var(--f-body); font-weight: 200; font-size: var(--t-lg); color: var(--c-black);
+    line-height: 1; padding: 6px 0; position: relative; white-space: nowrap;
+  }
+  .menu a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--c-red); transform: scaleX(0); transition: transform .2s; transform-origin: left; }
+  .menu a:hover::after, .menu a[aria-current='page']::after { transform: scaleX(1); }
+  .mobile-cta { display: none; }
+  .burger { display: none; }
+
+  @media (max-width: 1024px) {
+    .nav { width: calc(100% - 2 * var(--gutter)); padding-left: 20px; }
+    .group { gap: 14px; } .group.right { gap: 14px; padding-right: 16px; }
+    .menu a { font-size: 18px; }
+  }
+  @media (max-width: 760px) {
+    .nav-wrap { position: sticky; top: 0; background: var(--c-light); border-bottom: 3px solid var(--c-red); }
+    .nav { width: 100%; max-width: none; height: 56px; border-radius: 0; padding: 0 var(--gutter); background: transparent; }
+    .nav::before { display: none; }
+    .brand { display: flex; }
+    .burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      margin-left: auto; width: 44px; height: 44px; background: none; border: 0; padding: 8px;
+    }
+    .burger span { display: block; height: 2px; background: var(--c-black); border-radius: 2px; transition: transform .2s, opacity .2s; }
+    .burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .menu {
+      display: none; position: absolute; left: 0; right: 0; top: 100%;
+      flex-direction: column; background: var(--c-light); border-bottom: 3px solid var(--c-red);
+      padding: 8px var(--gutter) 16px; box-shadow: 0 8px 16px rgba(0,0,0,.12);
+    }
+    .menu.open { display: flex; }
+    .group, .group.right { flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0; }
+    .menu a { font-size: 20px; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,.08); }
+    .menu a::after { display: none; }
+    .mobile-cta { display: block; margin-top: 12px; background: var(--c-green); color: #fff; font-weight: 700; text-align: center; border-radius: var(--r-md); padding: 12px; border: 0; }
+  }
+</style>
+
+<script>
+  const b = document.querySelector('.burger');
+  const m = document.getElementById('menu');
+  b?.addEventListener('click', () => {
+    const open = m!.classList.toggle('open');
+    b.setAttribute('aria-expanded', String(open));
+  });
+</script>

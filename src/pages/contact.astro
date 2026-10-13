@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Funnel from '../components/Funnel.astro';
+import UspBar from '../components/UspBar.astro';
+import { site } from '../data/site.js';
+import { funnel } from '../data/content.js';
+---
+<Base title="Contact en aanvragen" description="Vraag een BHV-cursus of advies aan bij BeginBHV. Beantwoord vier korte vragen en we nemen binnen één werkdag contact met u op.">
+  <section class="ct">
+    <div class="ct-stage">
+      <div class="ct-intro">
+        <h1>{funnel.title}</h1>
+        <p>{funnel.intro}</p>
+        <ul class="checklist ct-usps">
+          <li>Binnen één werkdag reactie</li>
+          <li>Vrijblijvend en zonder verplichtingen</li>
+          <li>Ook incompany, overal in Nederland</li>
+        </ul>
+        <address>
+          <strong>{site.name}</strong><br />
+          {site.address.map((l) => (<>{l}<br /></>))}
+          <a href={site.phoneHref}>{site.phone}</a><br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </address>
+      </div>
+      <div class="ct-funnel reveal"><Funnel /></div>
+    </div>
+    <div class="ct-bar"></div>
+  </section>
+  <UspBar />
+</Base>
+<style>
+  .ct { background: var(--c-coral); }
+  .ct-stage { position: relative; width: var(--w-page); max-width: 100%; margin-inline: auto; display: grid; grid-template-columns: 1fr 640px; gap: 60px; padding: 96px 59px 60px; }
+  .ct-intro { color: var(--c-white); }
+  h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.2; }
+  .ct-intro p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 20px; max-width: 480px; }
+  .ct-usps { margin-top: 30px; }
+  .ct-usps li + li { margin-top: 12px; }
+  address { font-style: normal; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.4; margin-top: 36px; }
+  address a:hover { text-decoration: underline; }
+  .ct-bar { height: 60.3px; background: var(--c-red); }
+  @media (max-width: 1100px) { .ct-stage { grid-template-columns: 1fr; padding: 90px var(--gutter) 40px; } }
+  @media (max-width: 700px) { h1 { font-size: 30px; } .ct-stage { padding-top: 40px; } }
+</style>

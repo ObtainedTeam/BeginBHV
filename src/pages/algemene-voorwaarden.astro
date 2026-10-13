@@ -1,0 +1,14 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../data/site.js';
+const sections = [
+  { h: '1. Toepasselijkheid', p: [`Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten van ${site.legalName} (hierna: BeginBHV) met betrekking tot het verzorgen van trainingen, cursussen en advies.`] },
+  { h: '2. Inschrijving en bevestiging', p: ['Een inschrijving komt tot stand na schriftelijke bevestiging door BeginBHV. Inschrijvingen worden behandeld op volgorde van binnenkomst.'] },
+  { h: '3. Prijzen en betaling', p: ['Alle prijzen zijn in euro’s en exclusief btw, tenzij anders vermeld. Betaling is mogelijk via iDeal, vooraf of achteraf binnen 14 dagen na factuurdatum.'] },
+  { h: '4. Annulering en verplaatsing', p: ['Annuleren is kosteloos tot 14 dagen voor aanvang van de cursus. Bij annulering binnen 14 dagen wordt 50% van het cursusbedrag in rekening gebracht; bij annulering binnen 48 uur of niet verschijnen het volledige bedrag. Verplaatsen naar een andere datum is in overleg kosteloos mogelijk tot 7 dagen voor aanvang.'] },
+  { h: '5. Certificering', p: ['Deelnemers die de cursus volledig en met goed gevolg hebben afgerond ontvangen een certificaat en pasje. De geldigheidsduur staat op het certificaat vermeld.'] },
+  { h: '6. Aansprakelijkheid', p: ['BeginBHV is niet aansprakelijk voor schade die voortvloeit uit deelname aan de cursus, behoudens opzet of grove nalatigheid. Deelnemers nemen deel op eigen risico en volgen de instructies van de trainer op.'] },
+  { h: '7. Toepasselijk recht', p: ['Op alle overeenkomsten is Nederlands recht van toepassing.'] },
+];
+---
+<LegalPage title="Algemene voorwaarden" description="Algemene voorwaarden van BeginBHV." sections={sections} />

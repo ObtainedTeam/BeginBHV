@@ -1,0 +1,50 @@
+---
+// Cursuskaart (Figma Curs2): 377.7 x 571, radius 26.3
+import { nextDate } from '../data/courses.js';
+const { course, delay = 0 } = Astro.props;
+---
+<article class="cc reveal" style={`transition-delay:${delay}ms`}>
+  <a class="cc-img" href={`/cursussen/${course.slug}`} tabindex="-1" aria-hidden="true">
+    <img src={course.image} alt="" width="378" height="252" loading="lazy" />
+  </a>
+  <div class="cc-stripe"></div>
+  <div class="cc-date" aria-label={`Eerstvolgende datum ${nextDate.day} ${nextDate.month}`}>
+    <span class="d">{nextDate.day}</span><span class="m">{nextDate.month}</span>
+  </div>
+  <div class="cc-body">
+    <h3><a href={`/cursussen/${course.slug}`}>{course.title}</a></h3>
+    <p class="cc-sub">{course.blurb}</p>
+    <ul class="checklist cc-list">
+      {course.bullets.map((b) => <li>{b}</li>)}
+    </ul>
+    <a class="btn btn-primary cc-btn" href={`/cursussen/${course.slug}`}>Plan direct</a>
+  </div>
+</article>
+
+<style>
+  .cc {
+    position: relative; width: 377.7px; height: 571px;
+    background: var(--c-light); border-radius: var(--r-2xl);
+    box-shadow: var(--sh-card); overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, opacity .6s ease;
+  }
+  .cc:hover { transform: translateY(-4px); box-shadow: 2px 6px 10px rgba(0,0,0,.22); }
+  .cc-img { display: block; height: 252px; position: relative; }
+  .cc-img img { width: 100%; height: 100%; object-fit: cover; }
+  .cc-img::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+  .cc-stripe { height: 23px; background: var(--c-red); }
+  .cc-date {
+    position: absolute; left: 279.7px; top: 224px; width: 69.3px; height: 78.7px;
+    border: 1px solid #000; border-radius: 7.3px; overflow: hidden; background: #fff;
+    box-shadow: var(--sh-card); font-family: var(--f-head); text-align: center;
+  }
+  .cc-date .d { display: block; height: 44px; line-height: 46px; font-weight: 700; font-size: 26px; color: #2b3a4a; }
+  .cc-date .m { display: block; height: 34px; line-height: 34px; background: #2b3a4a; color: #fff; font-weight: 700; font-size: 12px; }
+  .cc-body { padding: 10px 20px 0 27px; position: relative; height: 296px; }
+  h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.65; }
+  .cc-sub { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.2; margin: -4px 0 0 7px; width: 238px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .cc-list { margin: 12px 0 0 19px; }
+  .cc-list li + li { margin-top: 27px; }
+  .cc-btn { position: absolute; left: 27px; bottom: 13px; }
+  @media (max-width: 420px) { .cc { width: 100%; } .cc-date { left: auto; right: 24px; } }
+</style>

@@ -1,0 +1,103 @@
+---
+// Figma Curs3: "Hoe ziet een praktijk dag er uit?" met drie chevron-panelen en de video-sectie.
+const { course } = Astro.props;
+const panels = [
+  { title: 'Realistische scenario’s', icon: '/images/icon-scenario.png', text: 'Je oefent met echte situaties: een onwel geworden collega, brand of een ontruiming.' },
+  { title: 'Interactieve werkvormen', icon: '/images/icon-werkvormen.png', text: 'Geen dag luisteren, maar doen. Kleine groepen, veel oefenen en directe feedback.' },
+  { title: 'Duidelijke stappenplannen', icon: '/images/icon-stappenplan.png', text: 'Elke handeling leer je als vast stappenplan, zodat je ook onder druk overzicht houdt.' },
+];
+const intro = course?.description ?? [
+  'Een praktijkdag bij BeginBHV begint om 09:00 met koffie en een korte kennismaking. Daarna gaan we direct aan de slag: eerste hulp en reanimatie in de ochtend, brandbestrijding en ontruiming in de middag.',
+  'Aan het eind van de dag ontvang je je certificaat. Alles wat je nodig hebt, van reanimatiepop tot blusmiddelen, is aanwezig.',
+];
+---
+<section class="pd">
+  <div class="container">
+    <h2>Hoe ziet een praktijk dag er uit?</h2>
+    <div class="pd-intro">
+      {intro.map((p) => <p>{p}</p>)}
+    </div>
+    <div class="pd-panels">
+      {panels.map((p, i) => (
+        <div class="panel reveal" style={`transition-delay:${i * 100}ms`}>
+          <h3>{p.title}</h3>
+          <img class="panel-icon" src={p.icon} alt="" width="134" height="134" loading="lazy" />
+          <svg class="panel-ecg" viewBox="0 0 336 106" fill="none" aria-hidden="true">
+            <path d="M0 60 H118 L128 50 L138 70 L148 20 L158 100 L168 44 L178 60 H336" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" />
+          </svg>
+          <p>{p.text}</p>
+          <a class="panel-btn" href="/contact">Meer informatie</a>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="pd-h2b">Neem een kijkje en ontdek!</h2>
+    <div class="pd-video">
+      <div class="pd-text">
+        <h3>{course?.heroLabel ?? 'In één dag BHV’er!'}</h3>
+        <blockquote>
+          <p>“Je hoeft geen held te zijn om levens te redden. Je moet alleen weten wat je moet doen, en dat oefenen we net zo lang tot het vanzelf gaat. Een praktijkdag bij BeginBHV is intensief, leerzaam en vooral: praktisch. Je gaat naar huis met een certificaat én met vertrouwen.”</p>
+        </blockquote>
+        <ul class="checklist">
+          <li>Kleine groepen, maximaal 12 deelnemers</li>
+          <li>Oefenen met echte blusmiddelen en AED</li>
+          <li>Trainer met jarenlange praktijkervaring</li>
+          <li>Certificaat dezelfde dag geregeld</li>
+          <li>Koffie, thee en lunch inbegrepen</li>
+        </ul>
+        <a class="btn btn-plan" href="/contact">Plan met Dennis</a>
+      </div>
+      <div class="pd-player">
+        <!-- Vervang door een <video> of embed zodra de video er is. -->
+        <img src="/images/video-thumb.webp" alt="Video: een dag bij BeginBHV" width="727" height="408" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pd { background: linear-gradient(180deg, rgba(245,245,245,.2) 39%, rgba(188,0,0,.094) 84%), #fff; padding: 33px 0 97px; }
+  h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); text-align: center; line-height: 1.85; }
+  .pd-intro { max-width: 576px; margin: 0 auto; text-align: center; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; }
+  .pd-panels { display: flex; justify-content: center; gap: 0; margin-top: 54px; }
+  .panel {
+    position: relative; width: 336px; height: 532.3px; color: var(--c-white);
+    background: var(--c-coral);
+    clip-path: polygon(3% 0, 81% 0, 100% 49%, 90% 100%, 3% 100%, 10% 49%);
+    padding: 10px 24px 0 25px;
+    filter: drop-shadow(1px 2px 1.3px rgba(0,0,0,.25));
+  }
+  .panel + .panel { margin-left: 0; }
+  .panel h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h4); line-height: 1.1; color: var(--c-light); text-shadow: var(--sh-text); width: 262px; }
+  .panel-icon { position: absolute; left: 108px; top: 84px; width: 134px; height: 134px; filter: drop-shadow(0 1.3px 1.3px rgba(0,0,0,.25)); }
+  .panel-ecg { position: absolute; left: 0; top: 218px; width: 100%; height: 106px; }
+  .panel p { position: absolute; left: 36px; top: 346px; width: 251px; font-family: var(--f-body); font-weight: 100; font-size: var(--t-lg); color: var(--c-light); line-height: 1.2; }
+  .panel-btn {
+    position: absolute; left: 25.7px; top: 449px; width: 305.7px; height: 63.7px;
+    background: var(--c-red-dark); color: var(--c-white);
+    clip-path: polygon(0 0, 93% 0, 100% 50%, 93% 100%, 0 100%, 6% 50%);
+    display: flex; align-items: center; padding-left: 36px;
+    font-family: var(--f-body); font-weight: 900; font-size: var(--t-h5); text-shadow: var(--sh-text);
+  }
+  .panel-btn:hover { filter: brightness(1.1); }
+  .pd-h2b { margin-top: 85px; }
+  .pd-video { display: grid; grid-template-columns: 1fr 727px; gap: 53px; margin-top: 26px; padding-left: 69px; padding-right: 37px; }
+  .pd-text h3 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h3); line-height: 1.5; }
+  .pd-text blockquote { margin: 0; max-width: 500px; }
+  .pd-text blockquote p { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); line-height: 1.2; }
+  .pd-text .checklist { margin: 36px 0 0 12px; }
+  .pd-text .checklist li + li { margin-top: 4.3px; }
+  .pd-text .btn { margin-top: 48px; }
+  .pd-player { margin-top: 15px; }
+  .pd-player img { width: 100%; height: auto; border-radius: 4px; box-shadow: var(--sh-card); }
+
+  @media (max-width: 1100px) {
+    .pd-panels { flex-wrap: wrap; gap: 24px; }
+    .pd-video { grid-template-columns: 1fr; padding-inline: 0; }
+  }
+  @media (max-width: 700px) {
+    h2 { font-size: 28px; line-height: 1.3; }
+    .panel { width: 100%; max-width: 336px; }
+    .pd-text h3 { font-size: 26px; }
+  }
+</style>

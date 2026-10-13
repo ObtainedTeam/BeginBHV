@@ -1,0 +1,150 @@
+---
+import Base from '../../layouts/Base.astro';
+import UspBar from '../../components/UspBar.astro';
+import Praktijkdag from '../../components/Praktijkdag.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import FaqRows from '../../components/FaqRows.astro';
+import { courses } from '../../data/courses.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return courses.map((c) => ({ params: { slug: c.slug }, props: { course: c } }));
+}
+const { course } = Astro.props;
+const title = `${course.title} Cursus`;
+---
+<Base title={title} description={`${course.title}: ${course.blurb} Eendaagse praktijktraining met erkend certificaat, door heel Nederland.`} image={course.image}>
+  <!-- Figma Frame 6: hero -->
+  <section class="dh">
+    <div class="dh-stage">
+      <div class="dh-text">
+        <h1>{title}</h1>
+        <div class="dh-tabs" role="tablist" aria-label="Cursusinformatie">
+          <button type="button" role="tab" aria-selected="true" aria-controls="tab-omschrijving" id="t-omschrijving">Omschrijving</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="tab-inhoud" id="t-inhoud">Inhoud</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="tab-kosten" id="t-kosten">Kosten</button>
+        </div>
+        <div id="tab-omschrijving" role="tabpanel" aria-labelledby="t-omschrijving">
+          {course.description.map((p) => <p>{p}</p>)}
+        </div>
+        <div id="tab-inhoud" role="tabpanel" aria-labelledby="t-inhoud" hidden>
+          <ul class="dh-list">{course.content.map((c) => <li>{c}</li>)}</ul>
+        </div>
+        <div id="tab-kosten" role="tabpanel" aria-labelledby="t-kosten" hidden>
+          <p>Vanaf € {course.price} per deelnemer, inclusief lesmateriaal, certificaat en pasje, koffie, thee en lunch. Betalen kan via iDeal, vooraf of achteraf. Voor groepen vanaf vijf deelnemers maken we een offerte op maat.</p>
+        </div>
+      </div>
+      <div class="dh-photo">
+        <img src={course.image === '/images/cursus-ontruiming.webp' ? '/images/cursus-detail-hero.webp' : course.image} alt={`${course.title} in de praktijk`} width="665" height="443" fetchpriority="high" />
+      </div>
+    </div>
+    <UspBar />
+  </section>
+
+  <!-- Figma Frame 7: prijs + specificaties -->
+  <section class="ds">
+    <div class="container ds-inner">
+      <div class="ds-left">
+        <p class="ds-price"><span>Vanaf</span> {course.price}</p>
+        <ul class="checklist ds-check">
+          {course.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+        <a class="btn btn-plan ds-plan" href={`/contact?cursus=${course.slug}`}>Plan met Dennis</a>
+        <div class="ds-card reveal">
+          <h2>Liever op een externe locatie?</h2>
+          <p>Geen probleem, u kan terecht bij een van onze trainingslocaties. De koffie en thee staat klaar!</p>
+          <a class="btn btn-outline" href={`/contact?cursus=${course.slug}`}>Vraag offerte aan</a>
+          <div class="ds-rating">
+            <span class="ds-score">{site.googleRating}</span>
+            <span class="ds-score-label">Gemiddelde waardering op Google</span>
+          </div>
+        </div>
+      </div>
+      <table class="ds-specs">
+        <caption class="sr-only">Specificaties {course.title}</caption>
+        <tbody>
+          {Object.entries(course.specs).map(([k, v]) => (
+            <tr><th scope="row">{k}</th><td>{v}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <Praktijkdag course={course} />
+  <CtaBand title={`Boek nu de ${course.title} cursus en betaal achteraf`} />
+  <FaqRows />
+</Base>
+
+<style>
+  .dh { background: var(--c-coral); }
+  .dh-stage { position: relative; width: var(--w-page); max-width: 100%; height: 442.3px; margin-inline: auto; overflow: hidden; }
+  .dh-text { position: absolute; left: 59px; top: 58px; width: 576px; color: var(--c-white); }
+  h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.9; }
+  .dh-tabs { display: flex; gap: 0; margin-top: 0; }
+  .dh-tabs button {
+    height: 35.3px; padding: 0 8px; border: 0; border-radius: 9px; background: transparent; color: var(--c-white);
+    font-family: var(--f-head); font-weight: 300; font-size: var(--t-md);
+  }
+  .dh-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
+  .dh-tabs button:first-child { padding: 0 8px 0 8px; }
+  .dh-text [role='tabpanel'] { margin-top: 19px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; }
+  .dh-text [role='tabpanel'] p + p { margin-top: 0; }
+  .dh-list { margin: 0; padding-left: 20px; }
+  .dh-list li { margin-bottom: 6px; }
+  .dh-photo { position: absolute; left: 796.3px; top: -1px; width: 665px; height: 443.3px; border-radius: var(--r-xl) 0 0 var(--r-xl); overflow: hidden; }
+  .dh-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .ds { background: var(--c-white); }
+  .ds-inner { display: grid; grid-template-columns: 1fr 715px; gap: 40px; padding-top: 29px; padding-bottom: 20px; padding-left: max(var(--gutter), 61px); padding-right: max(var(--gutter), 56px); min-height: 495px; }
+  @media (min-width: 1420px) { .ds-inner { padding-left: 61px; padding-right: 56px; } }
+  .ds-price { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.6; }
+  .ds-price span { font-size: var(--t-h3); }
+  .ds-check { margin: 4px 0 0 5px; }
+  .ds-check li + li { margin-top: 26.7px; }
+  .ds-plan { margin: 20px 0 0 17px; }
+  .ds-card { position: relative; width: 373px; height: 200.7px; margin-top: 21px; background: var(--c-light); border-radius: var(--r-lg); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.25); padding: 15px 0 0 18px; }
+  .ds-card h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); line-height: 1.9; }
+  .ds-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); width: 241px; line-height: 1.25; }
+  .ds-card .btn-outline { position: absolute; left: 21px; top: 116px; width: 322px; }
+  .ds-rating { position: absolute; left: -25px; bottom: -20px; display: flex; align-items: center; gap: 11px; }
+  .ds-score { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--c-light); box-shadow: 0 1.3px 1.3px rgba(0,0,0,.25); font-family: var(--f-head); font-weight: 900; font-size: var(--t-md); }
+  .ds-score-label { font-family: var(--f-head); font-weight: 300; font-size: var(--t-xs); }
+  .ds-specs { border-collapse: collapse; width: 715px; max-width: 100%; align-self: start; margin-top: 56px; font-family: var(--f-head); font-size: var(--t-md); }
+  .ds-specs tr:nth-child(odd) { background: var(--c-light); }
+  .ds-specs th, .ds-specs td { height: 54.3px; text-align: left; vertical-align: middle; padding: 8px 0; }
+  .ds-specs th { font-weight: 700; width: 207px; padding-left: 12.3px; }
+  .ds-specs td { font-weight: 300; }
+
+  @media (max-width: 1100px) {
+    .dh-stage { height: auto; display: flex; flex-direction: column; }
+    .dh-text { position: static; width: auto; padding: 90px var(--gutter) 30px; }
+    h1 { line-height: 1.2; margin-bottom: 16px; }
+    .dh-photo { position: static; width: 100%; height: 300px; border-radius: 0; }
+    .ds-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); }
+    .ds-specs { width: 100%; margin-top: 50px; }
+    .ds-rating { position: static; margin-top: 70px; }
+    .ds-card { height: auto; padding-bottom: 20px; }
+    .ds-card .btn-outline { position: static; margin-top: 16px; }
+  }
+  @media (max-width: 700px) {
+    h1 { font-size: 30px; }
+    .dh-text { padding-top: 40px; }
+    .ds-price { font-size: 32px; }
+    .ds-card { width: 100%; }
+    .ds-card .btn-outline { width: 100%; }
+    .ds-specs th { width: 120px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.dh-tabs').forEach((tl) => {
+    const tabs = [...tl.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      tabs.forEach((x) => {
+        const on = x === t; x.setAttribute('aria-selected', String(on));
+        const p = document.getElementById(x.getAttribute('aria-controls')!); if (p) p.hidden = !on;
+      });
+    }));
+  });
+</script>

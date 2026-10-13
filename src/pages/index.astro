@@ -1,0 +1,283 @@
+---
+import Base from '../layouts/Base.astro';
+import DirectAanmelden from '../components/DirectAanmelden.astro';
+import EcgDivider from '../components/EcgDivider.astro';
+import UspBar from '../components/UspBar.astro';
+import Faq from '../components/Faq.astro';
+import ContactCard from '../components/ContactCard.astro';
+import National from '../components/National.astro';
+import { courses } from '../data/courses.js';
+import { clientReview, studentReviews, faq } from '../data/content.js';
+import { site } from '../data/site.js';
+
+const featured = ['bhv-standaard', 'bhv-nibhv', 'bhv-ploegleider'].map((s) => courses.find((c) => c.slug === s));
+const packageLines = {
+  'bhv-standaard': ['Eerste hulp bij ongevallen', 'Reanimatie en AED', 'Beginnende brand blussen', 'Ontruiming begeleiden', 'Erkend certificaat, één jaar geldig'],
+  'bhv-nibhv': ['Alles van BHV Standaard', 'Officieel NIBHV examen', 'Landelijk erkend diploma', 'Registratie in NIBHV-register', 'Diploma en pasje inbegrepen'],
+  'bhv-ploegleider': ['Leidinggeven bij een inzet', 'Wet- en regelgeving in de praktijk', 'Van BHV-plan naar praktijk', 'BHV-ploeg trainen en voorbereiden', 'Geldig BHV certificaat vereist'],
+};
+---
+<Base title="BeginBHV | Erkende BHV-trainingen door heel Nederland">
+  <!-- 1. Hero (Figma 1:2) -->
+  <section class="hero">
+    <img class="hero-bg" src="/images/hero-bg.webp" alt="" width="1386" height="522" fetchpriority="high" />
+    <div class="hero-stage">
+      <img class="hero-dennis" src="/images/hero-dennis.png" alt="Dennis Sluijmer, eigenaar en cursusleider van BeginBHV" width="529" height="529" />
+      <h1 class="hero-logo">
+        <img src="/images/logo.png" alt="BeginBHV" width="479" height="479" />
+        <span class="sr-only">BeginBHV, erkende BHV-trainingen door heel Nederland</span>
+      </h1>
+      <p class="signature" aria-hidden="true">Dennis Sluijmer</p>
+      <div class="hero-cta"><DirectAanmelden /></div>
+    </div>
+    <div class="hero-bar"></div>
+  </section>
+
+  <!-- 2. Pakketten (Figma 7:134) -->
+  <section class="packages" aria-labelledby="pk-title">
+    <h2 id="pk-title" class="sr-only">Onze BHV-cursussen</h2>
+    <div class="container pk-grid">
+      {featured.map((c, i) => (
+        <article class={`pk reveal`} style={`transition-delay:${i * 90}ms`}>
+          <div class="pk-circle"><img src={c.icon} alt="" width="130" height="130" loading="lazy" /></div>
+          <div class="pk-card">
+            <h3>{c.title}</h3>
+            <ul>
+              {packageLines[c.slug].map((l) => <li>{l}</li>)}
+            </ul>
+          </div>
+          <a class="btn btn-primary pk-btn" href={`/cursussen/${c.slug}`}>Plan direct</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- 3. Dennis + kennismaken (Figma 1:10) -->
+  <section class="dennis">
+    <div class="container dennis-inner">
+      <div class="dennis-form reveal">
+        <ContactCard variant="wide" source="home-kennismaken" />
+      </div>
+      <div class="dennis-text">
+        <h2>Maak kennis met Dennis!</h2>
+        <div class="dennis-row">
+          <div class="dennis-photo">
+            <img src="/images/dennis-portret.webp" alt="Dennis Sluijmer" width="218" height="218" loading="lazy" />
+          </div>
+          <div class="dennis-copy">
+            <p class="tagline">Van vastgoed, naar doet goed.</p>
+            <blockquote>
+              <p>“Na jaren in het vastgoed wilde ik iets doen dat er écht toe doet. Tijdens een BHV-inzet op een van mijn eigen panden zag ik hoeveel verschil een goed getrainde collega maakt. Sindsdien train ik teams door heel Nederland: praktisch, met realistische scenario’s en zonder onnodige theorie. Mijn doel is simpel: dat iedereen die bij mij een dag heeft gezeten, durft te handelen als het erop aankomt.”</p>
+            </blockquote>
+          </div>
+        </div>
+        <p class="attribution">Dennis Sluijmer, Eigenaar en Cursusleider</p>
+      </div>
+    </div>
+    <EcgDivider class="dennis-ecg" />
+  </section>
+
+  <!-- 4. Reviews (Figma 1:9) -->
+  <section class="reviews" aria-labelledby="rv-title">
+    <div class="container rv-inner">
+      <div class="rv-client">
+        <h2 id="rv-title">Wat klanten zeggen over BeginBHV</h2>
+        <p class="rv-name">{clientReview.name}</p>
+        <blockquote><p>{clientReview.quote}</p></blockquote>
+        <img class="rv-logo" src={clientReview.logo} alt="" width="121" height="113" loading="lazy" />
+      </div>
+      <div class="rv-card reveal" data-carousel>
+        <h2>Wat onze cursisten zeggen</h2>
+        {studentReviews.map((r, i) => (
+          <div class="rv-slide" data-slide hidden={i !== 0}>
+            <p class="rv-name">{r.name}</p>
+            <blockquote><p>{r.quote}</p></blockquote>
+            {r.logo && <img class="rv-slide-logo" src={r.logo} alt="" width="146" height="77" loading="lazy" />}
+          </div>
+        ))}
+        <div class="rv-dots" role="tablist" aria-label="Reviews">
+          {studentReviews.map((_, i) => (
+            <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} aria-label={`Review ${i + 1}`} data-dot={i}></button>
+          ))}
+        </div>
+      </div>
+    </div>
+    <UspBar />
+  </section>
+
+  <National />
+
+  <!-- 6. Veel gestelde vragen + certificaat/betalen (Figma 1:8, onderste deel) -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="container">
+      <h2 id="faq-title">Veel gestelde vragen</h2>
+      <div class="info-row">
+        <img class="info-photo" src="/images/foto-cursus-klas.webp" alt="BHV-cursus in een klaslokaal met reanimatieoefening" width="629" height="410" loading="lazy" />
+        <article class="info-card reveal">
+          <h3>BHV certificaat en BHV pasje</h3>
+          <p>Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-standaard">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.</p>
+          <a class="btn btn-small" href="/cursussen/bhv-standaard">Lees meer</a>
+        </article>
+      </div>
+      <div class="info-row">
+        <article class="info-card reveal">
+          <h3>Boek nu een BHV cursus en betaal achteraf</h3>
+          <p>Het is mogelijk om de BHV cursus via iDeal, vooraf- of achteraf te betalen. De getoonde tarieven zijn alle kosten.</p>
+          <a class="btn btn-small" href="/cursussen">Lees meer</a>
+        </article>
+        <img class="info-photo" src="/images/foto-blusser.webp" alt="Blusoefening met een brandblusser" width="637" height="410" loading="lazy" />
+      </div>
+      <div class="faq-row">
+        <div class="faq-contact">
+          <ContactCard variant="narrow" title="Contact" source="home-contact" />
+        </div>
+        <div class="faq-list">
+          <Faq items={faq.slice(0, 4)} variant="cards" openFirst={true} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero { position: relative; height: 522px; background: #000; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .36; }
+  .hero-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; }
+  .hero-dennis { position: absolute; left: -18px; top: 86px; width: 529px; height: 529px; opacity: .88; }
+  .hero-logo { position: absolute; left: 411px; top: 63px; width: 479px; height: 479px; margin: 0; }
+  .signature {
+    position: absolute; left: 275px; top: 390px; margin: 0;
+    font-family: var(--f-script); font-size: var(--t-h3); letter-spacing: -1.28px; color: var(--c-white); opacity: .88;
+  }
+  .hero-cta { position: absolute; left: 1132px; top: 77.7px; }
+  .hero-bar { position: absolute; left: 0; right: 0; top: 461.7px; height: 60.3px; background: var(--c-red-dark); }
+
+  /* ---------- Pakketten ---------- */
+  .packages { padding: 176px 0 23px; }
+  .pk-grid { display: flex; justify-content: center; gap: 22.3px; }
+  .pk { position: relative; width: 272.3px; padding-top: 52px; }
+  .pk-circle {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 109.3px; height: 109.3px; border-radius: 50%; background: var(--c-white); z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pk-circle img { width: 118px; height: auto; max-width: none; }
+  .pk:nth-child(1) .pk-circle img { width: 103px; }
+  .pk-card { height: 372px; background: var(--c-light); border-radius: var(--r-md); box-shadow: 1px 2.3px 1.3px rgba(0,0,0,.52); padding: 70px 20px 0 24px; }
+  .pk-card h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.6; }
+  .pk-card ul { list-style: none; margin: 10px 0 0 18px; padding: 0; font-family: var(--f-body); font-weight: 100; font-size: var(--t-md); line-height: 1.17; }
+  .pk-card li + li { margin-top: 15px; }
+  .pk-btn { position: absolute; left: 53.3px; bottom: -23px; }
+  .pk:nth-child(3) .pk-btn { left: 52.3px; }
+
+  /* ---------- Dennis ---------- */
+  .dennis { position: relative; background: linear-gradient(180deg, rgba(255,0,0,.1) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 62px; }
+  .dennis-inner { display: grid; grid-template-columns: 466px 1fr; gap: 56px; padding-left: max(var(--gutter), 109px); min-height: 494px; }
+  @media (min-width: 1420px) { .dennis-inner { padding-left: 109px; } }
+  .dennis-form { padding-top: 30px; min-width: 0; }
+  .dennis-text h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-display); line-height: 1.5; }
+  .dennis-row { display: grid; grid-template-columns: 218px 1fr; gap: 25px; margin-top: 2px; }
+  .dennis-photo { width: 218px; height: 218px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #ff0000, #2b2bff); margin-top: 1px; margin-left: -7px; }
+  .dennis-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h1); line-height: 1.07; max-width: 383px; margin-top: 10px; }
+  .dennis-copy blockquote { margin: 7px 0 0 16px; max-width: 351px; }
+  .dennis-copy blockquote p { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); line-height: 1.2; }
+  .attribution { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); margin: 24px 0 0 174px; }
+  :global(.dennis-ecg) { margin-top: -62px; position: relative; z-index: 2; }
+
+  /* ---------- Reviews ---------- */
+  .reviews { background: var(--c-white); }
+  .rv-inner { display: grid; grid-template-columns: 1fr 491px; gap: 40px; padding-top: 80px; padding-bottom: 80px; padding-left: max(var(--gutter), 45px); padding-right: max(var(--gutter), 70px); }
+  @media (min-width: 1420px) { .rv-inner { padding-left: 45px; padding-right: 70px; } }
+  .rv-client { position: relative; }
+  .rv-client h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.25; white-space: nowrap; }
+  .rv-client .rv-name { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin: 7px 0 0 51px; line-height: 1.6; }
+  .rv-client blockquote { margin: 0 0 0 51px; max-width: 423px; }
+  blockquote p { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); line-height: 1.2; }
+  .rv-logo { position: absolute; left: 474px; top: 163px; width: 121px; height: auto; }
+  .rv-card {
+    position: relative; min-height: 317px; background: var(--c-coral); color: var(--c-white);
+    border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.67); padding: 18px 14px 40px;
+  }
+  .rv-card h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h3); line-height: 1.25; }
+  .rv-card .rv-name { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin: 4px 0 0 9px; }
+  .rv-card blockquote { margin: 6px 0 0 38px; max-width: 397px; }
+  .rv-slide-logo { position: absolute; right: 35px; top: 176px; width: 146px; height: auto; }
+  .rv-dots { position: absolute; right: 14px; bottom: 13px; display: flex; gap: 6px; }
+  .rv-dots button { width: 58.3px; height: 7.7px; border-radius: 5px; border: 0; background: var(--c-light); opacity: .7; padding: 0; }
+  .rv-dots button[aria-selected='true'] { background: var(--c-white); opacity: 1; }
+  .rv-slide { animation: fade .4s ease; }
+  @keyframes fade { from { opacity: 0; } }
+
+  /* ---------- FAQ ---------- */
+  .faq-section { background: linear-gradient(180deg, rgba(255,0,0,.04) 0%, rgba(255,0,0,.07) 100%), #fff; padding: 20px 0 160px; }
+  .faq-section h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.55; margin-bottom: 53px; }
+  .info-row { display: grid; grid-template-columns: 629px 466px; justify-content: center; gap: 28.7px; margin-bottom: 35px; }
+  .info-row:nth-of-type(2) { grid-template-columns: 466px 637px; gap: 20px; }
+  .info-photo { width: 100%; height: 410px; object-fit: cover; border-radius: var(--r-md); }
+  .info-card { position: relative; height: 410px; background: var(--c-white); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.51); padding: 31px 35px 0 29px; }
+  .info-card h3 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h2); color: var(--c-red); line-height: 1.25; }
+  .info-card p { font-family: var(--f-body); font-weight: 100; font-size: var(--t-lg); line-height: 1.2; margin-top: 24px; max-width: 392px; }
+  .info-card p a { text-decoration: underline; }
+  .info-card .btn { position: absolute; left: 29px; bottom: 25px; }
+  .faq-row { display: grid; grid-template-columns: 319px 760px; justify-content: center; gap: 45px; margin-top: 48px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1100px) {
+    .hero { height: auto; padding: 90px 0 0; }
+    .hero-stage { display: flex; flex-direction: column; align-items: center; gap: 0; padding: 0 var(--gutter) 90px; }
+    .hero-dennis, .hero-logo, .signature, .hero-cta { position: static; }
+    .hero-logo { width: 320px; height: auto; order: 1; }
+    .hero-dennis { width: 300px; height: auto; margin-top: 10px; order: 2; }
+    .signature { margin-top: -50px; order: 3; }
+    .hero-cta { order: 4; margin: 24px 0 0; }
+    .hero-bar { top: auto; bottom: 0; }
+    .pk-grid { flex-wrap: wrap; row-gap: 60px; }
+    .dennis-inner { grid-template-columns: 1fr; padding-left: var(--gutter); }
+    .dennis-row { grid-template-columns: 1fr; }
+    .dennis-text h2 { line-height: 1.2; margin-bottom: 16px; }
+    .attribution { margin-left: 0; }
+    :global(.dennis-ecg) { margin-top: 10px; }
+    .rv-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); }
+    .rv-client h2 { white-space: normal; }
+    .rv-logo { position: static; margin: 16px 0 0 51px; }
+    .info-row, .info-row:nth-of-type(2) { grid-template-columns: 1fr; }
+    .info-row:nth-of-type(2) .info-card { order: 2; }
+    .info-photo { height: auto; }
+    .faq-row { grid-template-columns: 1fr; }
+    .faq-contact { display: flex; justify-content: center; min-width: 0; }
+  }
+  @media (max-width: 700px) {
+    .hero-logo { width: 240px; }
+    .hero-dennis { width: 260px; }
+    .signature { font-size: 26px; }
+    .dennis-text h2, .nat-inner h2, .faq-section h2 { font-size: 30px; }
+    .tagline { font-size: 30px; }
+    .rv-client h2, .rv-card h2 { font-size: 26px; }
+    .rv-card { padding-bottom: 48px; }
+    .rv-slide-logo { position: static; margin: 16px 0 0 38px; width: 110px; }
+    .rv-card blockquote, .rv-card .rv-name { margin-left: 0; }
+    .info-card { height: auto; padding-bottom: 80px; }
+    .info-card h3 { font-size: 26px; }
+    .faq-section { padding-bottom: 80px; }
+    .pk-card { height: auto; padding-bottom: 50px; }
+  }
+</style>
+
+<script>
+  // Reviews-carrousel: rouleert elke 6s, dots schakelen.
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((car) => {
+    const slides = [...car.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [...car.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    let i = 0, timer: number | undefined;
+    const show = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => (s.hidden = k !== i));
+      dots.forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+    };
+    const start = () => { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = window.setInterval(() => show(i + 1), 6000); };
+    dots.forEach((d, k) => d.addEventListener('click', () => { show(k); clearInterval(timer); start(); }));
+    start();
+  });
+</script>

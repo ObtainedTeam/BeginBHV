@@ -1,0 +1,66 @@
+---
+// Figma 1:8 (boven) / 111:1766: "Actief in het hele land, op elk moment."
+---
+  <section class="national">
+    <div class="container nat-inner">
+      <h2>Actief in het hele land, op elk moment.</h2>
+      <div class="nat-stage">
+        <img class="nat-map" src="/images/map-nl.png" alt="Kaart van Nederland met trainingslocaties van BeginBHV" width="464" height="580" loading="lazy" />
+        <div class="nat-panel">
+          <span class="nat-badge">Ook op jou locatie</span>
+          <p class="nat-quote">“Of het nu op onze eigen trainingslocatie is of bij u op het bedrijf: we trainen door heel Nederland, van Groningen tot Maastricht. Vanaf vijf deelnemers komen we naar u toe, met alle oefenmaterialen. Zo oefent uw team precies daar waar het straks moet handelen.”</p>
+          <a class="btn btn-plan" href="/contact">Plan met Dennis</a>
+        </div>
+        <svg class="nat-arrow" viewBox="0 0 640 372" fill="none" aria-hidden="true">
+          <path d="M18 18 C 120 300, 420 360, 585 240" stroke="#bc0000" stroke-width="12" stroke-linecap="round"/>
+          <path d="M540 215 L600 228 L575 285" stroke="#bc0000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="nat-photo"><img src="/images/dennis-bos.webp" alt="" width="300" height="287" loading="lazy" /></div>
+        <img class="nat-cross c1" src="/images/icon-kruis.png" alt="" width="144" height="144" loading="lazy" />
+        <img class="nat-cross c2" src="/images/icon-kruis.png" alt="" width="81" height="81" loading="lazy" />
+        <img class="nat-cross c3" src="/images/icon-kruis.png" alt="" width="52" height="52" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+
+<style>
+  /* ---------- Landelijk ---------- */
+  .national { background: linear-gradient(181deg, rgba(0,0,0,0) 0%, rgba(255,0,0,.07) 100%), #fff; }
+  .nat-inner { padding-top: 47px; padding-bottom: 60px; }
+  .nat-inner h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.7; padding-left: 20px; }
+  .nat-stage { position: relative; height: 700px; margin-top: 0; }
+  .nat-map { position: absolute; left: 117px; top: 0; width: 464px; height: 580px; object-fit: contain; z-index: 1; }
+  .nat-panel { position: absolute; left: 406px; top: 101px; width: 765px; height: 357px; background: var(--c-offwhite); border-radius: var(--r-md); }
+  .nat-badge {
+    position: absolute; left: 197px; top: -25px; height: 59px; padding: 0 35px; border-radius: 32px;
+    background: var(--c-pink); color: var(--c-red); font-family: var(--f-head); font-weight: 800; font-size: var(--t-h3); display: inline-flex; align-items: center;
+  }
+  .nat-quote { position: absolute; left: 174px; top: 63px; width: 544px; font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-lg); line-height: 1.2; margin: 0; }
+  .nat-panel .btn { position: absolute; left: 174px; top: 221px; }
+  .nat-arrow { position: absolute; left: 386px; top: 340px; width: 640px; height: 372px; z-index: 2; }
+  .nat-photo { position: absolute; left: 962px; top: 302px; width: 300px; height: 287px; border-radius: 50%; overflow: hidden; z-index: 3; }
+  .nat-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .nat-cross { position: absolute; z-index: 4; }
+  .c1 { left: 1124px; top: 428px; width: 144px; }
+  .c2 { left: 1204px; top: 524px; width: 81px; }
+  .c3 { left: 1178px; top: 578px; width: 52px; }
+
+  @media (max-width: 1100px) {
+    .nat-stage { height: auto; display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+    .nat-inner h2 { line-height: 1.2; }
+    .nat-map, .nat-panel, .nat-photo, .nat-cross, .nat-arrow { position: static; }
+    .nat-map { width: min(464px, 80%); height: auto; align-self: center; }
+    .nat-panel { width: 100%; height: auto; padding: 50px 24px 30px; }
+    .nat-badge { position: absolute; left: 24px; top: -25px; }
+    .nat-quote { position: static; width: auto; }
+    .nat-panel .btn { position: static; margin-top: 20px; }
+    .nat-arrow, .nat-cross { display: none; }
+    .nat-photo { align-self: flex-end; }
+  }
+  @media (max-width: 700px) {
+    .nat-inner h2 { font-size: 30px; }
+    .nat-badge { font-size: 22px; height: 48px; padding: 0 20px; }
+    .nat-photo { width: 200px; height: 200px; }
+  }
+</style>

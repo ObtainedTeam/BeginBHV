@@ -1,0 +1,19 @@
+---
+// Hartslaglijn met hart (Figma "Untitled design (15)"), als responsive SVG.
+const { class: cls = '' } = Astro.props;
+---
+<div class={`ecg ${cls}`} aria-hidden="true">
+  <svg viewBox="0 0 1415 110" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 82 H190 L205 82 L215 60 L225 104 L238 44 L250 96 L262 82 H1415" stroke="#ff0000" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+  </svg>
+  <svg class="heart" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M35 60 C20 48 8 38 8 25 A13 13 0 0 1 35 18 A13 13 0 0 1 62 25 C62 38 50 48 35 60Z" stroke="#ff0000" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M10 10 L60 60 M60 10 L10 60" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+</div>
+<style>
+  .ecg { position: relative; width: 100%; height: 110px; overflow: hidden; }
+  .ecg > svg:first-child { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .heart { position: absolute; left: 11.5%; top: 6px; width: 70px; height: 70px; }
+  @media (max-width: 700px) { .ecg { height: 70px; } .heart { width: 44px; height: 44px; top: 8px; } }
+</style>

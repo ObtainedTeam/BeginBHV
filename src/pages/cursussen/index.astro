@@ -1,0 +1,114 @@
+---
+import Base from '../../layouts/Base.astro';
+import CourseCard from '../../components/CourseCard.astro';
+import EcgDivider from '../../components/EcgDivider.astro';
+import Praktijkdag from '../../components/Praktijkdag.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import BookSection from '../../components/BookSection.astro';
+import UspBar from '../../components/UspBar.astro';
+import FaqRows from '../../components/FaqRows.astro';
+import { courses } from '../../data/courses.js';
+import { site } from '../../data/site.js';
+---
+<Base title="BHV cursussen" description="Overzicht van alle BHV-cursussen van BeginBHV: BHV Basis, Standaard, Herhaling, NIBHV, Ploegleider en Bedrijfsleider. Eendaagse praktijktrainingen door heel Nederland.">
+  <!-- Figma Curs1 -->
+  <section class="ch">
+    <div class="ch-stage">
+      <div class="ch-text">
+        <h1>Aangeboden cursussen</h1>
+        <div class="ch-tabs" role="tablist" aria-label="Soort cursus">
+          <button type="button" role="tab" aria-selected="true" data-filter="bhv">BHV</button>
+          <button type="button" role="tab" aria-selected="false" data-filter="nibhv">NIBHV</button>
+        </div>
+        <p>Of je nu voor het eerst BHV’er wordt, je certificaat wilt verlengen of leiding gaat geven aan een BHV-ploeg: bij BeginBHV volg je een eendaagse praktijktraining die aansluit op de Arbowet en op de risico’s in jouw bedrijf. Kleine groepen, realistische scenario’s en een erkend certificaat aan het eind van de dag.</p>
+        <p>Trainingen vinden plaats op onze eigen locatie of, vanaf vijf deelnemers, bij jou op het bedrijf, overal in Nederland.</p>
+      </div>
+      <div class="ch-photo">
+        <img src="/images/cursussen-hero.webp" alt="Reanimatieoefening tijdens een BHV-cursus" width="674" height="525" fetchpriority="high" />
+      </div>
+      <div class="ch-widget">
+        <a href={site.phoneHref} class="w-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/><path d="M14 4a6 6 0 0 1 6 6M14 7.5a2.5 2.5 0 0 1 2.5 2.5"/></svg>
+          <span>{site.phone}</span>
+        </a>
+        <a href="/contact" class="w-contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 6 9-6"/></svg>
+          <span>Contact</span>
+        </a>
+      </div>
+    </div>
+    <div class="ch-bar"></div>
+  </section>
+
+  <!-- Figma Curs2 -->
+  <section class="cl" aria-labelledby="cl-title">
+    <div class="container">
+      <h2 id="cl-title">Maak uw cursus keuze</h2>
+      <div class="cl-grid">
+        {courses.map((c, i) => (
+          <div data-course={c.slug}><CourseCard course={c} delay={(i % 3) * 90} /></div>
+        ))}
+      </div>
+    </div>
+    <EcgDivider />
+  </section>
+
+  <Praktijkdag />
+  <CtaBand />
+  <BookSection />
+  <UspBar />
+  <FaqRows />
+</Base>
+
+<style>
+  /* Hero: 1386 x 513, coral met diagonale foto rechts */
+  .ch { position: relative; background: var(--c-coral); overflow: hidden; }
+  .ch-stage { position: relative; width: var(--w-page); max-width: 100%; height: 513px; margin-inline: auto; }
+  .ch-text { position: absolute; left: 59px; top: 96px; width: 576px; color: var(--c-white); }
+  h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.9; }
+  .ch-tabs { display: flex; align-items: center; gap: 0; margin-top: -2px; }
+  .ch-tabs button {
+    height: 35.3px; padding: 0 20px; border: 0; border-radius: 9px; background: transparent; color: var(--c-white);
+    font-family: var(--f-head); font-weight: 300; font-size: var(--t-md);
+  }
+  .ch-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
+  .ch-text p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 19px; }
+  .ch-text p + p { margin-top: 0; }
+  .ch-photo { position: absolute; left: 691px; top: -9px; width: 710px; height: 525px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
+  .ch-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+  .ch-photo::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.31); }
+  .ch-widget { position: absolute; left: 1231px; top: 101px; width: 155.3px; border-radius: 4px; overflow: hidden; box-shadow: var(--sh-card); font-family: var(--f-head); }
+  .ch-widget a { display: flex; align-items: center; gap: 10px; height: 38.5px; padding: 0 14px; font-size: 13px; font-weight: 600; }
+  .ch-widget svg { width: 18px; height: 18px; flex: none; }
+  .w-phone { background: #fff; color: #233242; }
+  .w-phone svg { color: var(--c-red); }
+  .w-contact { background: #233242; color: #fff; }
+  .ch-bar { height: 60.3px; background: var(--c-red); }
+
+  .cl { background: linear-gradient(180deg, rgba(255,0,0,.07) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 77px; }
+  .cl h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.7; }
+  .cl-grid { display: grid; grid-template-columns: repeat(3, 377.7px); justify-content: center; column-gap: 52px; row-gap: 52px; margin-top: 48px; margin-bottom: 42px; }
+
+  @media (max-width: 1400px) { .ch-widget { left: auto; right: 16px; } }
+  @media (max-width: 1250px) { .cl-grid { grid-template-columns: repeat(2, 377.7px); } }
+  @media (max-width: 1100px) {
+    .ch-stage { height: auto; display: flex; flex-direction: column; }
+    .ch-text { position: static; width: auto; padding: 100px var(--gutter) 40px; }
+    h1 { line-height: 1.2; margin-bottom: 20px; }
+    .ch-photo { position: relative; left: auto; top: auto; width: 100%; height: 320px; clip-path: none; }
+    .ch-widget { position: static; margin: 0 var(--gutter) 24px auto; }
+  }
+  @media (max-width: 860px) { .cl-grid { grid-template-columns: minmax(0, 377.7px); } }
+  @media (max-width: 700px) { h1, .cl h2 { font-size: 30px; } .ch-text { padding-top: 40px; } }
+</style>
+
+<script>
+  // Filter op kaarten: BHV = alles behalve NIBHV, NIBHV = alleen de NIBHV-cursus.
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.ch-tabs [data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-course]');
+  tabs.forEach((t) => t.addEventListener('click', () => {
+    tabs.forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    const f = t.dataset.filter;
+    cards.forEach((c) => { c.hidden = f === 'nibhv' ? !c.dataset.course!.includes('nibhv') : false; });
+  }));
+</script>
