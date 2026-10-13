@@ -65,14 +65,12 @@ export const funnel = {
       id: 'course',
       title: 'Welke cursus wilt u aanvragen?',
       type: 'choice',
+      intro: 'Kies de cursus die bij u past. In drie korte stappen weten we wat u nodig heeft en nemen we binnen één werkdag contact met u op.',
       options: [
-        { value: 'bhv-basis', label: 'BHV Basis' },
-        { value: 'bhv-standaard', label: 'BHV Standaard' },
-        { value: 'bhv-herhaling', label: 'BHV Herhaling' },
-        { value: 'bhv-nibhv', label: 'BHV (NIBHV)' },
-        { value: 'bhv-ploegleider', label: 'BHV Ploegleider' },
-        { value: 'bhv-bedrijfsleider', label: 'BHV Bedrijfsleider' },
-        { value: 'advies', label: 'Advies op maat' },
+        { value: 'bhv-nibhv', label: 'BHV (NIBHV)', icon: '\u{1F477}' },
+        { value: 'bhv-standaard', label: 'BHV', icon: '\u{1FA79}' },
+        { value: 'bhv-ploegleider', label: 'BHV Ploegleider', icon: '\u{1F6A8}' },
+        { value: 'bhv-herhaling', label: 'BHV Herhaling', icon: '\u{1F501}' },
       ],
     },
     {
@@ -117,3 +115,31 @@ export const funnel = {
     text: 'We nemen binnen één werkdag contact met u op. Wilt u sneller schakelen? Bel ons gerust.',
   },
 };
+
+// Titel boven de aanvraagfunnel op de homepage (Figma BHV3).
+export const funnelSectionTitle = 'Ploegleider BHV Cursus';
+
+// Drie infokaarten onder "Veel gestelde vragen" op de homepage (Figma Page).
+export const homeInfoCards = [
+  {
+    title: 'BHV certificaat en BHV pasje',
+    html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-standaard">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
+    href: '/cursussen/bhv-standaard',
+    image: '/images/foto-cursus-klas.webp',
+    alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
+  },
+  {
+    title: 'Boek nu een BHV cursus en betaal achteraf',
+    html: 'Het is mogelijk om de BHV cursus via iDeal, vooraf- of achteraf te betalen. De getoonde tarieven zijn alle kosten.',
+    href: '/cursussen',
+    image: '/images/foto-blusser.webp',
+    alt: 'Blusoefening met een brandblusser',
+  },
+  {
+    title: 'Training op uw eigen locatie',
+    html: 'Vanaf vijf deelnemers komen we naar uw bedrijf, overal in Nederland. We nemen alle oefenmaterialen mee, zodat uw team oefent op de plek waar het straks moet handelen.',
+    href: '/contact',
+    image: '/images/foto-cursus-klas.webp',
+    alt: 'Incompany BHV-training op locatie',
+  },
+];

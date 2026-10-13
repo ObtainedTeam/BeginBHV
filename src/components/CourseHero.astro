@@ -1,0 +1,67 @@
+---
+// Figma BHV5: cursus-hero (coral) met tabs Omschrijving / Inhoud / Kosten en USP-balk.
+import UspBar from './UspBar.astro';
+const { course, heading = 'h2', textTop = 32 } = Astro.props;
+const H = heading;
+const uid = course.slug;
+const photo = course.image === '/images/cursus-ontruiming.webp' ? '/images/cursus-detail-hero.webp' : course.image;
+---
+<section class="dh">
+  <div class="dh-stage">
+    <div class="dh-text" style={`top:${textTop}px`}>
+      <H class="dh-title">{course.heroTitle ?? `${course.title} Cursus`}</H>
+      <div class="dh-tabs" role="tablist" aria-label="Cursusinformatie">
+        <button type="button" role="tab" aria-selected="true" aria-controls={`${uid}-omschrijving`} id={`${uid}-t1`}>Omschrijving</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls={`${uid}-inhoud`} id={`${uid}-t2`}>Inhoud</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls={`${uid}-kosten`} id={`${uid}-t3`}>Kosten</button>
+      </div>
+      <div id={`${uid}-omschrijving`} role="tabpanel" aria-labelledby={`${uid}-t1`}>
+        {course.description.map((p) => <p>{p}</p>)}
+      </div>
+      <div id={`${uid}-inhoud`} role="tabpanel" aria-labelledby={`${uid}-t2`} hidden>
+        <ul class="dh-list">{course.content.map((c) => <li>{c}</li>)}</ul>
+      </div>
+      <div id={`${uid}-kosten`} role="tabpanel" aria-labelledby={`${uid}-t3`} hidden>
+        <p>Vanaf € {course.price} per deelnemer, inclusief lesmateriaal, certificaat en pasje, koffie, thee en lunch. Betalen kan via iDeal, vooraf of achteraf. Voor groepen vanaf vijf deelnemers maken we een offerte op maat.</p>
+      </div>
+    </div>
+    <div class="dh-photo">
+      <img src={photo} alt={`${course.title} in de praktijk`} width="661" height="443" loading="lazy" />
+    </div>
+  </div>
+  <UspBar />
+</section>
+
+<style>
+  .dh { background: var(--c-coral); }
+  .dh-stage { position: relative; width: var(--w-page); max-width: 100%; height: 442.3px; margin-inline: auto; overflow: hidden; }
+  .dh-text { position: absolute; left: 59px; width: 576px; color: var(--c-white); }
+  .dh-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.9; }
+  .dh-tabs { display: flex; margin-top: 0; }
+  .dh-tabs button { height: 35.3px; padding: 0 8px; border: 0; border-radius: 9px; background: transparent; color: var(--c-white); font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .dh-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
+  .dh-text [role='tabpanel'] { margin-top: 19px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; }
+  .dh-list { margin: 0; padding-left: 20px; }
+  .dh-list li { margin-bottom: 6px; }
+  .dh-photo { position: absolute; left: 794.3px; top: -1px; width: 661px; height: 443.3px; border-radius: var(--r-xl) 0 0 var(--r-xl); overflow: hidden; }
+  .dh-photo img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 1100px) {
+    .dh-stage { height: auto; display: flex; flex-direction: column; }
+    .dh-text { position: static; width: auto; padding: 40px var(--gutter) 30px; }
+    .dh-title { line-height: 1.2; margin-bottom: 16px; }
+    .dh-photo { position: static; width: 100%; height: 300px; border-radius: 0; }
+  }
+  @media (max-width: 700px) { .dh-title { font-size: 30px; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.dh-tabs').forEach((tl) => {
+    const tabs = [...tl.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      tabs.forEach((x) => {
+        const on = x === t; x.setAttribute('aria-selected', String(on));
+        const p = document.getElementById(x.getAttribute('aria-controls')!); if (p) p.hidden = !on;
+      });
+    }));
+  });
+</script>

@@ -31,7 +31,7 @@ import { funnel } from '../data/content.js';
 </Base>
 <style>
   .ct { background: var(--c-coral); }
-  .ct-stage { position: relative; width: var(--w-page); max-width: 100%; margin-inline: auto; display: grid; grid-template-columns: 1fr 640px; gap: 60px; padding: 96px 59px 60px; }
+  .ct-stage { position: relative; width: var(--w-page); max-width: 100%; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) 771px; gap: 60px; padding: 96px 59px 60px; }
   .ct-intro { color: var(--c-white); }
   h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.2; }
   .ct-intro p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 20px; max-width: 480px; }
@@ -40,6 +40,7 @@ import { funnel } from '../data/content.js';
   address { font-style: normal; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.4; margin-top: 36px; }
   address a:hover { text-decoration: underline; }
   .ct-bar { height: 60.3px; background: var(--c-red); }
-  @media (max-width: 1100px) { .ct-stage { grid-template-columns: 1fr; padding: 90px var(--gutter) 40px; } }
+  .ct-funnel { min-width: 0; }
+  @media (max-width: 1250px) { .ct-stage { grid-template-columns: 1fr; padding: 90px var(--gutter) 40px; } }
   @media (max-width: 700px) { h1 { font-size: 30px; } .ct-stage { padding-top: 40px; } }
 </style>

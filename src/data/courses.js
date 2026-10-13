@@ -125,6 +125,7 @@ export const courses = [
       Groepsgrootte: 'Maximaal 12 personen',
     },
     heroLabel: 'In één dag ploegleider!',
+    heroTitle: 'Ploegleider BHV Cursus',
   },
   {
     slug: 'bhv-bedrijfsleider',

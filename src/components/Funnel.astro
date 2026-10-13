@@ -1,18 +1,16 @@
 ---
-// Meerstaps aanvraagfunnel. Vragen komen uit src/data/content.js (funnel).
-// Blijft op dezelfde pagina, met voortgang, terug-knop en afronding.
+// Meerstaps aanvraagfunnel (Figma BHV3 "Questionaire"): coral kaart, voortgangsdots,
+// keuzetegels met icoon en donkere labelbalk. Vragen staan in src/data/content.js.
 import { funnel } from '../data/content.js';
 import { site } from '../data/site.js';
 const steps = funnel.steps;
 ---
 <div class="funnel" data-funnel>
-  <div class="f-head">
-    <h2 class="f-title" data-title>{steps[0].title}</h2>
-    <p class="f-progress-label"><span data-stepnum>1</span> van {steps.length}</p>
-    <div class="f-progress" role="progressbar" aria-valuemin="1" aria-valuemax={steps.length} aria-valuenow="1" aria-label="Voortgang">
-      <span data-bar style={`width:${100 / steps.length}%`}></span>
-    </div>
+  <div class="f-dots" role="progressbar" aria-valuemin="1" aria-valuemax={steps.length} aria-valuenow="1" aria-label="Voortgang">
+    {steps.map((_, i) => <span class={i === 0 ? 'on' : ''} data-dot></span>)}
   </div>
+  <h2 class="f-title" data-title>{steps[0].title}</h2>
+  <p class="f-intro" data-intro>{steps[0].intro ?? funnel.intro}</p>
 
   <form method="post" action="/api/aanvraag" novalidate>
     <input type="hidden" name="source" value="funnel" />
@@ -22,11 +20,14 @@ const steps = funnel.steps;
       <fieldset class="f-step" data-step={i} hidden={i !== 0}>
         <legend class="sr-only">{s.title}</legend>
         {s.type === 'choice' && (
-          <div class="f-options">
+          <div class="f-tiles">
             {s.options.map((o) => (
-              <label class="f-opt">
+              <label class="f-tile">
                 <input type="radio" name={s.id} value={o.value} required />
-                <span>{o.label}</span>
+                <span class="f-tile-box">
+                  <span class="f-tile-icon" aria-hidden="true">{o.icon ?? ''}</span>
+                  <span class="f-tile-label">{o.label}</span>
+                </span>
               </label>
             ))}
           </div>
@@ -37,7 +38,7 @@ const steps = funnel.steps;
               <label class={`f-field ${f.type === 'textarea' ? 'wide' : ''}`}>
                 <span>{f.label}{f.required && ' *'}</span>
                 {f.type === 'textarea'
-                  ? <textarea name={f.name} rows="4" placeholder={f.label}></textarea>
+                  ? <textarea name={f.name} rows="3" placeholder={f.label}></textarea>
                   : <input type={f.type} name={f.name} placeholder={f.label} autocomplete={f.autocomplete} required={f.required} />}
               </label>
             ))}
@@ -59,47 +60,64 @@ const steps = funnel.steps;
       <button type="button" class="btn btn-primary f-next" data-next>Volgende ›</button>
       <button type="submit" class="btn btn-primary f-submit" data-submit hidden>Verstuur aanvraag ›</button>
     </div>
-    <p class="f-note">Of bel direct: <a href={site.phoneHref}>{site.phone}</a></p>
   </form>
 </div>
 
 <style>
-  .funnel { background: var(--c-light); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.45); padding: 28px 32px 24px; }
-  .hp { position: absolute; left: -9999px; }
-  .f-title { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.2; }
-  .f-progress-label { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); margin-top: 6px; }
-  .f-progress { height: 7.7px; border-radius: 5px; background: #fff; overflow: hidden; margin-top: 6px; }
-  .f-progress span { display: block; height: 100%; background: var(--c-red-dark); border-radius: 5px; transition: width .3s ease; }
-  fieldset { border: 0; margin: 22px 0 0; padding: 0; min-width: 0; animation: slide .3s ease; }
-  @keyframes slide { from { opacity: 0; transform: translateX(16px); } }
-  @media (prefers-reduced-motion: reduce) { fieldset { animation: none; } }
-  .f-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .f-opt { position: relative; display: block; }
-  .f-opt input { position: absolute; opacity: 0; inset: 0; }
-  .f-opt span {
-    display: flex; align-items: center; min-height: 49px; padding: 10px 18px; border-radius: var(--r-md);
-    background: var(--c-red-dark); color: #fff; font-family: var(--f-body); font-weight: 900; font-size: var(--t-lg); line-height: 1.1;
-    box-shadow: var(--sh-btn); cursor: pointer; transition: transform .15s, filter .15s;
+  .funnel {
+    width: 770.7px; max-width: 100%; margin-inline: auto;
+    background: var(--c-coral); border-radius: 25px; box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.45);
+    padding: 35px 40px 40px; text-align: center; color: var(--c-black);
   }
-  .f-opt:hover span { filter: brightness(1.1); }
-  .f-opt input:checked + span { background: var(--c-green); }
-  .f-opt input:focus-visible + span { outline: 3px solid #000; outline-offset: 2px; }
-  .f-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .hp { position: absolute; left: -9999px; }
+  .f-dots { display: flex; justify-content: center; align-items: center; gap: 12px; height: 13.5px; }
+  .f-dots span { width: 13.5px; height: 13.5px; border-radius: 7px; background: var(--c-light); transition: width .25s ease, background .25s ease; }
+  .f-dots span.on { width: 57px; background: var(--c-red-dark); }
+  .f-title { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.2; margin-top: 23px; }
+  .f-intro { font-family: var(--f-body); font-weight: 100; font-size: var(--t-md); color: var(--c-light); max-width: 477px; margin: 13px auto 0; line-height: 1.2; min-height: 2.4em; }
+  fieldset { border: 0; margin: 25px 0 0; padding: 0; min-width: 0; animation: slide .3s ease; }
+  @keyframes slide { from { opacity: 0; transform: translateX(16px); } }
+  @media (prefers-reduced-motion: reduce) { fieldset { animation: none; } .f-dots span { transition: none; } }
+
+  .f-tiles { display: grid; grid-template-columns: repeat(2, 216px); gap: 14.7px 10px; justify-content: center; }
+  .f-tile { position: relative; display: block; }
+  .f-tile input { position: absolute; opacity: 0; inset: 0; }
+  .f-tile-box {
+    display: flex; flex-direction: column; justify-content: flex-end; height: 142.3px;
+    background: var(--c-white); border-radius: var(--r-md); overflow: hidden;
+    box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.45); cursor: pointer; transition: transform .15s ease;
+  }
+  .f-tile:hover .f-tile-box { transform: translateY(-2px); }
+  .f-tile-icon { position: absolute; left: 0; right: 0; top: 24px; font-size: 48px; line-height: 55px; height: 55px; }
+  .f-tile-label {
+    display: flex; align-items: center; justify-content: center; height: 42.3px; padding: 0 8px;
+    background: #223341; color: var(--c-white); font-family: var(--f-body); font-weight: 900; font-size: var(--t-lg); line-height: 1; white-space: nowrap;
+  }
+  .f-tile input:checked + .f-tile-box { outline: 3px solid var(--c-green); outline-offset: -3px; }
+  .f-tile input:checked + .f-tile-box .f-tile-label { background: var(--c-green); }
+  .f-tile input:focus-visible + .f-tile-box { outline: 3px solid #000; outline-offset: 2px; }
+  /* tegels zonder icoon (stap 2 en 3): compacter */
+  .f-tile-box:has(.f-tile-icon:empty) { height: 60px; }
+  .f-tile-box:has(.f-tile-icon:empty) .f-tile-label { height: 60px; white-space: normal; }
+
+  .f-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; text-align: left; max-width: 560px; margin-inline: auto; }
   .f-field.wide { grid-column: 1 / -1; }
-  .f-field span { display: block; font-family: var(--f-body); font-weight: 100; font-size: var(--t-md); margin-bottom: 2px; }
-  .f-field input, .f-field textarea { width: 100%; border: 0; border-radius: 5px; background: #fff; box-shadow: var(--sh-input); padding: 0 9px; height: 28.3px; font-family: var(--f-body); font-weight: 100; font-size: var(--t-md); }
+  .f-field span { display: block; font-family: var(--f-body); font-weight: 200; font-size: var(--t-sm); color: var(--c-white); margin-bottom: 2px; }
+  .f-field input, .f-field textarea { width: 100%; border: 0; border-radius: 5px; background: #fff; box-shadow: var(--sh-input); padding: 0 9px; height: 30px; font-family: var(--f-body); font-weight: 200; font-size: var(--t-md); }
   .f-field textarea { height: auto; padding: 6px 9px; resize: vertical; }
-  .f-field input:user-invalid { outline: 2px solid var(--c-red); }
-  .f-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; gap: 12px; }
-  .f-back { background: none; border: 0; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); padding: 8px 0; }
+  .f-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; gap: 12px; min-height: 49px; }
+  .f-back { background: none; border: 0; color: var(--c-white); font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); padding: 8px 0; }
   .f-next, .f-submit { margin-left: auto; }
-  .f-error { font-family: var(--f-head); font-weight: 300; font-size: 14px; color: var(--c-red-dark); min-height: 1em; margin-top: 10px; }
-  .f-note { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); margin-top: 14px; text-align: center; }
-  .f-note a { text-decoration: underline; }
-  .f-done { text-align: center; padding: 24px 0 8px; }
+  .f-error { font-family: var(--f-head); font-weight: 400; font-size: 14px; color: var(--c-white); min-height: 1em; margin-top: 12px; }
+  .f-done { padding: 24px 0 8px; }
   .f-done h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); }
   .f-done p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); margin: 10px 0 20px; }
-  @media (max-width: 560px) { .f-options, .f-fields { grid-template-columns: 1fr; } .funnel { padding: 20px 16px; } }
+  @media (max-width: 560px) {
+    .funnel { padding: 24px 16px 28px; }
+    .f-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .f-tile-label { font-size: 16px; white-space: normal; }
+    .f-fields { grid-template-columns: 1fr; }
+  }
 </style>
 
 <script>
@@ -109,9 +127,10 @@ const steps = funnel.steps;
     const steps = [...root.querySelectorAll<HTMLFieldSetElement>('[data-step]')];
     const titles = steps.map((s) => s.querySelector('legend')!.textContent!);
     const title = root.querySelector<HTMLElement>('[data-title]')!;
-    const num = root.querySelector<HTMLElement>('[data-stepnum]')!;
-    const bar = root.querySelector<HTMLElement>('[data-bar]')!;
-    const prog = root.querySelector<HTMLElement>('.f-progress')!;
+    const intro = root.querySelector<HTMLElement>('[data-intro]')!;
+    const introText = intro.textContent;
+    const dots = [...root.querySelectorAll<HTMLElement>('[data-dot]')];
+    const prog = root.querySelector<HTMLElement>('.f-dots')!;
     const back = root.querySelector<HTMLButtonElement>('[data-back]')!;
     const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
     const submit = root.querySelector<HTMLButtonElement>('[data-submit]')!;
@@ -120,17 +139,19 @@ const steps = funnel.steps;
     const nav = root.querySelector<HTMLElement>('[data-nav]')!;
     let i = 0;
 
-    // Vooraf gekozen cursus via ?cursus=slug
     const pre = new URLSearchParams(location.search).get('cursus');
     if (pre) { const r = form.querySelector<HTMLInputElement>(`input[name=course][value="${pre}"]`); if (r) r.checked = true; }
 
     const show = (n: number) => {
       i = n; err.textContent = '';
       steps.forEach((s, k) => (s.hidden = k !== i));
-      title.textContent = titles[i]; num.textContent = String(i + 1);
-      bar.style.width = `${((i + 1) / steps.length) * 100}%`; prog.setAttribute('aria-valuenow', String(i + 1));
-      back.hidden = i === 0; next.hidden = i === steps.length - 1; submit.hidden = i !== steps.length - 1;
-      steps[i].querySelector<HTMLElement>('input, textarea')?.focus({ preventScroll: true });
+      title.textContent = titles[i];
+      intro.textContent = i === 0 ? introText : (i === steps.length - 1 ? 'Bijna klaar! Laat uw gegevens achter en we nemen binnen één werkdag contact op.' : '');
+      dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      prog.setAttribute('aria-valuenow', String(i + 1));
+      const isChoice = !!steps[i].querySelector('input[type=radio]');
+      back.hidden = i === 0; next.hidden = isChoice || i === steps.length - 1; submit.hidden = i !== steps.length - 1;
+      nav.hidden = i === 0;
     };
     const valid = () => {
       const req = [...steps[i].querySelectorAll<HTMLInputElement>('input[required]')];
@@ -141,7 +162,6 @@ const steps = funnel.steps;
     };
     next.addEventListener('click', () => { if (valid()) show(i + 1); });
     back.addEventListener('click', () => show(i - 1));
-    // Keuze maken = automatisch door naar de volgende stap.
     steps.forEach((s, k) => s.querySelectorAll<HTMLInputElement>('input[type=radio]').forEach((r) => r.addEventListener('change', () => { if (k === i && k < steps.length - 1) setTimeout(() => show(k + 1), 180); })));
     form.addEventListener('submit', async (e) => {
       e.preventDefault(); if (!valid()) return;
@@ -150,7 +170,7 @@ const steps = funnel.steps;
         const res = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
         if (!res.ok) throw new Error();
         steps.forEach((s) => (s.hidden = true)); nav.hidden = true; done.hidden = false;
-        title.textContent = 'Aanvraag verstuurd'; bar.style.width = '100%';
+        title.textContent = 'Aanvraag verstuurd'; intro.textContent = ''; dots.forEach((d) => d.classList.add('on'));
         (window as any).gtag?.('event', 'generate_lead', { form: 'funnel' });
       } catch { err.textContent = 'Versturen is niet gelukt. Probeer het opnieuw of bel ons.'; }
       finally { submit.disabled = false; }
