@@ -14,6 +14,14 @@ Astro (statisch) op Vercel. Elke push naar `main` deployt automatisch.
 - Aanvragen gaan naar `api/aanvraag.js` (Vercel function). Mail staat uit tot de env-vars zijn gezet:
   `MAIL_PROVIDER` (brevo of resend), `MAIL_API_KEY`, `MAIL_TO`, `MAIL_FROM`.
 
+## Livegang (stappen voor Thomas)
+
+1. Vercel: https://vercel.com/new → Import Git Repository → `ObtainedTeam/BeginBHV`. Framework wordt automatisch Astro herkend, niets aanpassen. Deploy.
+2. Env-vars (Vercel → Project → Settings → Environment Variables): `MAIL_PROVIDER`, `MAIL_API_KEY`, `MAIL_TO`, `MAIL_FROM`. Daarna opnieuw deployen (Deployments → Redeploy). Zonder deze vier worden aanvragen alleen gelogd.
+3. Domein: Vercel → Project → Settings → Domains → `beginbhv.com` toevoegen, plus `www.beginbhv.com`, `beginbhv.nl` en `www.beginbhv.nl`. Vercel toont per domein welke DNS-records er bij de registrar moeten komen. De redirects van .nl en www naar `https://beginbhv.com` staan al in `vercel.json`.
+4. GA4: measurement-ID in `src/data/site.js` → `ga4`. Analytics laadt pas na akkoord in de cookiebanner.
+5. Na livegang: Search Console (https://search.google.com/search-console) toevoegen via DNS-verificatie en de sitemap `https://beginbhv.com/sitemap-index.xml` indienen.
+
 ## Beeldbestanden (export uit Figma)
 
 De huidige bestanden zijn lage-resolutie placeholders. Exporteer uit Figma op 2x en overschrijf:
