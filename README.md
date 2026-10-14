@@ -22,7 +22,7 @@ De huidige bestanden zijn lage-resolutie placeholders. Exporteer uit Figma op 2x
 |---|---|---|
 | logo.png | BeginBHV (15) 1 (74:2) | PNG transparant |
 | hero-bg.webp | image 26 (1:3) | webp 2772x1044 |
-| hero-dennis.png | BeginBHV templates 1 (1:4) | PNG transparant |
+| hero-dennis.webp | BeginBHV templates 1 (1:4) | PNG transparant |
 | icon-aanmelden.png | Untitled design (16) 1 (13:421) | PNG transparant |
 | icon-bhv-standaard.png | BHV Standaard 1 (1:26) | PNG transparant |
 | icon-bhv-nibhv.png | BHV (NIBHV) 1 (1:24) | PNG transparant |
@@ -30,9 +30,9 @@ De huidige bestanden zijn lage-resolutie placeholders. Exporteer uit Figma op 2x
 | dennis-portret.webp | image 27 (2:192) | webp |
 | review-cuckie.png | image 30 (7:132) | PNG transparant |
 | review-eindhoven.png | image 29 (7:129) | PNG transparant |
-| map-nl.png | pngtree-map-of-the-netherlands (12:229) | PNG transparant |
+| map-nl.webp | pngtree-map-of-the-netherlands (12:229) | PNG transparant |
 | dennis-bos.webp | Afbeelding van WhatsApp 2025-10-14 (12:233) | webp |
-| icon-kruis.png | 2 3 (13:487) | PNG transparant |
+| icon-kruis.webp | 2 3 (13:487) | PNG transparant |
 | foto-cursus-klas.webp | download 2 (6:66) | webp |
 | foto-blusser.webp | images 1 (6:67) | webp |
 | icon-chevron.png | 4 1 (13:419) | PNG transparant |
@@ -42,7 +42,7 @@ De huidige bestanden zijn lage-resolutie placeholders. Exporteer uit Figma op 2x
 | icon-check.png | 1 1 (105:509) | PNG transparant |
 | icon-scenario.png, icon-werkvormen.png, icon-stappenplan.png | 23 1, 24 1, 25 1 (Curs3) | PNG transparant |
 | video-thumb.webp | image 41 (105:357) | webp (of echte video) |
-| boek-open.png, boek-cover.png | 22 1, 21 1 (Curs5) | PNG transparant |
+| boek-open.webp, boek-cover.webp | 22 1, 21 1 (Curs5) | PNG transparant |
 | cursus-detail-hero.webp | image 31 (11:186) | webp |
 | overons-foto.webp | istockphoto-619263856 (105:87) | webp |
 | og-default.jpg | (social share, 1200x630) | jpg |

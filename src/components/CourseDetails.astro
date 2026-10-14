@@ -12,7 +12,7 @@ const { course } = Astro.props;
       </ul>
       <a class="btn btn-plan ds-plan" href={`/contact?cursus=${course.slug}`}>Plan met Dennis</a>
       <div class="ds-card reveal">
-        <h3>Liever op een externe locatie?</h3>
+        <h2 class="ds-card-title">Liever op een externe locatie?</h2>
         <p>Geen probleem, u kan terecht bij een van onze trainingslocaties. De koffie en thee staat klaar!</p>
         <a class="btn btn-outline" href={`/contact?cursus=${course.slug}`}>Vraag offerte aan</a>
         <div class="ds-rating">
@@ -42,7 +42,7 @@ const { course } = Astro.props;
   .ds-check li + li { margin-top: 26.7px; }
   .ds-plan { margin: 20px 0 0 17px; }
   .ds-card { position: relative; width: 373px; height: 200.7px; margin-top: 21px; background: var(--c-light); border-radius: var(--r-lg); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.25); padding: 15px 0 0 18px; }
-  .ds-card h3 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); line-height: 1.9; }
+  .ds-card .ds-card-title { margin: 0; font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); line-height: 1.9; }
   .ds-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); width: 241px; line-height: 1.25; }
   .ds-card .btn-outline { position: absolute; left: 21px; top: 116px; width: 322px; }
   .ds-rating { position: absolute; left: -25px; bottom: -20px; display: flex; align-items: center; gap: 11px; }
