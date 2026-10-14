@@ -1,0 +1,66 @@
+---
+// Cookiebanner. Keuze wordt in localStorage bewaard (bhv-cookies = all | functional).
+// GA4 (src/data/site.js → ga4) laadt pas na "Accepteren". Via Google Consent Mode:
+// zonder akkoord blijft analytics_storage 'denied'. Keuze wijzigen kan via /privacy (#cookies-wijzigen).
+import { site } from '../data/site.js';
+---
+<div class="ck" data-cookie hidden role="dialog" aria-labelledby="ck-title" aria-describedby="ck-text">
+  <div class="ck-box">
+    <p id="ck-title" class="ck-title">Cookies op BeginBHV</p>
+    <p id="ck-text" class="ck-text">We gebruiken functionele cookies om de site te laten werken en, met uw toestemming, analytische cookies om het gebruik te meten. Meer in onze <a href="/privacy">privacy- en cookieverklaring</a>.</p>
+    <div class="ck-actions">
+      <button type="button" class="btn btn-small ck-accept" data-ck="all">Accepteren</button>
+      <button type="button" class="ck-decline" data-ck="functional">Alleen functioneel</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ck { position: fixed; left: var(--gutter); right: var(--gutter); bottom: 16px; z-index: 60; display: flex; justify-content: flex-start; pointer-events: none; }
+  .ck-box {
+    pointer-events: auto; width: 420px; max-width: 100%;
+    background: var(--c-white); border-radius: var(--r-md); box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    border-top: 4px solid var(--c-red); padding: 18px 20px 16px;
+  }
+  .ck-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-lg); margin: 0 0 6px; }
+  .ck-text { font-family: var(--f-body); font-weight: 200; font-size: 15px; line-height: 1.35; margin: 0 0 14px; }
+  .ck-text a { color: var(--c-red-dark); text-decoration: underline; }
+  .ck-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .ck-decline { background: none; border: 0; padding: 6px 0; font-family: var(--f-body); font-weight: 300; font-size: 15px; color: var(--c-black); text-decoration: underline; cursor: pointer; }
+  @media (max-width: 600px) { .ck { bottom: 72px; } }
+</style>
+
+<script define:vars={{ ga4: site.ga4 }}>
+  const KEY = 'bhv-cookies';
+  const el = document.querySelector('[data-cookie]');
+  const read = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const save = (v) => { try { localStorage.setItem(KEY, v); } catch {} };
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+
+  let loaded = false;
+  const enable = () => {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    if (!ga4 || loaded) return;
+    loaded = true;
+    const s = document.createElement('script'); s.async = true; s.src = `https://www.googletagmanager.com/gtag/js?id=${ga4}`;
+    document.head.appendChild(s);
+    gtag('js', new Date()); gtag('config', ga4, { anonymize_ip: true });
+  };
+
+  const choose = (v) => { save(v); el.hidden = true; if (v === 'all') enable(); };
+  el.querySelectorAll('[data-ck]').forEach((b) => b.addEventListener('click', () => choose(b.dataset.ck)));
+
+  const current = read();
+  if (current === 'all') enable();
+  else if (current !== 'functional') el.hidden = false;
+
+  // link met href="#cookies-wijzigen" (bijv. op /privacy) toont de banner opnieuw
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href="#cookies-wijzigen"]');
+    if (a) { e.preventDefault(); el.hidden = false; el.querySelector('.ck-accept').focus(); }
+  });
+</script>

@@ -10,7 +10,7 @@ const { title, description, sections } = Astro.props;
       {sections.map((s) => (
         <section>
           <h2>{s.h}</h2>
-          {s.p.map((t) => <p>{t}</p>)}
+          {s.p.map((t) => <p set:html={t} />)}
         </section>
       ))}
     </div>
