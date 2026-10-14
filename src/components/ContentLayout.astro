@@ -1,0 +1,24 @@
+---
+// Tweekoloms layout: tekst links, SideCta rechts; daarna CTA-band + USP-balk.
+import CtaBand from './CtaBand.astro';
+import UspBar from './UspBar.astro';
+import SideCta from './SideCta.astro';
+const { courseSlug, ctaTitle, sideTitle } = Astro.props;
+---
+<section class="cl">
+  <div class="container cl-inner">
+    <div class="cl-main"><slot /></div>
+    <SideCta courseSlug={courseSlug} title={sideTitle} />
+  </div>
+</section>
+<slot name="after" />
+<CtaBand title={ctaTitle} />
+<UspBar />
+
+<style>
+  .cl { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; }
+  .cl-inner { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 60px; padding-top: 60px; padding-bottom: 70px; padding-left: max(var(--gutter), 59px); padding-right: max(var(--gutter), 59px); }
+  @media (min-width: 1420px) { .cl-inner { padding-inline: 59px; } }
+  .cl-main { min-width: 0; }
+  @media (max-width: 1100px) { .cl-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); gap: 40px; } }
+</style>

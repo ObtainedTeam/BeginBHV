@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import UspBar from '../../components/UspBar.astro';
+import { kennisbank } from '../../data/kennisbank.js';
+---
+<Base title="Kennisbank BHV" description="Alles over bedrijfshulpverlening: wat BHV is, wat de wet vraagt, hoeveel BHV'ers je nodig hebt, AED, BHV-plan en ontruiming.">
+  <PageHero title="Kennisbank" intro="Alles wat je moet weten over bedrijfshulpverlening, in gewone taal. Geschreven door de trainers van BeginBHV." />
+  <section class="kb">
+    <div class="container">
+      <div class="kb-grid">
+        {kennisbank.map((a, i) => (
+          <a class="kb-card reveal" href={`/kennisbank/${a.slug}`} style={`transition-delay:${(i % 3) * 80}ms`}>
+            <img src={a.image} alt="" width="378" height="220" loading="lazy" />
+            <div class="kb-body">
+              <h2>{a.title}</h2>
+              <p>{a.description}</p>
+              <span class="kb-more">Lees meer ›</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+  <UspBar />
+</Base>
+<style>
+  .kb { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; padding: 60px 0 70px; }
+  .kb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .kb-card { display: block; background: var(--c-light); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); transition: transform .25s, box-shadow .25s; }
+  .kb-card:hover { transform: translateY(-4px); box-shadow: 2px 6px 10px rgba(0,0,0,.22); }
+  .kb-card img { width: 100%; height: 220px; object-fit: cover; }
+  .kb-body { padding: 20px 22px 24px; }
+  .kb-body h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-lg); line-height: 1.25; }
+  .kb-body p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.35; margin-top: 10px; }
+  .kb-more { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
+  @media (max-width: 1000px) { .kb-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .kb-grid { grid-template-columns: 1fr; } }
+</style>

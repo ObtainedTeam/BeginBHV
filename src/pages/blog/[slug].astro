@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContentLayout from '../../components/ContentLayout.astro';
+import Prose from '../../components/Prose.astro';
+import { posts, fmtDate } from '../../data/blog.js';
+export function getStaticPaths() { return posts.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+const others = posts.filter((x) => x.slug !== p.slug).slice(0, 3);
+---
+<Base title={p.title} description={p.excerpt} image={p.image}>
+  <PageHero title={p.title} intro={p.excerpt} image={p.image} imageAlt={p.title} badge={`Blog · ${fmtDate(p.date)}`} />
+  <ContentLayout courseSlug="bhv-standaard">
+    <Prose sections={p.sections}>
+      <p class="byline">Geschreven door {p.author}, eigenaar en cursusleider BeginBHV.</p>
+      <section class="more">
+        <h2>Meer lezen</h2>
+        <ul>{others.map((o) => <li><a href={`/blog/${o.slug}`}>{o.title}</a></li>)}</ul>
+      </section>
+    </Prose>
+  </ContentLayout>
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, datePublished: p.date, author: { '@type': 'Person', name: p.author }, image: new URL(p.image, Astro.site).href, description: p.excerpt })} />
+</Base>
+<style>
+  .byline { font-family: var(--f-head); font-weight: 300; font-style: italic; font-size: var(--t-sm); margin-top: 30px; }
+  .more { margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,.12); }
+  .more h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin-bottom: 10px; }
+  .more ul { list-style: none; padding: 0; margin: 0; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .more li + li { margin-top: 6px; }
+  .more a { text-decoration: underline; }
+</style>

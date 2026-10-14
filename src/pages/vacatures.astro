@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContentLayout from '../components/ContentLayout.astro';
+import Prose from '../components/Prose.astro';
+import { site } from '../data/site.js';
+// PLACEHOLDER: vul echte vacatures in of laat de open sollicitatie staan.
+const vacatures = [];
+const sections = vacatures.length ? vacatures : [
+  { h: 'Op dit moment geen openstaande vacatures', p: ['We groeien en zoeken regelmatig BHV-instructeurs die, net als wij, liever doen dan praten. Herken je jezelf daarin? Stuur een open sollicitatie.'] },
+  { h: 'Wat we zoeken in een instructeur', list: ['Gecertificeerd BHV-instructeur of bereid om dat te worden', 'Ervaring in de praktijk: hulpverlening, brandweer, zorg, defensie of vergelijkbaar', 'Je legt rustig uit en laat mensen vooral zelf doen', 'Flexibel: trainingen zijn soms ’s avonds of op zaterdag, door het hele land', 'Rijbewijs B'] },
+  { h: 'Open sollicitatie', p: [`Mail je motivatie en cv naar <a href="mailto:${site.email}">${site.email}</a> onder vermelding van “instructeur”. We reageren binnen een week.`] },
+];
+---
+<Base title="Werken bij BeginBHV" description="Vacatures en open sollicitaties bij BeginBHV. We zoeken BHV-instructeurs met praktijkervaring.">
+  <PageHero title="Werken bij BeginBHV" intro="Mensen leren handelen als het erop aankomt. Dat is ons werk, en we doen het graag met collega's die hetzelfde drijft." />
+  <ContentLayout courseSlug="bhv-standaard" sideTitle="Eerst zelf een cursus volgen?">
+    <Prose sections={sections} />
+  </ContentLayout>
+</Base>

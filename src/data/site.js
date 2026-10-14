@@ -20,7 +20,7 @@ export const nav = [
   { label: 'Home', href: '/' },
   { label: 'Cursussen', href: '/cursussen' },
   { label: 'BHV', href: '/cursussen/bhv-standaard' },
-  { label: 'Advies', href: '/contact' },
+  { label: 'Advies', href: '/incompany' },
 ];
 export const navRight = [
   { label: 'Over Ons', href: '/over-ons' },

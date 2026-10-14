@@ -44,7 +44,7 @@ const blocks = [
           <article class="ob-card reveal">
             <h2>{b.title}</h2>
             <p>{b.text}</p>
-            <a class="btn btn-primary ob-btn" href="/cursussen">Lees meer &gt;</a>
+            <a class="btn btn-primary ob-btn" href={i === 0 ? "/over-dennis" : i === 1 ? "/incompany" : "/branches"}>Lees meer &gt;</a>
           </article>
           <img class="ob-photo" src={b.image} alt="" width="474" height="316" loading="lazy" />
         </div>

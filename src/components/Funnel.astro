@@ -169,9 +169,8 @@ const steps = funnel.steps;
       try {
         const res = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
         if (!res.ok) throw new Error();
-        steps.forEach((s) => (s.hidden = true)); nav.hidden = true; done.hidden = false;
-        title.textContent = 'Aanvraag verstuurd'; intro.textContent = ''; dots.forEach((d) => d.classList.add('on'));
         (window as any).gtag?.('event', 'generate_lead', { form: 'funnel' });
+        location.href = '/bedankt';
       } catch { err.textContent = 'Versturen is niet gelukt. Probeer het opnieuw of bel ons.'; }
       finally { submit.disabled = false; }
     });

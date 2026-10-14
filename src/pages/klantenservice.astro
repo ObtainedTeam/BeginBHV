@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContentCard from '../components/ContactCard.astro';
+import Faq from '../components/Faq.astro';
+import UspBar from '../components/UspBar.astro';
+import { site } from '../data/site.js';
+import { faqGroups } from '../data/content.js';
+// PLACEHOLDER: openingstijden en WhatsApp bevestigen.
+const hours = [['Maandag t/m vrijdag', '08:30 - 17:30'], ['Zaterdag', 'Op afspraak (incompany)'], ['Zondag', 'Gesloten']];
+const quick = faqGroups.find((g) => g.title === 'Locatie en planning').items.concat(faqGroups.find((g) => g.title === 'Certificaat en geldigheid').items.slice(0, 2));
+---
+<Base title="Klantenservice" description="Vragen over je cursus, certificaat of factuur? Zo bereik je de klantenservice van BeginBHV.">
+  <PageHero title="Klantenservice" intro="Vragen over je inschrijving, certificaat of factuur? We helpen je graag. Bel, mail of gebruik het formulier." />
+  <section class="ks">
+    <div class="container ks-inner">
+      <div class="ks-info">
+        <div class="ks-card reveal">
+          <h2>Direct contact</h2>
+          <p><a href={site.phoneHref}>{site.phone}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
+          <h3>Bereikbaar</h3>
+          <table><tbody>{hours.map(([d, h]) => <tr><th>{d}</th><td>{h}</td></tr>)}</tbody></table>
+          <h3>Bezoekadres</h3>
+          <p>{site.name}<br />{site.address.map((l) => (<>{l}<br /></>))}</p>
+        </div>
+        <div class="ks-faq">
+          <h2>Snel antwoord</h2>
+          <Faq items={quick} variant="rows" />
+          <a class="ks-all" href="/veelgestelde-vragen">Alle veelgestelde vragen ›</a>
+        </div>
+      </div>
+      <div class="ks-form"><ContentCard variant="wide" title="Stuur een bericht" source="klantenservice" /></div>
+    </div>
+  </section>
+  <UspBar />
+</Base>
+<style>
+  .ks { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; }
+  .ks-inner { display: grid; grid-template-columns: minmax(0, 1fr) 466px; gap: 60px; padding-top: 60px; padding-bottom: 70px; align-items: start; }
+  .ks-card { background: var(--c-light); border-radius: var(--r-lg); box-shadow: var(--sh-card); padding: 24px 26px; font-family: var(--f-head); }
+  .ks-card h2 { font-weight: 900; font-size: var(--t-h5); }
+  .ks-card h3 { font-weight: 700; font-size: var(--t-lg); margin-top: 18px; }
+  .ks-card p { font-weight: 300; font-size: var(--t-md); line-height: 1.5; margin-top: 6px; }
+  .ks-card a:hover { text-decoration: underline; }
+  .ks-card table { border-collapse: collapse; margin-top: 6px; font-weight: 300; font-size: var(--t-md); }
+  .ks-card th { text-align: left; font-weight: 500; padding: 3px 18px 3px 0; }
+  .ks-faq { margin-top: 36px; }
+  .ks-faq h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); margin-bottom: 12px; }
+  .ks-all { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
+  .ks-form { position: sticky; top: 24px; }
+  @media (max-width: 1000px) { .ks-inner { grid-template-columns: 1fr; } .ks-form { position: static; } }
+</style>

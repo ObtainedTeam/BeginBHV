@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import UspBar from '../components/UspBar.astro';
+import { site } from '../data/site.js';
+import { kennisbank } from '../data/kennisbank.js';
+---
+<Base title="Bedankt voor je aanvraag" description="We hebben je aanvraag ontvangen en nemen binnen één werkdag contact op.">
+  <section class="bd">
+    <div class="container bd-inner">
+      <div class="bd-card reveal">
+        <span class="bd-check" aria-hidden="true"></span>
+        <h1>Bedankt voor je aanvraag!</h1>
+        <p>We nemen binnen één werkdag contact met je op met een passend voorstel. Wil je sneller schakelen? Bel ons gerust.</p>
+        <a class="btn btn-plan" href={site.phoneHref}>Bel {site.phone}</a>
+        <a class="bd-home" href="/">Terug naar de homepage</a>
+      </div>
+      <div class="bd-read">
+        <h2>Intussen verder lezen?</h2>
+        <ul>{kennisbank.slice(0, 4).map((a) => <li><a href={`/kennisbank/${a.slug}`}>{a.title}</a></li>)}</ul>
+      </div>
+    </div>
+  </section>
+  <UspBar />
+  <script is:inline>window.gtag?.('event', 'generate_lead', { form: 'thanks-page' });</script>
+</Base>
+<style>
+  .bd { background: linear-gradient(180deg, rgba(255,0,0,.1) 0%, rgba(0,0,0,0) 100%), #fff; }
+  .bd-inner { padding-top: 120px; padding-bottom: 90px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .bd-card { background: var(--c-light); border-radius: var(--r-lg); box-shadow: var(--sh-card); padding: 40px 36px; text-align: center; }
+  .bd-check { display: block; width: 72px; height: 72px; margin: 0 auto 20px; background: url('/images/icon-check.png') center / contain no-repeat; }
+  .bd-card h1 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.2; }
+  .bd-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); margin: 14px 0 24px; line-height: 1.35; }
+  .bd-home { display: block; margin-top: 16px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); text-decoration: underline; }
+  .bd-read h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin-bottom: 12px; }
+  .bd-read ul { list-style: none; padding: 0; margin: 0; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .bd-read li + li { margin-top: 8px; }
+  .bd-read a { text-decoration: underline; }
+  @media (max-width: 900px) { .bd-inner { grid-template-columns: 1fr; padding-top: 60px; } .bd-card h1 { font-size: 28px; } }
+</style>

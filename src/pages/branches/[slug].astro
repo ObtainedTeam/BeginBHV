@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContentLayout from '../../components/ContentLayout.astro';
+import Prose from '../../components/Prose.astro';
+import { branches } from '../../data/branches.js';
+export function getStaticPaths() { return branches.map((b) => ({ params: { slug: b.slug }, props: { b } })); }
+const { b } = Astro.props;
+const others = branches.filter((x) => x.slug !== b.slug);
+---
+<Base title={b.metaTitle} description={b.description} image={b.image}>
+  <PageHero title={b.title} intro={b.intro} image={b.image} imageAlt={b.title} badge="Branche" />
+  <ContentLayout courseSlug={b.course} sideTitle={`Aanbevolen cursus voor ${b.short.toLowerCase()}`} ctaTitle={`Boek nu een BHV cursus voor ${b.short.toLowerCase()} en betaal achteraf`}>
+    <Prose sections={[{ h: 'De risico’s in jouw sector', list: b.risks }, ...b.sections]}>
+      <section class="more">
+        <h2>Andere branches</h2>
+        <ul>{others.map((o) => <li><a href={`/branches/${o.slug}`}>{o.short}</a></li>)}</ul>
+      </section>
+    </Prose>
+  </ContentLayout>
+</Base>
+<style>
+  .more { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,.12); }
+  .more h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin-bottom: 10px; }
+  .more ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .more a { text-decoration: underline; }
+</style>

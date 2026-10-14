@@ -143,3 +143,38 @@ export const homeInfoCards = [
     alt: 'Incompany BHV-training op locatie',
   },
 ];
+
+// Volledige FAQ, gegroepeerd (pagina /veelgestelde-vragen). De korte lijst `faq` blijft voor home/cursussen.
+export const faqGroups = [
+  { title: 'Over de cursus', items: [
+    { q: 'Hoe lang duurt een BHV-cursus?', a: 'Eén dag, van 09:00 tot 17:00. De herhalingscursus duurt tot 16:00 en BHV Bedrijfsleider een halve dag.' },
+    { q: 'Heb ik een vooropleiding nodig?', a: 'Nee. Voor BHV Basis, Standaard en NIBHV is geen vooropleiding nodig. Voor BHV Ploegleider is een geldig BHV-certificaat vereist.' },
+    { q: 'Wat moet ik meenemen?', a: 'Alleen jezelf, in kleding waarin je kunt knielen en bewegen. Lesmateriaal, koffie, thee en lunch zijn inbegrepen.' },
+    { q: 'Is er een examen?', a: 'Bij onze eigen BHV-cursussen beoordeelt de trainer je tijdens de praktijk; er is geen apart examen. Bij BHV (NIBHV) leg je een officieel theorie- en praktijkexamen af.' },
+    { q: 'Hoe groot zijn de groepen?', a: 'Maximaal 12 deelnemers per trainer, zodat iedereen veel oefent.' },
+  ]},
+  { title: 'Certificaat en geldigheid', items: [
+    { q: 'Hoe lang is een BHV-certificaat geldig?', a: 'Eén jaar. Met de jaarlijkse herhalingscursus verleng je de geldigheid telkens met een jaar.' },
+    { q: 'Wanneer ontvang ik mijn certificaat?', a: 'Binnen een week na de cursus, digitaal en als pasje per post.' },
+    { q: 'Is het certificaat erkend?', a: 'Ja. BeginBHV is Kiwa-gecertificeerd en aangesloten bij BVBN. Het certificaat voldoet aan de eisen van de Arbowet en de Arbeidsinspectie.' },
+    { q: 'Wat is NIBHV en is het verplicht?', a: 'NIBHV is een keurmerk met een landelijk erkend diploma en examen. Het is niet wettelijk verplicht, maar sommige opdrachtgevers vragen erom. Wij bieden beide varianten.' },
+    { q: 'Mijn certificaat is verlopen. Moet ik de hele cursus opnieuw doen?', a: 'Is het certificaat maximaal zes maanden verlopen, dan volstaat de herhalingscursus. Daarna adviseren we de volledige cursus.' },
+  ]},
+  { title: 'Wet en organisatie', items: [
+    { q: 'Is BHV verplicht?', a: 'Ja, voor elke werkgever met personeel (Arbowet artikel 15). Lees meer in de kennisbank: Is BHV verplicht?' },
+    { q: 'Hoeveel BHV’ers heb ik nodig?', a: 'Vuistregel: één per vijftig aanwezigen, minimaal één per verdieping, plus vervangers. Het exacte aantal volgt uit je RI&E.' },
+    { q: 'Moet ik ook een BHV-plan hebben?', a: 'Het is niet wettelijk verplicht, maar wel de manier om aan te tonen dat je BHV op orde is. Wij helpen bij het opstellen.' },
+    { q: 'Kan de werkgever zelf BHV’er zijn?', a: 'Ja, in kleine bedrijven is dat gebruikelijk. Zorg wel voor een vervanger bij afwezigheid.' },
+  ]},
+  { title: 'Locatie en planning', items: [
+    { q: 'Kan de cursus op onze eigen locatie?', a: 'Ja, vanaf vijf deelnemers komen we naar jullie toe, overal in Nederland. Wij nemen alle materialen mee.' },
+    { q: 'Waar zijn jullie trainingslocaties?', a: 'We hebben vaste locaties verspreid over het land; zie de pagina Locaties. Koffie en thee staan klaar.' },
+    { q: 'Hoe snel kan ik terecht?', a: 'Meestal binnen twee tot drie weken. Voor incompany-trainingen plannen we in overleg, ook ’s avonds of in het weekend.' },
+    { q: 'Kan ik verplaatsen of annuleren?', a: 'Verplaatsen is kosteloos tot 7 dagen voor aanvang. Annuleren is kosteloos tot 14 dagen voor aanvang; daarna gelden de voorwaarden op de pagina Algemene voorwaarden.' },
+  ]},
+  { title: 'Kosten en betalen', items: [
+    { q: 'Wat kost een BHV-cursus?', a: 'BHV Basis vanaf € 249, Standaard € 279, NIBHV € 299, Herhaling € 199, Ploegleider € 599, Bedrijfsleider € 449 per deelnemer. Incompany rekenen we per groep. Alle prijzen exclusief btw, inclusief materiaal, certificaat en lunch.' },
+    { q: 'Hoe kan ik betalen?', a: 'Via iDEAL, vooraf op factuur of achteraf binnen 14 dagen na de cursus.' },
+    { q: 'Is BHV-training aftrekbaar?', a: 'Als werkgever zijn de kosten bedrijfskosten. Vraag je boekhouder naar de mogelijkheden binnen de werkkostenregeling.' },
+  ]},
+];

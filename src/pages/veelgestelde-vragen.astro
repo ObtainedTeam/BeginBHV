@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import UspBar from '../components/UspBar.astro';
+import { faqGroups } from '../data/content.js';
+const all = faqGroups.flatMap((g) => g.items);
+---
+<Base title="Veelgestelde vragen" description="Antwoorden op de meest gestelde vragen over BHV-cursussen, certificaten, de wet, locaties en kosten.">
+  <PageHero title="Veelgestelde vragen" intro="Staat jouw vraag er niet tussen? Bel ons of stuur een bericht via de contactpagina; we reageren binnen één werkdag." />
+  <section class="fq">
+    <div class="container fq-inner">
+      <nav class="fq-nav" aria-label="Onderwerpen">
+        <p>Onderwerpen</p>
+        <ul>{faqGroups.map((g, i) => <li><a href={`#g${i}`}>{g.title}</a></li>)}</ul>
+        <a class="btn btn-plan" href="/contact">Stel je vraag</a>
+      </nav>
+      <div class="fq-list">
+        {faqGroups.map((g, i) => (
+          <section id={`g${i}`}>
+            <h2>{g.title}</h2>
+            <Faq items={g.items} variant="rows" />
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+  <UspBar />
+  <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: all.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) })} />
+</Base>
+<style>
+  .fq { background: var(--c-white); }
+  .fq-inner { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 60px; padding-top: 60px; padding-bottom: 70px; padding-left: max(var(--gutter), 59px); padding-right: max(var(--gutter), 59px); }
+  @media (min-width: 1420px) { .fq-inner { padding-inline: 59px; } }
+  .fq-nav { position: sticky; top: 24px; align-self: start; }
+  .fq-nav p { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin-bottom: 10px; }
+  .fq-nav ul { list-style: none; padding: 0; margin: 0 0 20px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .fq-nav li + li { margin-top: 8px; }
+  .fq-nav a:hover { text-decoration: underline; }
+  .fq-nav .btn { width: 100%; }
+  .fq-list section + section { margin-top: 44px; }
+  .fq-list h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h5); margin-bottom: 14px; scroll-margin-top: 24px; }
+  @media (max-width: 1000px) { .fq-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); gap: 30px; } .fq-nav { position: static; } }
+</style>

@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import UspBar from '../../components/UspBar.astro';
+import { posts, fmtDate } from '../../data/blog.js';
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+---
+<Base title="Blog" description="Nieuws, tips en achtergrond over bedrijfshulpverlening van BeginBHV.">
+  <PageHero title="Blog" intro="Praktische tips over BHV, reanimatie, ontruimen en de Arbowet. Geschreven vanuit de praktijk." />
+  <section class="bl">
+    <div class="container">
+      <div class="bl-grid">
+        {sorted.map((p, i) => (
+          <a class="bl-card reveal" href={`/blog/${p.slug}`} style={`transition-delay:${(i % 3) * 80}ms`}>
+            <img src={p.image} alt="" width="378" height="220" loading="lazy" />
+            <div class="bl-body">
+              <time datetime={p.date}>{fmtDate(p.date)}</time>
+              <h2>{p.title}</h2>
+              <p>{p.excerpt}</p>
+              <span class="bl-more">Lees meer ›</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+  <UspBar />
+</Base>
+<style>
+  .bl { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; padding: 60px 0 70px; }
+  .bl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .bl-card { display: block; background: var(--c-light); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); transition: transform .25s, box-shadow .25s; }
+  .bl-card:hover { transform: translateY(-4px); box-shadow: 2px 6px 10px rgba(0,0,0,.22); }
+  .bl-card img { width: 100%; height: 220px; object-fit: cover; }
+  .bl-body { padding: 20px 22px 24px; }
+  time { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); color: var(--c-red-dark); }
+  .bl-body h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-lg); line-height: 1.25; margin-top: 6px; }
+  .bl-body p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.35; margin-top: 10px; }
+  .bl-more { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
+  @media (max-width: 1000px) { .bl-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .bl-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContentLayout from '../../components/ContentLayout.astro';
+import Prose from '../../components/Prose.astro';
+import { kennisbank } from '../../data/kennisbank.js';
+export function getStaticPaths() { return kennisbank.map((a) => ({ params: { slug: a.slug }, props: { a } })); }
+const { a } = Astro.props;
+const others = kennisbank.filter((x) => x.slug !== a.slug).slice(0, 3);
+---
+<Base title={a.metaTitle} description={a.description} image={a.image}>
+  <PageHero title={a.title} intro={a.intro} image={a.image} imageAlt={a.title} badge="Kennisbank" />
+  <ContentLayout courseSlug={a.course}>
+    <Prose sections={a.sections}>
+      <section class="more">
+        <h2>Lees ook</h2>
+        <ul>{others.map((o) => <li><a href={`/kennisbank/${o.slug}`}>{o.title}</a></li>)}</ul>
+      </section>
+    </Prose>
+  </ContentLayout>
+</Base>
+<style>
+  .more { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,.12); }
+  .more h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin-bottom: 10px; }
+  .more ul { list-style: none; padding: 0; margin: 0; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); }
+  .more li + li { margin-top: 6px; }
+  .more a { text-decoration: underline; }
+</style>

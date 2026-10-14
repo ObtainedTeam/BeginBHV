@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import National from '../../components/National.astro';
+import UspBar from '../../components/UspBar.astro';
+import { locaties } from '../../data/locaties.js';
+---
+<Base title="Trainingslocaties" description="Volg je BHV-cursus op een van onze trainingslocaties, of laat ons naar jouw bedrijf komen. Overal in Nederland.">
+  <PageHero title="Trainingslocaties" intro="Kom naar een van onze locaties, de koffie en thee staan klaar. Of laat ons naar jullie toe komen: vanaf vijf deelnemers trainen we op jullie eigen werkvloer, overal in Nederland." />
+  <section class="lc">
+    <div class="container">
+      <div class="lc-grid">
+        {locaties.map((l, i) => (
+          <a class="lc-card reveal" href={`/locaties/${l.slug}`} style={`transition-delay:${(i % 3) * 80}ms`}>
+            <img src={l.image} alt="" width="378" height="220" loading="lazy" />
+            <div class="lc-body">
+              <h2>{l.city}</h2>
+              <p class="lc-name">{l.name}</p>
+              <p>{l.note}</p>
+              <span class="lc-more">Bekijk locatie ›</span>
+            </div>
+          </a>
+        ))}
+        <a class="lc-card lc-incompany reveal" href="/incompany">
+          <div class="lc-body">
+            <h2>Of bij jullie op locatie</h2>
+            <p>Vanaf vijf deelnemers komen we naar jullie bedrijf, met alle materialen. Oefen op de plek waar het straks moet gebeuren.</p>
+            <span class="lc-more">Incompany-training ›</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <National />
+  <UspBar />
+</Base>
+<style>
+  .lc { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; padding: 60px 0 40px; }
+  .lc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; }
+  .lc-card { display: block; background: var(--c-light); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); transition: transform .25s, box-shadow .25s; }
+  .lc-card:hover { transform: translateY(-4px); box-shadow: 2px 6px 10px rgba(0,0,0,.22); }
+  .lc-card img { width: 100%; height: 220px; object-fit: cover; }
+  .lc-body { padding: 20px 22px 24px; }
+  .lc-body h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.25; }
+  .lc-name { font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); margin-top: 4px; }
+  .lc-body p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.35; margin-top: 8px; }
+  .lc-more { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
+  .lc-incompany { background: var(--c-coral); color: #fff; display: flex; align-items: center; }
+  .lc-incompany .lc-more { color: #fff; }
+  @media (max-width: 760px) { .lc-grid { grid-template-columns: 1fr; } }
+</style>

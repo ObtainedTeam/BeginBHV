@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import UspBar from '../../components/UspBar.astro';
+import { branches } from '../../data/branches.js';
+---
+<Base title="BHV per branche" description="BHV-trainingen afgestemd op jouw sector: kinderopvang, horeca, bouw, kantoor, zorg en onderwijs.">
+  <PageHero title="BHV per branche" intro="Elke sector heeft eigen risico's. Daarom stemmen we de scenario's, de ontruiming en de eerste hulp af op jouw werkvloer." />
+  <section class="br">
+    <div class="container">
+      <div class="br-grid">
+        {branches.map((b, i) => (
+          <a class="br-card reveal" href={`/branches/${b.slug}`} style={`transition-delay:${(i % 3) * 80}ms`}>
+            <img src={b.image} alt="" width="378" height="220" loading="lazy" />
+            <div class="br-body">
+              <h2>{b.title}</h2>
+              <p>{b.description}</p>
+              <span class="br-more">Lees meer ›</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+  <UspBar />
+</Base>
+<style>
+  .br { background: linear-gradient(180deg, rgba(255,0,0,.06) 0%, rgba(0,0,0,0) 100%), #fff; padding: 60px 0 70px; }
+  .br-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .br-card { display: block; background: var(--c-light); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); transition: transform .25s, box-shadow .25s; }
+  .br-card:hover { transform: translateY(-4px); box-shadow: 2px 6px 10px rgba(0,0,0,.22); }
+  .br-card img { width: 100%; height: 220px; object-fit: cover; }
+  .br-body { padding: 20px 22px 24px; }
+  .br-body h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-lg); line-height: 1.25; }
+  .br-body p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.35; margin-top: 10px; }
+  .br-more { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
+  @media (max-width: 1000px) { .br-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .br-grid { grid-template-columns: 1fr; } }
+</style>

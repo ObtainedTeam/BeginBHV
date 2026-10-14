@@ -1,0 +1,42 @@
+---
+// Coral hero voor contentpagina's, in de stijl van BHV5 / Over ons.
+// Props: title, intro (string of array), image (optioneel), badge (optioneel label boven titel), kicker
+const { title, intro = [], image, imageAlt = '', badge, h = 'h1' } = Astro.props;
+const H = h;
+const paras = Array.isArray(intro) ? intro : [intro];
+---
+<section class={`ph ${image ? 'has-img' : ''}`}>
+  <div class="ph-stage">
+    <div class="ph-text">
+      {badge && <span class="ph-badge">{badge}</span>}
+      <H class="ph-title">{title}</H>
+      {paras.map((p) => <p>{p}</p>)}
+      <slot />
+    </div>
+    {image && (
+      <div class="ph-photo">
+        <img src={image} alt={imageAlt} width="661" height="443" fetchpriority="high" />
+      </div>
+    )}
+  </div>
+  <div class="ph-bar"></div>
+</section>
+
+<style>
+  .ph { background: var(--c-coral); }
+  .ph-stage { position: relative; width: var(--w-page); max-width: 100%; margin-inline: auto; min-height: 320px; padding: 96px 59px 50px; display: grid; grid-template-columns: 1fr; }
+  .has-img .ph-stage { grid-template-columns: 576px 1fr; gap: 60px; min-height: 442px; padding-bottom: 0; }
+  .ph-text { color: var(--c-white); max-width: 760px; }
+  .ph-badge { display: inline-flex; align-items: center; height: 35px; padding: 0 20px; border-radius: 9px; background: var(--c-red-dark); font-family: var(--f-head); font-weight: 500; font-size: var(--t-md); margin-bottom: 12px; }
+  .ph-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.2; margin-bottom: 20px; }
+  .ph-text p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.3; }
+  .ph-text p + p { margin-top: 10px; }
+  .ph-photo { position: relative; justify-self: end; width: 661px; max-width: 100%; height: 443px; border-radius: var(--r-xl) 0 0 var(--r-xl); overflow: hidden; margin-right: -59px; margin-top: -96px; }
+  .ph-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .ph-bar { height: 60.3px; background: var(--c-red); }
+  @media (max-width: 1100px) {
+    .ph-stage, .has-img .ph-stage { grid-template-columns: 1fr; padding: 90px var(--gutter) 40px; gap: 24px; }
+    .ph-photo { width: 100%; height: 300px; border-radius: var(--r-xl); margin: 0; }
+  }
+  @media (max-width: 700px) { .ph-title { font-size: 30px; } .ph-stage { padding-top: 40px; } }
+</style>

@@ -95,8 +95,7 @@ const fields = [
       try {
         const res = await fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
         if (!res.ok) throw new Error();
-        status.className = 'status ok'; status.textContent = 'Bedankt! We nemen binnen één werkdag contact met u op.';
-        form.reset();
+        location.href = '/bedankt';
       } catch {
         status.className = 'status err'; status.textContent = 'Versturen is niet gelukt. Bel ons of mail naar info@beginbhv.nl.';
       } finally { btn.disabled = false; }

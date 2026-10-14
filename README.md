@@ -9,6 +9,7 @@ Astro (statisch) op Vercel. Elke push naar `main` deployt automatisch.
   - `site.js` adres, telefoon, e-mail, GA4-ID, navigatie, USP's
   - `courses.js` alle cursussen (titel, tekst, bullets, prijs, specificaties, beeld)
   - `content.js` reviews, FAQ en de vragen van de aanvraagfunnel
+- Extra data: `kennisbank.js`, `branches.js`, `blog.js`, `locaties.js` (locaties zijn nog placeholders).
 - Beeld staat op vaste bestandsnamen in `public/images/`. Beeld vervangen = bestand met dezelfde naam overschrijven en pushen.
 - Aanvragen gaan naar `api/aanvraag.js` (Vercel function). Mail staat uit tot de env-vars zijn gezet:
   `MAIL_PROVIDER` (brevo of resend), `MAIL_API_KEY`, `MAIL_TO`, `MAIL_FROM`.

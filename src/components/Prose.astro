@@ -1,0 +1,29 @@
+---
+// Tekstkolom voor kennisbank-, branche- en blogpagina's. Rendert secties { h, p[], list[] }.
+const { sections = [], aside = true } = Astro.props;
+---
+<div class="prose">
+  {sections.map((s) => (
+    <section>
+      {s.h && <h2>{s.h}</h2>}
+      {(s.p ?? []).map((t) => <p set:html={t} />)}
+      {s.list && <ul class="checklist">{s.list.map((l) => <li>{l}</li>)}</ul>}
+      {s.note && <div class="note"><p set:html={s.note} /></div>}
+    </section>
+  ))}
+  <slot />
+</div>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h5); line-height: 1.25; margin: 36px 0 12px; }
+  .prose section:first-child h2 { margin-top: 0; }
+  .prose p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.45; margin-bottom: 12px; }
+  .prose p :global(a) { text-decoration: underline; }
+  .prose .checklist { margin: 14px 0 18px; }
+  .prose .checklist li + li { margin-top: 12px; }
+  .prose .checklist li { line-height: 1.3; }
+  .note { background: var(--c-light); border-left: 4px solid var(--c-red-dark); border-radius: 0 var(--r-md) var(--r-md) 0; padding: 14px 18px; margin: 16px 0; }
+  .note p { margin: 0; }
+  @media (max-width: 700px) { .prose h2 { font-size: 22px; } }
+</style>
