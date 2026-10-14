@@ -16,15 +16,59 @@ export const site = {
   ga4: '',
 };
 
+// Hoofdmenu met dropdowns. `children` = submenu; het hoofditem zelf linkt naar de overzichtspagina.
 export const nav = [
   { label: 'Home', href: '/' },
-  { label: 'Cursussen', href: '/cursussen' },
-  { label: 'BHV', href: '/cursussen/bhv-standaard' },
-  { label: 'Advies', href: '/incompany' },
+  {
+    label: 'Cursussen', href: '/cursussen',
+    children: [
+      { label: 'Alle cursussen', href: '/cursussen' },
+      { label: 'BHV Basis', href: '/cursussen/bhv-basis' },
+      { label: 'BHV Standaard', href: '/cursussen/bhv-standaard' },
+      { label: 'BHV Herhaling', href: '/cursussen/bhv-herhaling' },
+      { label: 'BHV NIBHV', href: '/cursussen/bhv-nibhv' },
+      { label: 'Ploegleider BHV', href: '/cursussen/bhv-ploegleider' },
+      { label: 'Bedrijfsleider BHV', href: '/cursussen/bhv-bedrijfsleider' },
+      { label: 'Cursusboek bestellen', href: '/cursusboek' },
+    ],
+  },
+  {
+    label: 'Incompany', href: '/incompany',
+    children: [
+      { label: 'Incompany training', href: '/incompany' },
+      { label: 'BHV per branche', href: '/branches' },
+      { label: 'Kinderopvang', href: '/branches/kinderopvang' },
+      { label: 'Horeca', href: '/branches/horeca' },
+      { label: 'Bouw', href: '/branches/bouw' },
+      { label: 'Kantoor', href: '/branches/kantoor' },
+      { label: 'Zorg', href: '/branches/zorg' },
+      { label: 'Onderwijs', href: '/branches/onderwijs' },
+    ],
+  },
+  {
+    label: 'Kennis', href: '/kennisbank',
+    children: [
+      { label: 'Kennisbank', href: '/kennisbank' },
+      { label: 'Wat is BHV?', href: '/kennisbank/wat-is-bhv' },
+      { label: 'Is BHV verplicht?', href: '/kennisbank/is-bhv-verplicht' },
+      { label: 'Hoeveel BHV’ers?', href: '/kennisbank/hoeveel-bhvers' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Veelgestelde vragen', href: '/veelgestelde-vragen' },
+    ],
+  },
 ];
 export const navRight = [
-  { label: 'Over Ons', href: '/over-ons' },
-  { label: 'Blog', href: '/blog' },
+  {
+    label: 'Over Ons', href: '/over-ons',
+    children: [
+      { label: 'Over BeginBHV', href: '/over-ons' },
+      { label: 'Over Dennis', href: '/over-dennis' },
+      { label: 'Locaties', href: '/locaties' },
+      { label: 'Vacatures', href: '/vacatures' },
+      { label: 'Klantenservice', href: '/klantenservice' },
+    ],
+  },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const usps = [
