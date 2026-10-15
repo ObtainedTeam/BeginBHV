@@ -63,7 +63,7 @@ import { site } from '../../data/site.js';
 <style>
   /* Hero: 1386 x 513, coral met diagonale foto rechts */
   .ch { position: relative; background: var(--c-coral); overflow: hidden; }
-  .ch-stage { position: relative; width: var(--w-page); max-width: 100%; height: 513px; margin-inline: auto; }
+  .ch-stage { position: relative; width: var(--w-page); max-width: 100%; height: 480px; margin-inline: auto; }
   .ch-text { position: absolute; left: 59px; top: 96px; width: 576px; color: var(--c-white); }
   h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.9; }
   .ch-tabs { display: flex; align-items: center; gap: 0; margin-top: -2px; }
@@ -74,8 +74,8 @@ import { site } from '../../data/site.js';
   .ch-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
   .ch-text p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 19px; }
   .ch-text p + p { margin-top: 0; }
-  .ch-photo { position: absolute; left: 691px; top: -9px; width: 710px; height: 525px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
-  .ch-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+  .ch-photo { position: absolute; left: 691px; top: -9px; width: 710px; height: 492px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
+  .ch-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .ch-photo::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.31); }
   .ch-widget { position: absolute; left: 1231px; top: 101px; width: 155.3px; border-radius: 4px; overflow: hidden; box-shadow: var(--sh-card); font-family: var(--f-head); }
   .ch-widget a { display: flex; align-items: center; gap: 10px; height: 38.5px; padding: 0 14px; font-size: 13px; font-weight: 600; }
@@ -83,7 +83,7 @@ import { site } from '../../data/site.js';
   .w-phone { background: #fff; color: #233242; }
   .w-phone svg { color: var(--c-red); }
   .w-contact { background: #233242; color: #fff; }
-  .ch-bar { height: 60.3px; background: var(--c-red); }
+  .ch-bar { height: 33px; background: var(--c-red); }
 
   .cl { background: linear-gradient(180deg, rgba(255,0,0,.07) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 77px; }
   .cl h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.7; }
