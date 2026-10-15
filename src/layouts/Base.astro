@@ -18,6 +18,15 @@ interface Props {
 const { title, description = site.description, image = '/images/og-default.jpg', navOnDark = true } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || Astro.site;
 const fullTitle = title.includes('BeginBHV') ? title : `${title} | BeginBHV`;
+// Breadcrumbs (JSON-LD) afgeleid van het pad; labels van tussenniveaus uit deze lijst.
+const parents = { '/cursussen': 'Cursussen', '/kennisbank': 'Kennisbank', '/branches': 'BHV per branche', '/blog': 'Blog', '/locaties': 'Locaties' };
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const crumbs = [{ name: 'Home', item: Astro.site.href }];
+if (path !== '/') {
+  const segs = path.split('/').filter(Boolean);
+  if (segs.length > 1 && parents['/' + segs[0]]) crumbs.push({ name: parents['/' + segs[0]], item: new URL('/' + segs[0], Astro.site).href });
+  crumbs.push({ name: title, item: canonical });
+}
 ---
 <!doctype html>
 <html lang="nl">
@@ -28,6 +37,10 @@ const fullTitle = title.includes('BeginBHV') ? title : `${title} | BeginBHV`;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ff0000" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="BeginBHV" />
     <meta property="og:locale" content="nl_NL" />
@@ -36,6 +49,7 @@ const fullTitle = title.includes('BeginBHV') ? title : `${title} | BeginBHV`;
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(image, Astro.site).href} />
     <meta name="twitter:card" content="summary_large_image" />
+    {crumbs.length > 1 && <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.item })) })} />}
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
