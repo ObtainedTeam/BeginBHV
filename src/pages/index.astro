@@ -165,18 +165,19 @@ const ploegleider = getCourse('bhv-ploegleider');
   .pk-btn { position: absolute; left: 53.3px; bottom: -23px; }
 
   /* ---------- BHV3 funnel + kennismaken (1386 x 1481) ---------- */
-  .funnel-sec { position: relative; background: linear-gradient(180deg, rgba(255,0,0,.1) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 75px; padding-bottom: 66px; }
+  .funnel-sec { position: relative; background: linear-gradient(180deg, rgba(255,0,0,.1) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 75px; padding-bottom: 106px; }
   .fs-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); color: var(--c-red-dark); text-align: center; text-shadow: 0 1.3px 1.3px rgba(0,0,0,.25); line-height: 1.25; margin-bottom: 34px; }
   .kennis { display: grid; grid-template-columns: 389.3px 1fr; gap: 48px; margin-top: 130px; padding-left: max(var(--gutter), 177px); min-height: 428px; }
   @media (min-width: 1420px) { .kennis { padding-left: 177px; } }
   .kennis-photo { width: 389.3px; height: 428.3px; border-radius: 25px; overflow: hidden; box-shadow: 1.7px 1.3px 1.3px rgba(0,0,0,.25); }
   .kennis-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .kennis-text { margin-top: -24px; }
   .kennis-text h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-display); line-height: 1.6; }
-  .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h1); line-height: 1.07; max-width: 362px; margin-top: -8px; }
-  .kennis-text blockquote { margin: 38px 0 0 5px; max-width: 445px; }
+  .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h1); line-height: 1.07; max-width: 362px; margin-top: 10px; }
+  .kennis-text blockquote { margin: 30px 0 0 5px; max-width: 445px; }
   blockquote p { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); line-height: 1.2; }
   .attribution { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); margin: 8px 0 0 5px; }
-  :global(.fs-ecg) { margin-top: 70px; }
+  :global(.fs-ecg) { margin-top: 24px; }
 
   /* ---------- BHV4 reviews (1386 x 612) ---------- */
   .reviews { background: var(--c-white); }
@@ -200,8 +201,8 @@ const ploegleider = getCourse('bhv-ploegleider');
   .rv-band { height: 114px; background: var(--c-light); }
 
   /* ---------- Page: FAQ ---------- */
-  .faq-section { background: linear-gradient(180deg, rgba(255,0,0,.04) 0%, rgba(255,0,0,.07) 100%), #fff; padding: 20px 0 139px; }
-  .faq-section h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.55; margin-bottom: 53px; }
+  .faq-section { background: linear-gradient(180deg, rgba(255,0,0,.04) 0%, rgba(255,0,0,.07) 100%), #fff; padding: 20px 0 126px; }
+  .faq-section h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.55; margin-bottom: 40px; }
   .info-row { display: grid; grid-template-columns: 629px 466px; justify-content: center; gap: 28.7px; margin-bottom: 35px; }
   .info-row.rev { grid-template-columns: 466px 637px; gap: 20px; }
   .info-row.rev .info-card { order: -1; }
@@ -227,6 +228,7 @@ const ploegleider = getCourse('bhv-ploegleider');
     .pk, .pk:nth-child(1), .pk:nth-child(2), .pk:nth-child(3) { position: relative; left: auto; top: 21.7px; }
     .kennis { grid-template-columns: 1fr; padding-left: var(--gutter); margin-top: 60px; }
     .kennis-photo { width: 100%; max-width: 389px; height: auto; aspect-ratio: 389/428; }
+    .kennis-text { margin-top: 0; }
     .kennis-text h2 { line-height: 1.2; margin-bottom: 10px; }
     :global(.fs-ecg) { margin-top: 20px; }
     .rv-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); }
