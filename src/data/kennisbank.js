@@ -21,7 +21,7 @@ export const kennisbank = [
     title: 'Is BHV verplicht?',
     metaTitle: 'Is BHV verplicht? Wat de Arbowet van werkgevers vraagt',
     description: 'Ja, elke werkgever met personeel moet bedrijfshulpverlening regelen. Wat de Arbowet precies eist, wat de boetes zijn en hoe je het praktisch regelt.',
-    image: '/images/foto-blusser.webp',
+    image: '/images/foto-pin.webp',
     intro: 'Kort antwoord: ja. Iedere werkgever met personeel in Nederland is verplicht om bedrijfshulpverlening te organiseren. Hoe dat eruitziet, bepaal je zelf op basis van de risico’s in je bedrijf.',
     course: 'bhv-standaard',
     sections: [
@@ -50,7 +50,7 @@ export const kennisbank = [
     title: 'RI&E en BHV',
     metaTitle: 'RI&E en BHV: hoe de risico-inventarisatie je BHV bepaalt',
     description: 'De risico-inventarisatie en -evaluatie (RI&E) is de basis voor je BHV-organisatie. Zo gebruik je de RI&E om het aantal BHV’ers en de middelen te bepalen.',
-    image: '/images/cursus-bhv-bedrijfsleider.webp',
+    image: '/images/foto-blusser-detail.webp',
     intro: 'Elke werkgever is verplicht een RI&E te hebben: een overzicht van de risico’s op de werkvloer en een plan van aanpak. De RI&E bepaalt wat je BHV-organisatie moet kunnen.',
     course: 'bhv-bedrijfsleider',
     sections: [
@@ -64,7 +64,7 @@ export const kennisbank = [
     title: 'Hoeveel BHV’ers heb ik nodig?',
     metaTitle: 'Hoeveel BHV’ers heb ik nodig? Vuistregels per bedrijfsgrootte',
     description: 'Er is geen wettelijk minimum, maar wel duidelijke vuistregels. Zo bepaal je hoeveel BHV’ers jouw bedrijf nodig heeft.',
-    image: '/images/cursus-ehbo.webp',
+    image: '/images/foto-blussen-wide.webp',
     intro: 'De wet noemt geen getal. Het aantal BHV’ers moet passen bij de risico’s in je bedrijf en er moet altijd een BHV’er aanwezig zijn als er gewerkt wordt. In de praktijk gelden deze vuistregels.',
     course: 'bhv-standaard',
     sections: [
