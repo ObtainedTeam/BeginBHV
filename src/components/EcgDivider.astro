@@ -1,39 +1,65 @@
 ---
-// Hartslaglijn als ECG-monitor: één doorlopende lijn die van links naar rechts
-// wordt "geschreven" door een sweep, één slag per doorloop. Het vorige spoor blijft
-// zwak staan en wordt vlak voor de cursor gewist, zoals op een echte monitor.
-// Vaste verhouding (viewBox 1386x100, gelijk aan de aangeleverde PNG).
+// Hartslaglijn als ECG-monitor over de volle schermbreedte.
+// Eén doorlopende lijn (P-top, QRS-complex, T-top) die door een sweep van links naar
+// rechts wordt geschreven; het vorige spoor blijft zwak staan en wordt vlak voor de
+// cursor gewist. Hoogte is vast (100px op desktop), dus de verhouding verandert niet
+// met de schermbreedte: de rechte stukken worden langer, de slag zelf niet.
 const { class: cls = '' } = Astro.props;
-const d = 'M0 50 H290 L302 29 L312 50 L320 6 L336 94 L352 29 L362 50 H1386';
-const dur = '9s';
-const uid = Math.random().toString(36).slice(2, 7);
 ---
-<div class={`ecg ${cls}`} aria-hidden="true">
-  <svg viewBox="0 0 1386 100" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <!-- nieuw spoor: van links tot aan de cursor -->
-      <clipPath id={`ecg-new-${uid}`}>
-        <rect x="0" y="-10" width="0" height="120">
-          <animate attributeName="width" from="0" to="1386" dur={dur} repeatCount="indefinite" />
-        </rect>
-      </clipPath>
-      <!-- oud spoor: vanaf een stukje na de cursor tot rechts -->
-      <clipPath id={`ecg-old-${uid}`}>
-        <rect x="60" y="-10" width="1386" height="120">
-          <animate attributeName="x" from="60" to="1446" dur={dur} repeatCount="indefinite" />
-        </rect>
-      </clipPath>
-    </defs>
-    <path class="ecg-trace old" d={d} clip-path={`url(#ecg-old-${uid})`} />
-    <path class="ecg-trace new" d={d} clip-path={`url(#ecg-new-${uid})`} />
+<div class={`ecg ${cls}`} aria-hidden="true" data-ecg>
+  <svg viewBox="0 0 1386 100" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="ecg-trace" d="M0 50 H1386" />
   </svg>
 </div>
 <style>
-  .ecg { position: relative; width: 100%; height: 110px; overflow: hidden; }
+  /* volle breedte, ook binnen een container */
+  .ecg { position: relative; width: 100vw; margin-left: calc(50% - 50vw); height: 100px; overflow: hidden; }
   .ecg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .ecg-trace { stroke: #ff0000; stroke-width: 4.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-  .ecg-trace.new { filter: drop-shadow(0 0 3px rgba(255,0,0,.5)) drop-shadow(0 1.5px 1.5px rgba(0,0,0,.25)); }
-  .ecg-trace.old { opacity: .28; }
-  @media (prefers-reduced-motion: reduce) { .ecg-trace.old { display: none; } .ecg-trace.new { clip-path: none; } }
-  @media (max-width: 700px) { .ecg { height: 70px; } }
+  .ecg-trace { stroke: #ff0000; stroke-width: 4px; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .ecg-trace.new { filter: drop-shadow(0 0 2px rgba(255,0,0,.45)) drop-shadow(0 1.5px 1.5px rgba(0,0,0,.2)); }
+  .ecg-trace.head { stroke-width: 4.5px; filter: drop-shadow(0 0 6px rgba(255,0,0,.9)); }
+  .ecg-trace.old { opacity: .22; }
+  @media (max-width: 700px) { .ecg { height: 60px; } }
 </style>
+
+<script>
+  // Bouwt de SVG op de werkelijke breedte, zodat de lijn van rand tot rand loopt
+  // en de slag altijd dezelfde grootte houdt.
+  const DUR = 10; // seconden per doorloop
+  const build = (root: HTMLElement) => {
+    const W = Math.round(root.clientWidth), H = root.clientHeight;
+    const y = H / 2, k = H / 100;             // k: schaal van de slag t.o.v. 100px hoog
+    const x0 = Math.round(W * 0.21);          // plek van de slag (zoals in de PNG)
+    const s = (v: number) => (v * k).toFixed(1);
+    // P-top, Q, R, S, terug naar basislijn, T-top
+    const d = `M0 ${y} H${x0 - 70}`
+      + ` Q${x0 - 58} ${y - 8 * k} ${x0 - 46} ${y}`
+      + ` H${x0 - 20} L${x0 - 12} ${y + 7 * k} L${x0} ${y - 44 * k} L${x0 + 12} ${y + 40 * k} L${x0 + 20} ${y}`
+      + ` H${x0 + 44} Q${x0 + 62} ${y - 16 * k} ${x0 + 80} ${y}`
+      + ` H${W}`;
+    const id = Math.random().toString(36).slice(2, 7);
+    const gap = Math.max(30, Math.round(W * 0.04)), head = Math.max(20, Math.round(W * 0.02));
+    root.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="n${id}"><rect x="0" y="-10" width="0" height="${H + 20}"><animate attributeName="width" from="0" to="${W}" dur="${DUR}s" repeatCount="indefinite"/></rect></clipPath>
+        <clipPath id="h${id}"><rect x="${-head}" y="-10" width="${head}" height="${H + 20}"><animate attributeName="x" from="${-head}" to="${W - head}" dur="${DUR}s" repeatCount="indefinite"/></rect></clipPath>
+        <clipPath id="o${id}"><rect x="${gap}" y="-10" width="${W}" height="${H + 20}"><animate attributeName="x" from="${gap}" to="${W + gap}" dur="${DUR}s" repeatCount="indefinite"/></rect></clipPath>
+      </defs>
+      <path class="ecg-trace old" d="${d}" clip-path="url(#o${id})"/>
+      <path class="ecg-trace new" d="${d}" clip-path="url(#n${id})"/>
+      <path class="ecg-trace head" d="${d}" clip-path="url(#h${id})"/>
+    </svg>`;
+    // stijl is scoped: klassen op de nieuwe elementen voorzien van het scope-attribuut
+    const attr = [...root.attributes].map((a) => a.name).find((n) => n.startsWith('data-astro-cid'));
+    if (attr) root.querySelectorAll('svg, path').forEach((e) => e.setAttribute(attr, ''));
+  };
+  const roots = [...document.querySelectorAll<HTMLElement>('[data-ecg]')];
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // stilstaande lijn, wel over de volle breedte
+    roots.forEach((r) => { r.querySelector('svg')?.setAttribute('viewBox', `0 0 ${r.clientWidth} 100`); r.querySelector('path')?.setAttribute('d', `M0 50 H${r.clientWidth}`); });
+  } else {
+    let w = 0;
+    const run = () => { if (window.innerWidth !== w) { w = window.innerWidth; roots.forEach(build); } };
+    run(); addEventListener('resize', run, { passive: true });
+  }
+</script>
