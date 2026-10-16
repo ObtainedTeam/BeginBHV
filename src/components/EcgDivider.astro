@@ -1,19 +1,29 @@
 ---
-// Hartslaglijn met hart (Figma "Untitled design (15)"), als responsive SVG.
+// Hartslaglijn over de volle breedte met een lopende, licht stuiterende puls.
+// Verhouding is vast (viewBox 1386x100, zoals de aangeleverde PNG); schaalt mee met de breedte.
 const { class: cls = '' } = Astro.props;
 ---
 <div class={`ecg ${cls}`} aria-hidden="true">
-  <svg viewBox="0 0 1415 110" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 82 H190 L205 82 L215 60 L225 104 L238 44 L250 96 L262 82 H1415" stroke="#ff0000" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-  </svg>
-  <svg class="heart" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M35 60 C20 48 8 38 8 25 A13 13 0 0 1 35 18 A13 13 0 0 1 62 25 C62 38 50 48 35 60Z" stroke="#ff0000" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M10 10 L60 60 M60 10 L10 60" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <svg viewBox="0 0 1386 100" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="ecg-base" d="M0 50 H1386" />
+    <g class="ecg-run">
+      <g class="ecg-bob">
+        <path class="ecg-pulse" d="M-40 50 H18 L28 27 L38 50 L46 5 L62 95 L78 29 L88 50 H150" />
+      </g>
+    </g>
   </svg>
 </div>
 <style>
   .ecg { position: relative; width: 100%; height: 110px; overflow: hidden; }
-  .ecg > svg:first-child { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .heart { position: absolute; left: 11.5%; top: 6px; width: 70px; height: 70px; }
-  @media (max-width: 700px) { .ecg { height: 70px; } .heart { width: 44px; height: 44px; top: 8px; } }
+  .ecg svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ecg path { stroke: #ff0000; stroke-width: 4.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .ecg-base { filter: drop-shadow(0 1.5px 1.5px rgba(0,0,0,.25)); }
+  .ecg-pulse { filter: drop-shadow(0 0 3px rgba(255,0,0,.55)) drop-shadow(0 1.5px 1.5px rgba(0,0,0,.25)); }
+  /* puls loopt van links naar rechts en stuitert licht mee */
+  .ecg-run { animation: ecg-run 7s linear infinite; }
+  .ecg-bob { animation: ecg-bob 1.1s ease-in-out infinite; }
+  @keyframes ecg-run { from { transform: translateX(-160px); } to { transform: translateX(1400px); } }
+  @keyframes ecg-bob { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(-2.5px); } 60% { transform: translateY(1.5px); } }
+  @media (prefers-reduced-motion: reduce) { .ecg-run, .ecg-bob { animation: none; } .ecg-run { transform: translateX(160px); } }
+  @media (max-width: 700px) { .ecg { height: 70px; } }
 </style>
