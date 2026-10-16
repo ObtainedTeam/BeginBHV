@@ -23,7 +23,10 @@ const ploegleider = getCourse('bhv-ploegleider');
 <Base title="BeginBHV | Erkende BHV-trainingen door heel Nederland">
   <!-- BHV1: hero -->
   <section class="hero">
-    <img class="hero-bg" src="/images/hero-bg.webp" alt="" width="1386" height="522" fetchpriority="high" />
+    <video class="hero-bg" autoplay muted loop playsinline preload="metadata" poster="/images/hero-poster.webp" aria-hidden="true" data-hero-video>
+      <source src="/video/hero.webm" type="video/webm" />
+      <source src="/video/hero.mp4" type="video/mp4" />
+    </video>
     <div class="hero-stage">
       <img class="hero-dennis" src="/images/hero-dennis.webp" alt="Dennis Sluijmer, eigenaar en cursusleider van BeginBHV" width="529" height="529" fetchpriority="high" />
       <h1 class="hero-logo">
@@ -140,8 +143,10 @@ const ploegleider = getCourse('bhv-ploegleider');
 <style>
   /* ---------- BHV1 hero (1386 x 522) ---------- */
   .hero { position: relative; height: 522px; background: #000; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .36; }
-  .hero-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .34; }
+  /* donkere laag over de video */
+  .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.45) 100%); z-index: 1; pointer-events: none; }
+  .hero-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; z-index: 2; }
   .hero-dennis { position: absolute; left: -18px; top: 86px; width: 529px; height: 529px; opacity: .88; object-fit: contain; object-position: bottom; }
   .hero-logo { position: absolute; left: 411px; top: 63px; width: 479px; height: 479px; margin: 0; }
   .signature { position: absolute; left: 275px; top: 390px; margin: 0; font-family: var(--f-script); font-size: var(--t-h3); letter-spacing: -1.28px; color: var(--c-white); opacity: .88; }
@@ -270,4 +275,13 @@ const ploegleider = getCourse('bhv-ploegleider');
     dots.forEach((d, k) => d.addEventListener('click', () => { show(k); clearInterval(timer); start(); }));
     start();
   });
+</script>
+
+<script>
+  // Kleinere video op telefoon; geen video bij "verminderde beweging".
+  const v = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+    else if (matchMedia('(max-width: 760px)').matches) { v.innerHTML = '<source src="/video/hero-mobile.webm" type="video/webm"><source src="/video/hero-mobile.mp4" type="video/mp4">'; v.load(); v.play().catch(() => {}); }
+  }
 </script>

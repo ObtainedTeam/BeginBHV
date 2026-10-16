@@ -29,7 +29,7 @@ De huidige bestanden zijn lage-resolutie placeholders. Exporteer uit Figma op 2x
 | Bestand | Figma-laag | Formaat |
 |---|---|---|
 | logo.png | BeginBHV (15) 1 (74:2) | PNG transparant |
-| hero-bg.webp | image 26 (1:3) | webp 2772x1044 |
+| hero-poster.webp (posterframe; video in public/video/) | image 26 (1:3) | webp 2772x1044 |
 | hero-dennis.webp | BeginBHV templates 1 (1:4) | PNG transparant |
 | icon-aanmelden.png | Untitled design (16) 1 (13:421) | PNG transparant |
 | icon-bhv-standaard.png | BHV Standaard 1 (1:26) | PNG transparant |
