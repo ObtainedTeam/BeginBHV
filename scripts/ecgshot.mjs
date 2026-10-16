@@ -11,6 +11,6 @@ for (const [w,name] of [[1386,'d'],[390,'m']]) {
   await pg.goto('http://localhost:4321/cursussen', { waitUntil:'networkidle' });
   const box = await pg.$eval('.ecg', e=>{const r=e.getBoundingClientRect(); return {x:r.x,y:r.y+window.scrollY,w:r.width,h:r.height}});
   await pg.evaluate((y)=>window.scrollTo(0,y-200), box.y); await pg.waitForTimeout(300);
-  for (let i=0;i<3;i++){ await pg.screenshot({ path:`/tmp/ecg-${name}${i}.png`, clip:{x:0,y:200,width:w,height:box.h} }); await pg.waitForTimeout(1200); }
+  for (let i=0;i<4;i++){ await pg.screenshot({ path:`/tmp/ecg-${name}${i}.png`, clip:{x:0,y:200,width:w,height:box.h} }); await pg.waitForTimeout(2200); }
 }
 await b.close(); srv.close();
