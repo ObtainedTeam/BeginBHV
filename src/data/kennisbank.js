@@ -7,7 +7,7 @@ export const kennisbank = [
     title: 'Wat is BHV?',
     metaTitle: 'Wat is BHV? Bedrijfshulpverlening uitgelegd',
     description: 'Wat BHV precies inhoudt, wat een BHV’er doet en waarom elk bedrijf in Nederland bedrijfshulpverlening moet regelen.',
-    image: '/images/foto-cursus-klas.webp',
+    image: '/images/cursus-bhv-bedrijfsleider.webp',
     intro: 'BHV staat voor bedrijfshulpverlening: de hulp die collega’s verlenen bij een ongeval, brand of ontruiming totdat de professionele hulpdiensten er zijn.',
     course: 'bhv-standaard',
     sections: [

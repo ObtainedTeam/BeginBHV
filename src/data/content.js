@@ -125,7 +125,7 @@ export const homeInfoCards = [
     title: 'BHV certificaat en BHV pasje',
     html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-standaard">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
     href: '/cursussen/bhv-standaard',
-    image: '/images/foto-cursus-klas.webp',
+    image: '/images/cursus-bhv-standaard.webp',
     alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
   },
   {
@@ -139,7 +139,7 @@ export const homeInfoCards = [
     title: 'Training op uw eigen locatie',
     html: 'Vanaf vijf deelnemers komen we naar uw bedrijf, overal in Nederland. We nemen alle oefenmaterialen mee, zodat uw team oefent op de plek waar het straks moet handelen.',
     href: '/contact',
-    image: '/images/foto-cursus-klas.webp',
+    image: '/images/foto-trailer.webp',
     alt: 'Incompany BHV-training op locatie',
   },
 ];
