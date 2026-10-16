@@ -1,6 +1,6 @@
 ---
 // Hartslaglijn als ECG-monitor over de volle schermbreedte.
-// Eén doorlopende lijn (P-top, QRS-complex, T-top) die door een sweep van links naar
+// Eén doorlopende lijn met twee slagen (vorm van de aangeleverde PNG) die door een sweep van links naar
 // rechts wordt geschreven; het vorige spoor blijft zwak staan en wordt vlak voor de
 // cursor gewist. Hoogte is vast (100px op desktop), dus de verhouding verandert niet
 // met de schermbreedte: de rechte stukken worden langer, de slag zelf niet.
@@ -29,14 +29,9 @@ const { class: cls = '' } = Astro.props;
   const build = (root: HTMLElement) => {
     const W = Math.round(root.clientWidth), H = root.clientHeight;
     const y = H / 2, k = H / 100;             // k: schaal van de slag t.o.v. 100px hoog
-    const x0 = Math.round(W * 0.21);          // plek van de slag (zoals in de PNG)
-    const s = (v: number) => (v * k).toFixed(1);
-    // P-top, Q, R, S, terug naar basislijn, T-top
-    const d = `M0 ${y} H${x0 - 70}`
-      + ` Q${x0 - 58} ${y - 8 * k} ${x0 - 46} ${y}`
-      + ` H${x0 - 20} L${x0 - 12} ${y + 7 * k} L${x0} ${y - 44 * k} L${x0 + 12} ${y + 40 * k} L${x0 + 20} ${y}`
-      + ` H${x0 + 44} Q${x0 + 62} ${y - 16 * k} ${x0 + 80} ${y}`
-      + ` H${W}`;
+    // slag in de vorm van de aangeleverde PNG, twee keer op de lijn
+    const beat = (x: number) => ` H${x - 36} L${x - 24} ${y - 21 * k} L${x - 14} ${y} L${x - 6} ${y - 44 * k} L${x + 10} ${y + 44 * k} L${x + 26} ${y - 21 * k} L${x + 36} ${y}`;
+    const d = `M0 ${y}` + beat(Math.round(W * 0.25)) + beat(Math.round(W * 0.72)) + ` H${W}`;
     const id = Math.random().toString(36).slice(2, 7);
     const gap = Math.max(30, Math.round(W * 0.04)), head = Math.max(20, Math.round(W * 0.02));
     root.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" fill="none" xmlns="http://www.w3.org/2000/svg">
