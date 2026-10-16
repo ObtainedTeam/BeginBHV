@@ -56,10 +56,10 @@ const intro = course?.description ?? [
 </section>
 
 <style>
-  .pd { background: linear-gradient(180deg, rgba(245,245,245,.2) 39%, rgba(188,0,0,.094) 84%), #fff; padding: 33px 0 97px; }
+  .pd { background: linear-gradient(180deg, rgba(245,245,245,.2) 39%, rgba(188,0,0,.094) 84%), #fff; padding: 23px 0 97px; }
   h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); text-align: center; line-height: 1.85; }
   .pd-intro { max-width: 576px; margin: 0 auto; text-align: center; font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; }
-  .pd-panels { display: flex; justify-content: center; gap: 0; margin-top: 54px; }
+  .pd-panels { display: flex; justify-content: center; gap: 0; margin-top: 37px; }
   .panel {
     position: relative; width: 336px; height: 532.3px; color: var(--c-white);
     background: var(--c-coral);
@@ -89,7 +89,7 @@ const intro = course?.description ?? [
   .pd-text .checklist li + li { margin-top: 4.3px; }
   .pd-text .btn { margin-top: 48px; }
   .pd-player { margin-top: 15px; }
-  .pd-player img { width: 100%; height: auto; border-radius: 4px; box-shadow: var(--sh-card); }
+  .pd-player img { width: 100%; height: auto; aspect-ratio: 727 / 408; object-fit: cover; border-radius: 4px; box-shadow: var(--sh-card); }
 
   @media (max-width: 1100px) {
     .pd-panels { flex-wrap: wrap; gap: 24px; }
