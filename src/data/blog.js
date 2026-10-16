@@ -19,7 +19,7 @@ export const posts = [
     title: 'Reanimeren in 6 stappen: zo doe je het',
     date: '2026-09-22',
     author: 'Dennis Sluijmer',
-    image: '/images/cursus-bhv-standaard.webp',
+    image: '/images/foto-aed.webp',
     excerpt: 'Bij een hartstilstand telt elke minuut. Dit zijn de zes stappen die je in de BHV-cursus leert, als geheugensteun.',
     sections: [
       { p: ['Dit artikel vervangt geen cursus. Reanimeren leer je door te oefenen op een pop, met feedback van een trainer. Maar als geheugensteun helpt het om de stappen te kennen.'] },

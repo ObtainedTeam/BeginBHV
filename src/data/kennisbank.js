@@ -7,7 +7,7 @@ export const kennisbank = [
     title: 'Wat is BHV?',
     metaTitle: 'Wat is BHV? Bedrijfshulpverlening uitgelegd',
     description: 'Wat BHV precies inhoudt, wat een BHV’er doet en waarom elk bedrijf in Nederland bedrijfshulpverlening moet regelen.',
-    image: '/images/cursus-bhv-bedrijfsleider.webp',
+    image: '/images/foto-reanimatie-uitleg.webp',
     intro: 'BHV staat voor bedrijfshulpverlening: de hulp die collega’s verlenen bij een ongeval, brand of ontruiming totdat de professionele hulpdiensten er zijn.',
     course: 'bhv-standaard',
     sections: [
@@ -36,7 +36,7 @@ export const kennisbank = [
     title: 'Het BHV-plan',
     metaTitle: 'BHV-plan opstellen: wat erin moet en hoe je het bijhoudt',
     description: 'Een BHV-plan beschrijft wie wat doet bij een noodsituatie. Wat er in een goed BHV-plan staat en hoe je het praktisch houdt.',
-    image: '/images/cursus-bhv-herhaling.webp',
+    image: '/images/foto-ehbo-detail.webp',
     intro: 'Een BHV-plan is de uitwerking van je bedrijfshulpverlening op papier: wie zijn de BHV’ers, hoe wordt gealarmeerd, waar liggen de middelen en hoe verloopt een ontruiming. Het is geen wettelijk verplicht document, maar het is wel de enige manier om aan te tonen dat je BHV op orde is.',
     course: 'bhv-ploegleider',
     sections: [
@@ -78,7 +78,7 @@ export const kennisbank = [
     title: 'AED op de werkvloer',
     metaTitle: 'AED op de werkvloer: verplicht, nodig en hoe je ermee omgaat',
     description: 'Een AED is niet verplicht maar wel verstandig. Wat een AED doet, waar je hem ophangt en hoe BHV’ers ermee leren werken.',
-    image: '/images/cursus-bhv-nibhv.webp',
+    image: '/images/foto-aed.webp',
     intro: 'Een AED (automatische externe defibrillator) geeft bij een hartstilstand een elektrische schok die het hart weer in het juiste ritme kan brengen. Gecombineerd met reanimatie verdubbelt het de overlevingskans.',
     course: 'bhv-standaard',
     sections: [
