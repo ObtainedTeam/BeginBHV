@@ -13,6 +13,11 @@
     ] }
   ],
   "redirects": [
+    { "source": "/cursussen/bhv-standaard", "destination": "/cursussen/bhv-basis", "permanent": true },
+    { "source": "/cursussen/bhv-ploegleider", "destination": "/cursussen/ontruimingsoefening", "permanent": true },
+    { "source": "/cursussen/bhv-bedrijfsleider", "destination": "/incompany", "permanent": true },
+    { "source": "/locaties/amsterdam", "destination": "/locaties", "permanent": true },
+    { "source": "/locaties/utrecht", "destination": "/locaties", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "beginbhv.nl" }], "destination": "https://beginbhv.com/$1", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "www.beginbhv.nl" }], "destination": "https://beginbhv.com/$1", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "www.beginbhv.com" }], "destination": "https://beginbhv.com/$1", "permanent": true }

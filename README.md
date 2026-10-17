@@ -7,7 +7,7 @@ Astro (statisch) op Vercel. Elke push naar `main` deployt automatisch.
 - `npm install` en `npm run dev` voor lokaal; `npm run build` bouwt naar `dist/`.
 - Teksten en data staan in `src/data/`:
   - `site.js` adres, telefoon, e-mail, GA4-ID, navigatie, USP's
-  - `courses.js` alle cursussen (titel, tekst, bullets, prijs, specificaties, beeld)
+  - `courses.js` alle cursussen (titel, tekst, bullets, prijs, varianten, specificaties, beeld) plus incompany-groepsprijzen
   - `content.js` reviews, FAQ en de vragen van de aanvraagfunnel
 - Extra data: `kennisbank.js`, `branches.js`, `blog.js`, `locaties.js` (locaties zijn nog placeholders).
 - Beeld staat op vaste bestandsnamen in `public/images/`. Beeld vervangen = bestand met dezelfde naam overschrijven en pushen.

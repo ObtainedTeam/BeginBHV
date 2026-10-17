@@ -12,13 +12,13 @@ import CourseDetails from '../components/CourseDetails.astro';
 import { getCourse } from '../data/courses.js';
 import { clientReview, studentReviews, faq, homeInfoCards, funnelSectionTitle } from '../data/content.js';
 
-const featured = ['bhv-standaard', 'bhv-nibhv', 'bhv-ploegleider'].map((s) => getCourse(s));
+const featured = ['bhv-basis', 'bhv-nibhv', 'bhv-herhaling'].map((s) => getCourse(s));
 const packageLines = {
-  'bhv-standaard': ['Eerste hulp bij ongevallen', 'Reanimatie en AED', 'Beginnende brand blussen', 'Ontruiming begeleiden', 'Erkend certificaat, één jaar geldig'],
-  'bhv-nibhv': ['Alles van BHV Standaard', 'Officieel NIBHV examen', 'Landelijk erkend diploma', 'Registratie in NIBHV-register', 'Diploma en pasje inbegrepen'],
-  'bhv-ploegleider': ['Leidinggeven bij een inzet', 'Wet- en regelgeving in de praktijk', 'Van BHV-plan naar praktijk', 'BHV-ploeg trainen en voorbereiden', 'Geldig BHV certificaat vereist'],
+  'bhv-basis': ['E-learning vooraf, in eigen tempo', 'Eerste hulp en reanimatie met AED', 'Beginnende brand blussen', 'Ontruiming begeleiden', 'Erkend certificaat, één jaar geldig'],
+  'bhv-nibhv': ['Alles van Basis BHV', 'Officieel NIBHV examen', 'Landelijk erkend diploma', 'Registratie in NIBHV-register', 'Diploma en pasje inbegrepen'],
+  'bhv-herhaling': ['E-learning: theorie opfrissen', 'Reanimatie en AED oefenen', 'Brand en ontruiming', 'Certificaat één jaar verlengd', 'Nieuw BHV-pasje inbegrepen'],
 };
-const ploegleider = getCourse('bhv-ploegleider');
+const ploegleider = getCourse('bhv-basis');
 ---
 <Base title="BeginBHV | Erkende BHV-trainingen door heel Nederland">
   <!-- BHV1: hero -->

@@ -3,16 +3,28 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import ContentLayout from '../components/ContentLayout.astro';
 import Prose from '../components/Prose.astro';
-// PLACEHOLDER-biografie. Vervang door de echte tekst van Dennis.
+// Tekst van Dennis zelf (okt 2026).
 const sections = [
-  { h: 'Van vastgoed, naar doet goed', p: ['Dennis Sluijmer werkte jarenlang in het vastgoed. Tijdens een BHV-inzet in een van zijn eigen panden zag hij hoeveel verschil een goed getrainde collega maakt: iemand die niet verstijft, maar handelt. Dat moment was de aanleiding om van BHV zijn vak te maken.', 'Sinds de oprichting van BeginBHV traint Dennis teams door heel Nederland: van kinderopvang tot bouwplaats, van kantoor tot zorginstelling. Praktisch, met realistische scenario’s en zonder onnodige theorie.'] },
-  { h: 'Certificeringen en erkenningen', list: ['Gecertificeerd BHV-instructeur', 'Kiwa-gecertificeerd opleider', 'Aangesloten bij BVBN (Branchevereniging Bedrijfshulpverlening Nederland)', 'NIBHV-examinator (placeholder, bevestigen)'] },
-  { h: 'Zijn aanpak', p: ['“Je hoeft geen held te zijn om levens te redden. Je moet alleen weten wat je moet doen, en dat oefenen we net zo lang tot het vanzelf gaat.” Elke cursusdag begint met de vraag: wat kan er bij jullie misgaan? Daar bouwt Dennis de scenario’s omheen, zodat je oefent met wat voor jouw werkvloer relevant is.'], note: 'Dennis geeft alle cursussen zelf of met een vast team van instructeurs die hij persoonlijk heeft opgeleid.' },
+  { p: [
+    'Mijn naam is Dennis, opgegroeid in een ondernemersfamilie. Ondernemen, contact met mensen en het opbouwen van relaties zijn mij met de paplepel ingegoten. Jarenlang heb ik in salesgerichte functies gewerkt, maar gaandeweg kwam ik erachter dat ik iets miste: het gevoel dat ik écht iets kon betekenen voor een ander.',
+    'Dat gevoel is uiteindelijk de basis geworden voor BeginBHV.',
+  ] },
+  { h: 'Het verschil maken', p: [
+    'Ik wil met BeginBHV het verschil maken. Niet door simpelweg een BHV-certificaat te behalen, maar door mensen het vertrouwen en de vaardigheden mee te geven om in een noodsituatie daadwerkelijk in actie te komen. Want wat heb je aan kennis als je op het moment dat het erop aankomt niet weet wat je moet doen, of niet durft te handelen?',
+    'Daarom geloof ik in een praktische en persoonlijke aanpak. Natuurlijk hoort theorie erbij, maar voor mij draait een goede BHV-training om méér dan alleen luisteren en informatie onthouden. Ik wil dat mensen zelf aan de slag gaan, situaties oefenen en ervaren hoe het is om te handelen wanneer iedere seconde telt. Door te doen, te ervaren en te herhalen, groeit het vertrouwen om in een echte noodsituatie de juiste stappen te zetten.',
+    'Hopelijk krijgen we in de praktijk maar zelden met zulke situaties te maken. Maar áls het gebeurt, wil ik dat mensen niet aan de zijlijn blijven staan. Dat ze weten wat ze kunnen doen, verantwoordelijkheid durven nemen en iemand kunnen helpen wanneer dat nodig is. Dat is voor mij waar BHV uiteindelijk om draait.',
+  ] },
+  { h: 'Verder dan één trainingsdag', p: [
+    'Ook in de samenwerking met organisaties kijk ik graag verder dan één trainingsdag. Ik geloof in het opbouwen van langdurige relaties, waarin we elkaar leren kennen, samen blijven ontwikkelen en ervoor zorgen dat veiligheid niet iets is wat je één keer per jaar afvinkt, maar een blijvend onderdeel van de organisatie wordt.',
+    'Met BeginBHV wil ik organisaties helpen om niet alleen goed voorbereid te zijn op een noodsituatie, maar vooral om mensen met vertrouwen en bewustzijn op de werkvloer te laten staan.',
+    'Want uiteindelijk gaat BHV niet alleen over procedures, regels of certificaten. Het gaat over mensen. Over durven handelen wanneer iemand je nodig heeft. En precies daarin wil ik met BeginBHV het verschil maken.',
+  ], note: 'Maak van kennis een reflex.' },
+  { h: 'Certificeringen', list: ['NIBHV-gecertificeerd instructeur', 'Kiwa-gecertificeerd opleider', 'Aangesloten bij BVBN (Branchevereniging Bedrijfshulpverlening Nederland)'] },
 ];
 ---
-<Base title="Over Dennis" description="Maak kennis met Dennis Sluijmer, eigenaar en cursusleider van BeginBHV.">
-  <PageHero title="Maak kennis met Dennis" intro="Eigenaar en cursusleider van BeginBHV." image="/images/kennismaken-foto.webp" imageAlt="Dennis Sluijmer" />
-  <ContentLayout courseSlug="bhv-standaard" sideTitle="Een dag trainen met Dennis?" ctaTitle="Plan een cursus met Dennis en betaal achteraf">
+<Base title="Over Dennis" description="Maak kennis met Dennis, oprichter en cursusleider van BeginBHV. Praktisch, persoonlijk en gericht op durven handelen als het erop aankomt.">
+  <PageHero title="Over mij: Dennis, oprichter van BeginBHV" intro="Maak van kennis een reflex." image="/images/kennismaken-foto.webp" imageAlt="Dennis, oprichter van BeginBHV" />
+  <ContentLayout courseSlug="bhv-basis" sideTitle="Een dag trainen met Dennis?" ctaTitle="Plan een cursus met Dennis en betaal achteraf">
     <Prose sections={sections} />
   </ContentLayout>
 </Base>

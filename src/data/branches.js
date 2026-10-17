@@ -8,7 +8,7 @@ export const branches = [
     description: 'BHV-training afgestemd op kinderdagverblijven, BSO en gastouders: kinderreanimatie, verslikking, ontruimen met jonge kinderen.',
     image: '/images/foto-ehbo.webp',
     intro: 'In de kinderopvang draait BHV om kinderen die niet zelfredzaam zijn. Onze training is afgestemd op de praktijk van kinderdagverblijf, BSO en peuteropvang, inclusief de eisen uit de Wet IKK.',
-    course: 'bhv-standaard',
+    course: 'bhv-basis',
     risks: ['Verslikking en verstikking bij baby’s en peuters', 'Koortsstuipen, allergische reacties en vallen', 'Ontruimen van groepen kinderen die niet zelf kunnen lopen', 'Wettelijk: altijd één volwassene met kinder-EHBO per locatie (Wet IKK)'],
     sections: [
       { h: 'Wat je leert', list: ['Reanimatie van baby’s en kinderen, met AED', 'Verslikking verhelpen bij elke leeftijd', 'Eerste hulp bij de meest voorkomende kinderongevallen', 'Ontruimen met evacuatiebedjes, wandeltouwen en verzamelprotocol', 'Alarmeren en communiceren met ouders en hulpdiensten'] },
@@ -23,7 +23,7 @@ export const branches = [
     description: 'BHV-training voor restaurants, cafés en hotels: vetbrand, ontruimen van gasten, eerste hulp bij snij- en brandwonden.',
     image: '/images/foto-blussen-actie.webp',
     intro: 'Horeca betekent open vuur, hete vloeistoffen, scherpe messen en gasten die het gebouw niet kennen. Onze BHV-training richt zich op precies die situaties.',
-    course: 'bhv-standaard',
+    course: 'bhv-basis',
     risks: ['Vetbrand en brand in de keuken', 'Snijwonden, brandwonden en onwelwordingen van gasten', 'Ontruimen van volle zalen, ook ’s avonds en bij alcohol', 'Wisselende diensten: altijd een BHV’er aanwezig'],
     sections: [
       { h: 'Wat je leert', list: ['Vetbrand blussen met blusdeken en de juiste blusser', 'Eerste hulp bij snij- en brandwonden', 'Reanimatie en AED, ook bij een gast die onwel wordt', 'Ontruimen van een restaurant of hotel met gasten', 'Veilig afsluiten: gas, apparatuur, nooduitgangen'] },
@@ -53,7 +53,7 @@ export const branches = [
     description: 'BHV-training voor kantooromgevingen: hartstilstand, ontruimen van meerdere verdiepingen, thuiswerkers en flexplekken.',
     image: '/images/cursus-bhv-standaard.webp',
     intro: 'Een kantoor lijkt veilig, maar de meest voorkomende noodsituatie op kantoor is een hartstilstand. Met meerdere verdiepingen, flexplekken en thuiswerkers is het vooral de vraag: is er altijd iemand die kan handelen?',
-    course: 'bhv-standaard',
+    course: 'bhv-basis',
     risks: ['Hartstilstand en onwelwordingen', 'Brand in serverruimtes, pantry’s en bij elektrische apparatuur', 'Ontruimen van meerdere verdiepingen en liften', 'Wisselende bezetting door thuiswerken en flexplekken'],
     sections: [
       { h: 'Wat je leert', list: ['Reanimatie met AED', 'Eerste hulp bij de meest voorkomende kantoorongevallen', 'Een beginnende brand blussen en de juiste blusser kiezen', 'Ontruimen per verdieping en tellen op de verzamelplaats'] },
@@ -68,11 +68,11 @@ export const branches = [
     description: 'BHV-training voor verpleeghuizen, thuiszorg, huisartsenpraktijken en gehandicaptenzorg: ontruimen van bedlegerige cliënten en brand in zorggebouwen.',
     image: '/images/foto-aed.webp',
     intro: 'In de zorg zijn de mensen die je moet beschermen vaak niet in staat zichzelf in veiligheid te brengen. BHV in de zorg is daarom vooral een ontruimingsvraagstuk, met specifieke technieken en veel oefenen.',
-    course: 'bhv-ploegleider',
+    course: 'ontruimingsoefening',
     risks: ['Bewoners en cliënten die bedlegerig of verward zijn', 'Brand door roken, zuurstof en elektrische hulpmiddelen', 'Nachtdiensten met minimale bezetting', 'Ontruimen in fases: horizontaal naar een ander compartiment'],
     sections: [
       { h: 'Wat je leert', list: ['Horizontaal ontruimen en bed-evacuatie', 'Brandbestrijding bij zuurstofgebruik', 'Reanimatie en AED (ook bij niet-reanimerenverklaringen: wat mag en moet)', 'Samenwerken met de brandweer in een zorggebouw', 'Leidinggeven aan de ontruiming als ploegleider'] },
-      { h: 'Afgestemd op jullie locatie', p: ['We oefenen in jullie eigen gebouw, met jullie compartimenten en hulpmiddelen. Voor nachtdiensten maken we een apart scenario met minimale bezetting. Medewerkers met een geldig BHV-certificaat kunnen doorstromen naar <a href="/cursussen/bhv-ploegleider">BHV Ploegleider</a>.'] },
+      { h: 'Afgestemd op jullie locatie', p: ['We oefenen in jullie eigen gebouw, met jullie compartimenten en hulpmiddelen. Voor nachtdiensten maken we een apart scenario met minimale bezetting.'] },
     ],
   },
   {
@@ -83,7 +83,7 @@ export const branches = [
     description: 'BHV-training voor basisscholen, middelbare scholen en mbo: ontruimen van klassen, kinder-EHBO en brand in praktijklokalen.',
     image: '/images/foto-reanimatie-uitleg.webp',
     intro: 'Een school ontruimen betekent honderden leerlingen in een paar minuten naar buiten krijgen, met leerkrachten die hun klas bij elkaar moeten houden. Dat vraagt om een goed plan en een getraind team.',
-    course: 'bhv-standaard',
+    course: 'bhv-basis',
     risks: ['Ontruimen van grote groepen leerlingen', 'Ongevallen op het schoolplein en in de gymzaal', 'Brand in praktijklokalen (techniek, scheikunde, kooklokaal)', 'Leerlingen met medische aandoeningen (epilepsie, allergie, diabetes)'],
     sections: [
       { h: 'Wat je leert', list: ['Ontruimingsorganisatie voor een school: klassenleraar, verzamelplaats, telling', 'Eerste hulp bij ongevallen van kinderen en jongeren', 'Reanimatie met AED', 'Blussen in praktijklokalen'] },

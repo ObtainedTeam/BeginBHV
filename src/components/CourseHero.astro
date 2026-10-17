@@ -1,5 +1,6 @@
 ---
 // Figma BHV5: cursus-hero (coral) met tabs Omschrijving / Inhoud / Kosten en USP-balk.
+import { priceNote } from '../data/courses.js';
 import UspBar from './UspBar.astro';
 const { course, heading = 'h2', textTop = 32 } = Astro.props;
 const H = heading;
@@ -22,7 +23,7 @@ const photo = course.image === '/images/cursus-ontruiming.webp' ? '/images/cursu
         <ul class="dh-list">{course.content.map((c) => <li>{c}</li>)}</ul>
       </div>
       <div id={`${uid}-kosten`} role="tabpanel" aria-labelledby={`${uid}-t3`} hidden>
-        <p>Vanaf € {course.price} per deelnemer, inclusief lesmateriaal, certificaat en pasje, koffie, thee en lunch. Betalen kan via iDeal, vooraf of achteraf. Voor groepen vanaf vijf deelnemers maken we een offerte op maat.</p>
+        <p>€ {course.price} {course.priceNote ?? priceNote}{course.variants ? ' (' + course.variants.map((v) => `${v.label} € ${v.price}`).join(', ') + ')' : ''}. Inclusief e-learning, lesmateriaal, certificaat en pasje, koffie, thee en lunch. Betalen kan via iDEAL, vooraf of achteraf. Voor groepen maken we een incompany-offerte op maat.</p>
       </div>
     </div>
     <div class="dh-photo">

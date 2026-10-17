@@ -1,12 +1,14 @@
 ---
 // Figma "Training details": prijs, vinkjes, externe locatie-kaart, Google-waardering en specificatietabel.
+import { priceNote } from '../data/courses.js';
 import { site } from '../data/site.js';
 const { course } = Astro.props;
 ---
 <section class="ds">
   <div class="container ds-inner">
     <div class="ds-left">
-      <p class="ds-price"><span>Vanaf</span> {course.price}</p>
+      <p class="ds-price"><span>€</span> {course.price}</p>
+      <p class="ds-pricenote">{course.priceNote ?? priceNote}</p>
       <ul class="checklist ds-check">
         {course.bullets.map((b) => <li>{b}</li>)}
       </ul>
@@ -38,6 +40,7 @@ const { course } = Astro.props;
   @media (min-width: 1420px) { .ds-inner { padding-left: 61px; padding-right: 56px; } }
   .ds-price { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.6; }
   .ds-price span { font-size: var(--t-h3); }
+  .ds-pricenote { font-family: var(--f-body); font-weight: 200; font-size: var(--t-sm); margin: -14px 0 10px; color: #444; }
   .ds-check { margin: 4px 0 0 5px; }
   .ds-check li + li { margin-top: 26.7px; }
   .ds-plan { margin: 20px 0 0 17px; }

@@ -6,12 +6,11 @@ import Faq from '../components/Faq.astro';
 import UspBar from '../components/UspBar.astro';
 import { site } from '../data/site.js';
 import { faqGroups } from '../data/content.js';
-// PLACEHOLDER: openingstijden en WhatsApp bevestigen.
-const hours = [['Maandag t/m vrijdag', '08:30 - 17:30'], ['Zaterdag', 'Op afspraak (incompany)'], ['Zondag', 'Gesloten']];
+const hours = site.hours;
 const quick = faqGroups.find((g) => g.title === 'Locatie en planning').items.concat(faqGroups.find((g) => g.title === 'Certificaat en geldigheid').items.slice(0, 2));
 ---
 <Base title="Klantenservice" description="Vragen over je cursus, certificaat of factuur? Zo bereik je de klantenservice van BeginBHV.">
-  <PageHero title="Klantenservice" intro="Vragen over je inschrijving, certificaat of factuur? We helpen je graag. Bel, mail of gebruik het formulier." />
+  <PageHero title="Klantenservice" intro="Vragen over je inschrijving, certificaat of factuur? We helpen je graag. Bel of mail op werkdagen van 08:30 tot 17:00 en op zaterdag van 09:00 tot 12:00, ook voor last-minute aanvragen." />
   <section class="ks">
     <div class="container ks-inner">
       <div class="ks-info">
@@ -20,8 +19,8 @@ const quick = faqGroups.find((g) => g.title === 'Locatie en planning').items.con
           <p><a href={site.phoneHref}>{site.phone}</a><br /><a href={`mailto:${site.email}`}>{site.email}</a></p>
           <h3>Bereikbaar</h3>
           <table><tbody>{hours.map(([d, h]) => <tr><th>{d}</th><td>{h}</td></tr>)}</tbody></table>
-          <h3>Bezoekadres</h3>
-          <p>{site.name}<br />{site.address.map((l) => (<>{l}<br /></>))}</p>
+          <h3>Trainingslocatie</h3>
+          <p>{site.name}, Lelystad<br />Het adres van de trainingslocatie ontvang je bij je bevestiging.</p>
         </div>
         <div class="ks-faq">
           <h2>Snel antwoord</h2>

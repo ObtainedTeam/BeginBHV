@@ -10,7 +10,7 @@ export const posts = [
     sections: [
       { p: ['Elk jaar krijgen we tientallen telefoontjes van bedrijven die ontdekken dat de certificaten van hun BHV’ers verlopen zijn. Meestal door een verhuizing, een personeelswissel of gewoon omdat niemand de datum in de agenda had gezet. Goed nieuws: het is snel op te lossen.'] },
       { h: 'Tot zes maanden verlopen: herhalingscursus', p: ['Is het certificaat maximaal zes maanden verlopen, dan volstaat de <a href="/cursussen/bhv-herhaling">herhalingscursus</a> van één dag. Je frist alle vaardigheden op en het certificaat wordt met een jaar verlengd.'] },
-      { h: 'Langer dan zes maanden: volledige cursus', p: ['Daarna adviseren we de volledige <a href="/cursussen/bhv-standaard">BHV Standaard</a>. Niet omdat het moet van de wet, maar omdat vaardigheden als reanimatie snel wegzakken. Je team verdient een echte opfrisser.'] },
+      { h: 'Langer dan zes maanden: volledige cursus', p: ['Daarna adviseren we de volledige <a href="/cursussen/bhv-basis">Basis BHV</a>. Niet omdat het moet van de wet, maar omdat vaardigheden als reanimatie snel wegzakken. Je team verdient een echte opfrisser.'] },
       { h: 'Voorkom het volgende jaar', list: ['Zet de herhaling direct na de cursus in de agenda', 'Koppel BHV aan een vast moment, bijvoorbeeld de jaarlijkse ontruimingsoefening', 'Wij sturen automatisch een herinnering twee maanden voor de vervaldatum'] },
     ],
   },

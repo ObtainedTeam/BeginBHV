@@ -2,6 +2,7 @@
 import LegalPage from '../components/LegalPage.astro';
 import { site } from '../data/site.js';
 const sections = [
+  { h: 'Verwerkingsverantwoordelijke', p: [`${site.legalName}, ${site.fullAddress.join(', ')}, is verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in deze verklaring. Contact: ${site.email}.`] },
   { h: 'Welke gegevens verwerken wij', p: ['Wanneer u een aanvraag doet via onze website verwerken wij uw bedrijfsnaam, naam, e-mailadres, telefoonnummer, adresgegevens en uw bericht. Deze gegevens gebruiken wij uitsluitend om uw aanvraag te beantwoorden en de cursus te organiseren.'] },
   { h: 'Bewaartermijn', p: ['Aanvragen bewaren wij maximaal twee jaar. Gegevens van deelnemers bewaren wij zolang nodig is voor de geldigheid van het certificaat en de wettelijke bewaarplicht.'] },
   { h: 'Delen met derden', p: ['Wij delen uw gegevens niet met derden, behalve met dienstverleners die nodig zijn voor het versturen van e-mail en het hosten van de website, en met het NIBHV wanneer u een NIBHV-examen aflegt.'] },

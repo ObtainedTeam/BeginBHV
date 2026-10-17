@@ -1,15 +1,15 @@
 ---
 // Zijkolom met cursus-CTA en contact (kennisbank, branche, blog).
 import { site } from '../data/site.js';
-import { courses } from '../data/courses.js';
-const { courseSlug = 'bhv-standaard', title = 'Direct een BHV-cursus plannen?' } = Astro.props;
+import { courses, priceNote } from '../data/courses.js';
+const { courseSlug = 'bhv-basis', title = 'Direct een BHV-cursus plannen?' } = Astro.props;
 const c = courses.find((x) => x.slug === courseSlug) ?? courses[0];
 ---
 <aside class="side">
   <div class="side-card reveal">
     <h3>{title}</h3>
     <p class="side-course">{c.title}</p>
-    <p class="side-price"><span>Vanaf</span> € {c.price}</p>
+    <p class="side-price">€ {c.price} <span>{c.priceNote ?? priceNote}</span></p>
     <ul class="checklist">{c.bullets.map((b) => <li>{b}</li>)}</ul>
     <a class="btn btn-plan" href={`/contact?cursus=${c.slug}`}>Plan met Dennis</a>
     <a class="side-link" href={`/cursussen/${c.slug}`}>Bekijk de cursus ›</a>

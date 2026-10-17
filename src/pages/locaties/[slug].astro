@@ -15,7 +15,7 @@ const sections = [
 ---
 <Base title={`BHV cursus ${l.city}`} description={`Volg je BHV-cursus in ${l.city} bij ${l.name}. ${l.note}`} image={l.image}>
   <PageHero title={`BHV cursus in ${l.city}`} intro={`${l.name}. Regio ${l.region}.`} image={l.image} imageAlt={l.name} badge="Trainingslocatie" />
-  <ContentLayout courseSlug="bhv-standaard" sideTitle={`Plannen in ${l.city}?`}>
+  <ContentLayout courseSlug="bhv-basis" sideTitle={`Plannen in ${l.city}?`}>
     {l.placeholder && <p class="ph-note">Let op: adresgegevens en foto van deze locatie worden nog aangevuld.</p>}
     <Prose sections={sections}>
       <section class="more">

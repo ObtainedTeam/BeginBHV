@@ -4,10 +4,15 @@ export const site = {
   legalName: 'BeginBHV B.V.',
   url: 'https://beginbhv.com',
   owner: 'Dennis Sluijmer',
-  // Adres en telefoon komen letterlijk uit de Figma (placeholder); vervang door de echte gegevens.
-  address: ['Pascallaan 3 – 2e etage', '2289 CL Rijswijk'],
+  // Vestigingsplaats op de site; het volledige adres (Zomerlinde 36, 8224 JW Lelystad) staat alleen in de voorwaarden en privacyverklaring.
+  address: ['Lelystad'],
+  fullAddress: ['Zomerlinde 36', '8224 JW Lelystad'],
+  // Telefoonnummer volgt (Dennis regelt een 088-nummer). Tot die tijd placeholder.
   phone: '085 201 47 33',
   phoneHref: 'tel:+31852014733',
+  // Openingstijden klantenservice
+  hours: [['Maandag t/m vrijdag', '08:30 - 17:00'], ['Zaterdag', '09:00 - 12:00'], ['Zondag', 'Gesloten']],
+  openingHours: ['Mo-Fr 08:30-17:00', 'Sa 09:00-12:00'],
   email: 'info@beginbhv.nl',
   googleRating: '9.6',
   description:
@@ -23,12 +28,12 @@ export const nav = [
     label: 'Cursussen', href: '/cursussen',
     children: [
       { label: 'Alle cursussen', href: '/cursussen' },
-      { label: 'BHV Basis', href: '/cursussen/bhv-basis' },
-      { label: 'BHV Standaard', href: '/cursussen/bhv-standaard' },
-      { label: 'BHV Herhaling', href: '/cursussen/bhv-herhaling' },
-      { label: 'BHV NIBHV', href: '/cursussen/bhv-nibhv' },
-      { label: 'Ploegleider BHV', href: '/cursussen/bhv-ploegleider' },
-      { label: 'Bedrijfsleider BHV', href: '/cursussen/bhv-bedrijfsleider' },
+      { label: 'Basis BHV + e-learning', href: '/cursussen/bhv-basis' },
+      { label: 'Herhaling BHV + e-learning', href: '/cursussen/bhv-herhaling' },
+      { label: 'Basis BHV (NIBHV)', href: '/cursussen/bhv-nibhv' },
+      { label: 'Herhaling BHV (NIBHV)', href: '/cursussen/bhv-nibhv-herhaling' },
+      { label: 'Reanimatie workshop', href: '/cursussen/reanimatie-workshop' },
+      { label: 'Ontruimingsoefening', href: '/cursussen/ontruimingsoefening' },
       { label: 'Cursusboek bestellen', href: '/cursusboek' },
     ],
   },

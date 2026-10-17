@@ -67,10 +67,10 @@ export const funnel = {
       type: 'choice',
       intro: 'Kies de cursus die bij u past. In drie korte stappen weten we wat u nodig heeft en nemen we binnen één werkdag contact met u op.',
       options: [
+        { value: 'bhv-basis', label: 'Basis BHV', icon: '\u{1FA79}' },
+        { value: 'bhv-herhaling', label: 'Herhaling BHV', icon: '\u{1F501}' },
         { value: 'bhv-nibhv', label: 'BHV (NIBHV)', icon: '\u{1F477}' },
-        { value: 'bhv-standaard', label: 'BHV', icon: '\u{1FA79}' },
-        { value: 'bhv-ploegleider', label: 'BHV Ploegleider', icon: '\u{1F6A8}' },
-        { value: 'bhv-herhaling', label: 'BHV Herhaling', icon: '\u{1F501}' },
+        { value: 'incompany', label: 'Incompany', icon: '\u{1F3E2}' },
       ],
     },
     {
@@ -117,14 +117,14 @@ export const funnel = {
 };
 
 // Titel boven de aanvraagfunnel op de homepage (Figma BHV3).
-export const funnelSectionTitle = 'Ploegleider BHV Cursus';
+export const funnelSectionTitle = 'Basis BHV + e-learning';
 
 // Drie infokaarten onder "Veel gestelde vragen" op de homepage (Figma Page).
 export const homeInfoCards = [
   {
     title: 'BHV certificaat en BHV pasje',
-    html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-standaard">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
-    href: '/cursussen/bhv-standaard',
+    html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-basis">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
+    href: '/cursussen/bhv-basis',
     image: '/images/foto-reanimatie-uitleg.webp',
     alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
   },
@@ -147,8 +147,8 @@ export const homeInfoCards = [
 // Volledige FAQ, gegroepeerd (pagina /veelgestelde-vragen). De korte lijst `faq` blijft voor home/cursussen.
 export const faqGroups = [
   { title: 'Over de cursus', items: [
-    { q: 'Hoe lang duurt een BHV-cursus?', a: 'Eén dag, van 09:00 tot 17:00. De herhalingscursus duurt tot 16:00 en BHV Bedrijfsleider een halve dag.' },
-    { q: 'Heb ik een vooropleiding nodig?', a: 'Nee. Voor BHV Basis, Standaard en NIBHV is geen vooropleiding nodig. Voor BHV Ploegleider is een geldig BHV-certificaat vereist.' },
+    { q: 'Hoe lang duurt een BHV-cursus?', a: 'Je doet eerst de e-learning in je eigen tempo (circa 2 uur). De praktijkdag duurt van 09:00 tot 17:00; bij de herhaling tot 16:00.' },
+    { q: 'Heb ik een vooropleiding nodig?', a: 'Nee. Voor Basis BHV en Basis BHV (NIBHV) is geen vooropleiding nodig. Voor de herhaling heb je een geldig of maximaal zes maanden verlopen certificaat nodig.' },
     { q: 'Wat moet ik meenemen?', a: 'Alleen jezelf, in kleding waarin je kunt knielen en bewegen. Lesmateriaal, koffie, thee en lunch zijn inbegrepen.' },
     { q: 'Is er een examen?', a: 'Bij onze eigen BHV-cursussen beoordeelt de trainer je tijdens de praktijk; er is geen apart examen. Bij BHV (NIBHV) leg je een officieel theorie- en praktijkexamen af.' },
     { q: 'Hoe groot zijn de groepen?', a: 'Maximaal 12 deelnemers per trainer, zodat iedereen veel oefent.' },
@@ -173,7 +173,7 @@ export const faqGroups = [
     { q: 'Kan ik verplaatsen of annuleren?', a: 'Verplaatsen is kosteloos tot 7 dagen voor aanvang. Annuleren is kosteloos tot 14 dagen voor aanvang; daarna gelden de voorwaarden op de pagina Algemene voorwaarden.' },
   ]},
   { title: 'Kosten en betalen', items: [
-    { q: 'Wat kost een BHV-cursus?', a: 'BHV Basis vanaf € 249, Standaard € 279, NIBHV € 299, Herhaling € 199, Ploegleider € 599, Bedrijfsleider € 449 per deelnemer. Incompany rekenen we per groep. Alle prijzen exclusief btw, inclusief materiaal, certificaat en lunch.' },
+    { q: 'Wat kost een BHV-cursus?', a: 'Basis BHV € 150, Herhaling BHV € 125, Basis BHV (NIBHV) € 225 en Herhaling BHV (NIBHV) € 185 per deelnemer, inclusief e-learning. Engelstalig € 180 en Spaanstalig € 220. Incompany rekenen we per groep: Basis BHV € 1.250 (tot 8) of € 1.650 (8 tot 12), NIBHV € 1.800 of € 2.700, plus € 0,33 per kilometer voorrijkosten. Alle prijzen exclusief btw.' },
     { q: 'Hoe kan ik betalen?', a: 'Via iDEAL, vooraf op factuur of achteraf binnen 14 dagen na de cursus.' },
     { q: 'Is BHV-training aftrekbaar?', a: 'Als werkgever zijn de kosten bedrijfskosten. Vraag je boekhouder naar de mogelijkheden binnen de werkkostenregeling.' },
   ]},
