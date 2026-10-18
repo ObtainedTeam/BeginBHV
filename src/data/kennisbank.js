@@ -21,7 +21,7 @@ export const kennisbank = [
     title: 'Is BHV verplicht?',
     metaTitle: 'Is BHV verplicht? Wat de Arbowet van werkgevers vraagt',
     description: 'Ja, elke werkgever met personeel moet bedrijfshulpverlening regelen. Wat de Arbowet precies eist, wat de boetes zijn en hoe je het praktisch regelt.',
-    image: '/images/foto-pin.webp',
+    image: '/images/branche-kantoor.webp',
     intro: 'Kort antwoord: ja. Iedere werkgever met personeel in Nederland is verplicht om bedrijfshulpverlening te organiseren. Hoe dat eruitziet, bepaal je zelf op basis van de risico’s in je bedrijf.',
     course: 'bhv-basis',
     sections: [
@@ -64,7 +64,7 @@ export const kennisbank = [
     title: 'Hoeveel BHV’ers heb ik nodig?',
     metaTitle: 'Hoeveel BHV’ers heb ik nodig? Vuistregels per bedrijfsgrootte',
     description: 'Er is geen wettelijk minimum, maar wel duidelijke vuistregels. Zo bepaal je hoeveel BHV’ers jouw bedrijf nodig heeft.',
-    image: '/images/foto-blussen-wide.webp',
+    image: '/images/branche-bouw.webp',
     intro: 'De wet noemt geen getal. Het aantal BHV’ers moet passen bij de risico’s in je bedrijf en er moet altijd een BHV’er aanwezig zijn als er gewerkt wordt. In de praktijk gelden deze vuistregels.',
     course: 'bhv-basis',
     sections: [
