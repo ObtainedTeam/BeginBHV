@@ -7,5 +7,6 @@ const root='/home/claude/beginbhv/dist';
 const srv=createServer(async(req,res)=>{let p=decodeURIComponent(req.url.split('?')[0]); if(p.endsWith('/'))p+='index.html'; let f=join(root,p); try{if((await stat(f)).isDirectory())f=join(f,'index.html');}catch{f=join(root,p+'.html');} try{res.end(await readFile(f));}catch{res.statusCode=404;res.end();}}).listen(4323);
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'}); const pg=await b.newPage({viewport:{width:+w,height:800}});
 await pg.goto('http://localhost:4323'+pathArg,{waitUntil:'networkidle'});
-const r=await pg.evaluate((w)=>{const out=[]; document.querySelectorAll('body *').forEach(e=>{const r=e.getBoundingClientRect(); if(r.right>w+1&&r.width>0){out.push([e.tagName+'.'+[...e.classList].join('.'), Math.round(r.left), Math.round(r.right), Math.round(r.width)]);}}); return [document.documentElement.scrollWidth, out.slice(0,25)];}, +w);
+await pg.evaluate(()=>document.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-visible'))); await pg.waitForTimeout(800);
+const r=await pg.evaluate((w)=>{const out=[]; const skip=(e)=>e.closest('.usp'); document.querySelectorAll('body *').forEach(e=>{const r=e.getBoundingClientRect(); if(r.right>w+1&&r.width>0&&!skip(e)){out.push([e.tagName+'.'+[...e.classList].join('.'), Math.round(r.left), Math.round(r.right), Math.round(r.width)]);}}); return [document.documentElement.scrollWidth, out.slice(0,25)];}, +w);
 console.log(JSON.stringify(r)); await b.close(); srv.close();

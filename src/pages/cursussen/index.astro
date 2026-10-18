@@ -17,11 +17,13 @@ import { site } from '../../data/site.js';
       <div class="ch-text">
         <h1>Aangeboden cursussen</h1>
         <div class="ch-tabs" role="tablist" aria-label="Soort cursus">
-          <button type="button" role="tab" aria-selected="true" data-filter="bhv">BHV</button>
-          <button type="button" role="tab" aria-selected="false" data-filter="nibhv">NIBHV</button>
+          <button type="button" role="tab" aria-selected="true" data-filter="alle"><strong>Alle cursussen</strong><small>Het complete aanbod</small></button>
+          <button type="button" role="tab" aria-selected="false" data-filter="bhv"><strong>BHV</strong><small>Basis en herhaling, met e-learning</small></button>
+          <button type="button" role="tab" aria-selected="false" data-filter="nibhv"><strong>NIBHV</strong><small>Landelijk erkend diploma</small></button>
+          <button type="button" role="tab" aria-selected="false" data-filter="workshop"><strong>Workshops</strong><small>Reanimatie en ontruiming</small></button>
         </div>
-        <p>Of je nu voor het eerst BHV’er wordt, je certificaat wilt verlengen of leiding gaat geven aan een BHV-ploeg: bij BeginBHV volg je een eendaagse praktijktraining die aansluit op de Arbowet en op de risico’s in jouw bedrijf. Kleine groepen, realistische scenario’s en een erkend certificaat aan het eind van de dag.</p>
-        <p>Trainingen vinden plaats op onze eigen locatie of, vanaf vijf deelnemers, bij jou op het bedrijf, overal in Nederland.</p>
+        <p>Of je nu voor het eerst BHV’er wordt of je certificaat wilt verlengen: bij BeginBHV doe je de theorie via e-learning en oefen je op de praktijkdag met realistische scenario’s, in kleine groepen, met een erkend certificaat aan het eind van de dag.</p>
+        <p>Op onze eigen locatie in Lelystad of, vanaf vijf deelnemers, bij jou op het bedrijf.</p>
       </div>
       <div class="ch-photo">
         <img src="/images/cursussen-hero.webp" alt="Reanimatieoefening tijdens een BHV-cursus" width="674" height="525" fetchpriority="high" />
@@ -64,20 +66,24 @@ import { site } from '../../data/site.js';
   /* Hero: 1386 x 513, coral met diagonale foto rechts */
   .ch { position: relative; background: var(--c-coral); overflow: hidden; }
   .ch-stage { position: relative; width: var(--w-page); max-width: 100%; height: 480px; margin-inline: auto; }
-  .ch-text { position: absolute; left: 59px; top: 96px; width: 576px; color: var(--c-white); }
+  .ch-text { position: absolute; left: 59px; top: 90px; width: 640px; color: var(--c-white); }
   h1 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.9; }
-  .ch-tabs { display: flex; align-items: center; gap: 0; margin-top: -2px; }
+  .ch-tabs { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin-top: 4px; }
   .ch-tabs button {
-    height: 35.3px; padding: 0 20px; border: 0; border-radius: 9px; background: transparent; color: var(--c-white);
-    font-family: var(--f-head); font-weight: 300; font-size: var(--t-md);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.35); border-radius: 10px;
+    background: rgba(255,255,255,.08); color: var(--c-white); text-align: left; cursor: pointer; transition: background .15s ease, border-color .15s ease;
+    font-family: var(--f-head);
   }
-  .ch-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
+  .ch-tabs button strong { font-weight: 600; font-size: var(--t-md); line-height: 1.1; }
+  .ch-tabs button small { font-weight: 300; font-size: var(--t-xs); opacity: .9; line-height: 1.1; }
+  .ch-tabs button:hover { background: rgba(255,255,255,.16); }
+  .ch-tabs button[aria-selected='true'] { background: var(--c-red-dark); border-color: var(--c-red-dark); box-shadow: var(--sh-btn); }
   .ch-text p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 19px; }
   .ch-text p + p { margin-top: 0; }
   .ch-photo { position: absolute; left: 691px; top: -9px; right: min(-15px, calc((var(--w-page) - 100vw) / 2)); height: 492px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
   .ch-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .ch-photo::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.31); }
-  .ch-widget { position: absolute; left: 1231px; top: 101px; width: 155.3px; border-radius: 4px; overflow: hidden; box-shadow: var(--sh-card); font-family: var(--f-head); }
+  .ch-widget { position: absolute; left: 1215px; top: 101px; width: 171px; border-radius: 12px; overflow: hidden; box-shadow: var(--sh-float); font-family: var(--f-head); }
   .ch-widget a { display: flex; align-items: center; gap: 10px; height: 38.5px; padding: 0 14px; font-size: 13px; font-weight: 600; }
   .ch-widget svg { width: 18px; height: 18px; flex: none; }
   .w-phone { background: #fff; color: #233242; }
@@ -109,6 +115,7 @@ import { site } from '../../data/site.js';
   tabs.forEach((t) => t.addEventListener('click', () => {
     tabs.forEach((x) => x.setAttribute('aria-selected', String(x === t)));
     const f = t.dataset.filter;
-    cards.forEach((c) => { c.hidden = f === 'nibhv' ? !c.dataset.course!.includes('nibhv') : false; });
+    const match = (slug: string) => f === 'alle' ? true : f === 'nibhv' ? slug.includes('nibhv') : f === 'bhv' ? (slug.startsWith('bhv-') && !slug.includes('nibhv')) : (slug === 'reanimatie-workshop' || slug === 'ontruimingsoefening');
+    cards.forEach((c) => { c.hidden = !match(c.dataset.course!); });
   }));
 </script>

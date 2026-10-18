@@ -43,7 +43,7 @@ export const courses = [
     title: 'Herhaling BHV',
     subtitle: '+ e-learning',
     short: 'Herhaling',
-    image: '/images/cursus-bhv-herhaling.webp',
+    image: '/images/foto-blussen-actie.webp',
     icon: '/images/icon-bhv-standaard.png',
     featured: true,
     blurb: 'Houd je BHV-kennis actueel: e-learning vooraf en een praktijkdag waarin je alle vaardigheden opfrist en je certificaat verlengt.',
