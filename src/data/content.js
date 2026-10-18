@@ -117,7 +117,7 @@ export const funnel = {
 };
 
 // Titel boven de aanvraagfunnel op de homepage (Figma BHV3).
-export const funnelSectionTitle = 'Basis BHV + e-learning';
+export const funnelSectionTitle = 'Direct een cursus aanvragen';
 
 // Drie infokaarten onder "Veel gestelde vragen" op de homepage (Figma Page).
 export const homeInfoCards = [
@@ -125,7 +125,7 @@ export const homeInfoCards = [
     title: 'BHV certificaat en BHV pasje',
     html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-basis">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
     href: '/cursussen/bhv-basis',
-    image: '/images/foto-reanimatie-uitleg.webp',
+    image: '/images/foto-ehbo.webp',
     alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
   },
   {

@@ -19,15 +19,15 @@ const intro = course?.description ?? [
     </div>
     <div class="pd-panels">
       {panels.map((p, i) => (
-        <div class="panel reveal" style={`transition-delay:${i * 100}ms`}>
+        <div class="panel-wrap reveal" style={`transition-delay:${i * 100}ms`}><div class="panel">
           <h3>{p.title}</h3>
           <img class="panel-icon" src={p.icon} alt="" width="134" height="134" loading="lazy" />
           <svg class="panel-ecg" viewBox="0 0 336 106" fill="none" aria-hidden="true">
             <path d="M0 60 H118 L128 50 L138 70 L148 20 L158 100 L168 44 L178 60 H336" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" />
           </svg>
           <p>{p.text}</p>
-          <a class="panel-btn" href="/contact">Meer informatie</a>
-        </div>
+          <a class="panel-btn" href={course ? `/contact?cursus=${course.slug}` : "/contact"}>Meer informatie</a>
+        </div></div>
       ))}
     </div>
 
@@ -62,23 +62,28 @@ const intro = course?.description ?? [
   .pd-panels { display: flex; justify-content: center; gap: 0; margin-top: 37px; }
   .panel {
     position: relative; width: 336px; height: 532.3px; color: var(--c-white);
-    background: var(--c-coral);
-    clip-path: polygon(3% 0, 81% 0, 100% 49%, 90% 100%, 3% 100%, 10% 49%);
+    /* bovenste helft iets lichter, onderste helft iets donkerder (Figma Curs3) */
+    background: linear-gradient(180deg, #e86868 0%, #e86868 50%, #dc5252 50%, #dc5252 100%);
+    /* pijlvorm met afgeronde hoeken links en punt rechts */
+    clip-path: path('M26 0 H270 L336 266 L270 532.3 H26 Q0 532.3 0 506 V292 L28 266 L0 240 V26 Q0 0 26 0 Z');
     padding: 10px 24px 0 25px;
-    filter: drop-shadow(1px 2px 1.3px rgba(0,0,0,.25));
   }
+  .panel-wrap { filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)) drop-shadow(0 4px 6px rgba(0,0,0,.08)); }
   .panel + .panel { margin-left: 0; }
   .panel h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h4); line-height: 1.1; color: var(--c-light); text-shadow: var(--sh-text); width: 262px; }
-  .panel-icon { position: absolute; left: 108px; top: 84px; width: 134px; height: 134px; filter: drop-shadow(0 1.3px 1.3px rgba(0,0,0,.25)); }
+  .panel-icon { position: absolute; left: 108px; top: 84px; width: 134px; height: 134px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
   .panel-ecg { position: absolute; left: 0; top: 218px; width: 100%; height: 106px; }
-  .panel p { position: absolute; left: 36px; top: 346px; width: 251px; font-family: var(--f-body); font-weight: 100; font-size: var(--t-lg); color: var(--c-light); line-height: 1.2; }
+  .panel p { position: absolute; left: 36px; top: 346px; width: 251px; font-family: var(--f-body); font-weight: 200; font-size: var(--t-lg); color: var(--c-light); line-height: 1.25; }
   .panel-btn {
     position: absolute; left: 25.7px; top: 449px; width: 305.7px; height: 63.7px;
     background: var(--c-red-dark); color: var(--c-white);
-    clip-path: polygon(0 0, 93% 0, 100% 50%, 93% 100%, 0 100%, 6% 50%);
-    display: flex; align-items: center; padding-left: 36px;
+    clip-path: path('M12 0 H276 L305.7 31.85 L276 63.7 H12 Q0 63.7 0 51.7 V12 Q0 0 12 0 Z');
+    display: flex; align-items: center; padding-left: 28px; gap: 10px;
     font-family: var(--f-body); font-weight: 900; font-size: var(--t-h5); text-shadow: var(--sh-text);
+    transition: background .15s ease, transform .15s ease;
   }
+  .panel-btn::after { content: '›'; font-weight: 700; margin-left: auto; margin-right: 44px; }
+  .panel-btn:hover { background: #d40000; transform: translateX(3px); }
   .panel-btn:hover { filter: brightness(1.1); }
   .pd-h2b { margin-top: 85px; }
   .pd-video { display: grid; grid-template-columns: 1fr 727px; gap: 53px; margin-top: 26px; padding-left: 69px; padding-right: 37px; }
@@ -93,6 +98,7 @@ const intro = course?.description ?? [
 
   @media (max-width: 1100px) {
     .pd-panels { flex-wrap: wrap; gap: 24px; }
+    .panel-wrap { filter: none; }
     .pd-video { grid-template-columns: 1fr; padding-inline: 0; }
   }
   @media (max-width: 700px) {

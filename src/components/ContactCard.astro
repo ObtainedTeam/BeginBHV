@@ -11,6 +11,26 @@ const fields = [
   { name: 'city', label: 'Plaats', auto: 'address-level2' },
 ];
 ---
+{variant === 'narrow' ? (
+<form class="ccard narrow" method="post" action="/api/aanvraag" data-form>
+  <div class="n-head">
+    <h2>{title}</h2>
+    <p class="n-sub">Laat je gegevens achter, we reageren binnen één werkdag.</p>
+  </div>
+  <input type="hidden" name="source" value={source} />
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+  <div class="n-grid">
+    <label><span>Bedrijfsnaam *</span><input type="text" name="company" autocomplete="organization" required /></label>
+    <label><span>Je naam *</span><input type="text" name="name" autocomplete="name" required /></label>
+    <label><span>E-mailadres *</span><input type="email" name="email" autocomplete="email" required /></label>
+    <label><span>Telefoon</span><input type="tel" name="phone" autocomplete="tel" /></label>
+    <label class="full"><span>Waar kunnen we je mee helpen?</span><textarea name="message" rows="3" placeholder="Bijvoorbeeld: 6 collega's Basis BHV, liefst in november."></textarea></label>
+  </div>
+  <button class="btn btn-send n-btn" type="submit">Verstuur aanvraag</button>
+  <p class="n-note">Geen verplichtingen. Je gegevens gebruiken we alleen om contact op te nemen.</p>
+  <p class="status" role="status" aria-live="polite"></p>
+</form>
+) : (
 <form class={`ccard ${variant}`} method="post" action="/api/aanvraag" data-form>
   <h2>{title}</h2>
   <input type="hidden" name="source" value={source} />
@@ -38,9 +58,9 @@ const fields = [
   {variant === 'narrow' && <button class="btn btn-send big" type="submit">Verstuur</button>}
   <p class="status" role="status" aria-live="polite"></p>
 </form>
-
+)}
 <style>
-  .ccard { background: var(--c-light); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.45); }
+  .ccard { background: var(--c-light); border-radius: var(--r-md); box-shadow: var(--sh-card-strong); }
   .hp { position: absolute; left: -9999px; }
   h2 { font-family: var(--f-head); font-weight: 900; text-align: center; }
   fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -70,19 +90,19 @@ const fields = [
   .wide textarea { height: 88px; border-radius: var(--r-md); padding: 6px 9px; font-size: var(--t-xs); }
   .wide .right .btn { align-self: center; margin-top: 19px; }
 
-  /* narrow: 319 x 471 */
-  .narrow { width: 100%; max-width: 318.7px; padding: 16px 22px 24px; }
-  .narrow h2 { font-size: var(--t-h1); margin-bottom: 14px; }
-  .narrow legend { font-size: var(--t-lg); margin-bottom: 14px; }
-  .narrow label span { font-size: var(--t-md); margin-bottom: 2px; }
-  .narrow label + label { margin-top: 7px; }
-  .narrow input { height: 28.3px; border-radius: 5px; padding: 0 7px; font-size: var(--t-md); }
-  .narrow .big { height: 55.3px; min-width: 203px; font-size: var(--t-h3); margin: 20px auto 0; display: flex; }
-
-  @media (max-width: 560px) {
-    .wide .cols { grid-template-columns: 1fr; gap: 12px; }
-    .wide .right label { margin-top: 0; }
-  }
+  /* narrow: herontworpen contactblok (home naast FAQ) */
+  .narrow { width: 100%; max-width: 480px; padding: 28px 28px 24px; border-radius: 16px; text-align: left; }
+  .narrow h2 { text-align: left; font-size: var(--t-h4); line-height: 1.15; }
+  .n-sub { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); margin: 6px 0 20px; color: #333; }
+  .n-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+  .n-grid .full { grid-column: 1 / -1; }
+  .narrow label span { font-family: var(--f-head); font-weight: 500; font-size: var(--t-sm); margin-bottom: 5px; color: #222; }
+  .narrow input, .narrow textarea { height: 44px; border-radius: 10px; padding: 0 12px; font-size: var(--t-md); font-weight: 300; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 1px 2px rgba(0,0,0,.04); transition: box-shadow .15s ease, border-color .15s ease; }
+  .narrow textarea { height: auto; padding: 10px 12px; min-height: 84px; }
+  .narrow input:focus, .narrow textarea:focus { outline: 0; border-color: var(--c-red-dark); box-shadow: 0 0 0 3px rgba(188,0,0,.15); }
+  .n-btn { width: 100%; height: 52px; margin-top: 18px; font-size: var(--t-lg); border-radius: 10px; justify-content: center; }
+  .n-note { font-family: var(--f-body); font-weight: 200; font-size: var(--t-sm); color: #555; margin-top: 10px; }
+  @media (max-width: 480px) { .n-grid { grid-template-columns: 1fr; } .narrow { padding: 22px 18px; } }
 </style>
 
 <script>

@@ -1,19 +1,27 @@
 ---
 // Figma 1:8 (boven) / 111:1766: "Actief in het hele land, op elk moment."
+// Pins staan los van de kaart (src/data/map-pins.json, procenten) en verschijnen één voor één bij inscrollen.
+import pins from '../data/map-pins.json';
 ---
   <section class="national">
     <div class="container nat-inner">
       <h2>Actief in het hele land, op elk moment.</h2>
       <div class="nat-stage">
-        <img class="nat-map" src="/images/map-nl.webp" alt="Kaart van Nederland met trainingslocaties van BeginBHV" width="464" height="580" loading="lazy" />
+        <div class="nat-map" data-nat>
+          <img src="/images/map-nl.webp" alt="Kaart van Nederland met trainingslocaties van BeginBHV" width="464" height="580" loading="lazy" />
+          {pins.map(([x, y], i) => <span class="pin" style={`left:${x}%;top:${y}%;transition-delay:${i * 70}ms`}></span>)}
+        </div>
         <div class="nat-panel">
           <span class="nat-badge">Ook op jou locatie</span>
           <p class="nat-quote">“Of het nu op onze eigen trainingslocatie is of bij u op het bedrijf: we trainen door heel Nederland, van Groningen tot Maastricht. Vanaf vijf deelnemers komen we naar u toe, met alle oefenmaterialen. Zo oefent uw team precies daar waar het straks moet handelen.”</p>
           <a class="btn btn-plan" href="/contact">Plan met Dennis</a>
         </div>
         <svg class="nat-arrow" viewBox="0 0 640 372" fill="none" aria-hidden="true">
-          <path d="M18 18 C 120 300, 420 360, 585 240" stroke="#bc0000" stroke-width="12" stroke-linecap="round"/>
-          <path d="M540 215 L600 228 L575 285" stroke="#bc0000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="nat-arrow-g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3b3b"/><stop offset="1" stop-color="#bc0000"/></linearGradient>
+          </defs>
+          <path class="arrow-line" d="M26 34 C 120 320, 330 372, 548 136" stroke="url(#nat-arrow-g)" stroke-width="9" stroke-linecap="round" pathLength="1"/>
+          <path class="arrow-head" d="M548 136 L497 142 L531 182 Z" fill="#bc0000" transform="rotate(-8 548 136)"/>
         </svg>
         <div class="nat-photo"><img src="/images/dennis-bos.webp" alt="" width="300" height="287" loading="lazy" /></div>
         <img class="nat-cross c1" src="/images/icon-kruis.webp" alt="" width="144" height="144" loading="lazy" />
@@ -30,18 +38,30 @@
   .nat-inner { padding-top: 30px; padding-bottom: 20px; }
   .nat-inner h2 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); text-align: center; line-height: 1.2; padding-left: 20px; margin: 0 0 -6px; }
   .nat-stage { position: relative; height: 660px; margin-top: 0; }
-  .nat-map { position: absolute; left: 117px; top: 0; width: 464px; height: 580px; object-fit: contain; z-index: 1; }
-  .nat-panel { position: absolute; left: 406px; top: 101px; width: 765px; height: 357px; background: var(--c-offwhite); border-radius: var(--r-md); }
+  .nat-map { position: absolute; left: 117px; top: 0; width: 464px; height: 580px; z-index: 1; filter: drop-shadow(0 18px 24px rgba(188,0,0,.22)); }
+  .nat-map img { width: 100%; height: 100%; object-fit: contain; }
+  .pin { position: absolute; width: 4.2%; aspect-ratio: 1; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 99px var(--c-red); transform: translate(-50%, -50%) scale(0); transition: transform .45s cubic-bezier(.3,1.6,.4,1); }
+  .nat-map.on .pin { transform: translate(-50%, -50%) scale(1); }
+  .nat-panel { position: absolute; left: 406px; top: 101px; width: 765px; height: 357px; background: var(--c-offwhite); border-radius: 16px; box-shadow: var(--sh-card-strong); }
   .nat-badge {
     position: absolute; left: 197px; top: -25px; height: 59px; padding: 0 35px; border-radius: 32px;
-    background: var(--c-pink); color: var(--c-red); font-family: var(--f-head); font-weight: 800; font-size: var(--t-h3); display: inline-flex; align-items: center;
+    background: var(--c-pink); color: var(--c-red); font-family: var(--f-head); font-weight: 800; font-size: var(--t-h3); display: inline-flex; align-items: center; box-shadow: 0 10px 20px -8px rgba(188,0,0,.35); z-index: 1;
   }
   .nat-quote { position: absolute; left: 174px; top: 63px; width: 544px; font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-lg); line-height: 1.2; margin: 0; }
   .nat-panel .btn { position: absolute; left: 174px; top: 221px; }
-  .nat-arrow { position: absolute; left: 386px; top: 340px; width: 640px; height: 372px; z-index: 2; }
-  .nat-photo { position: absolute; left: 962px; top: 302px; width: 300px; height: 287px; border-radius: 50%; overflow: hidden; z-index: 3; }
+  .nat-arrow { position: absolute; left: 386px; top: 340px; width: 640px; height: 372px; z-index: 2; filter: drop-shadow(0 8px 10px rgba(0,0,0,.18)); }
+  .arrow-line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .arrow-head { opacity: 0; transform-origin: 548px 136px; transform: scale(.4); }
+  .on ~ .nat-arrow .arrow-line { animation: nat-draw 1.4s cubic-bezier(.4,0,.2,1) .3s forwards; }
+  .on ~ .nat-arrow .arrow-head { animation: nat-head .35s cubic-bezier(.3,1.5,.5,1) 1.55s forwards; }
+  @keyframes nat-draw { to { stroke-dashoffset: 0; } }
+  @keyframes nat-head { to { opacity: 1; transform: scale(1); } }
+  .nat-photo { position: absolute; left: 962px; top: 302px; width: 300px; height: 287px; border-radius: 50%; overflow: hidden; z-index: 3; box-shadow: var(--sh-float); border: 6px solid #fff; }
   .nat-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .nat-cross { position: absolute; z-index: 4; }
+  .nat-cross { position: absolute; z-index: 4; animation: nat-dance 3.2s ease-in-out infinite; filter: drop-shadow(0 6px 8px rgba(0,0,0,.2)); }
+  .c2 { animation-duration: 2.6s; animation-delay: .4s; } .c3 { animation-duration: 2.2s; animation-delay: .9s; }
+  @keyframes nat-dance { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-7px) rotate(4deg); } }
+  @media (prefers-reduced-motion: reduce) { .nat-cross { animation: none; } .pin { transition: none; transform: translate(-50%,-50%) scale(1); } .arrow-line { stroke-dashoffset: 0; } .arrow-head { opacity: 1; transform: none; } }
   .c1 { left: 1124px; top: 428px; width: 144px; }
   .c2 { left: 1204px; top: 524px; width: 81px; }
   .c3 { left: 1178px; top: 578px; width: 52px; }
@@ -50,7 +70,7 @@
     .nat-stage { height: auto; display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
     .nat-inner h2 { line-height: 1.2; }
     .nat-map, .nat-panel, .nat-photo, .nat-cross, .nat-arrow { position: static; }
-    .nat-map { width: min(464px, 80%); height: auto; align-self: center; }
+    .nat-map { position: relative; width: min(464px, 80%); height: auto; aspect-ratio: 464 / 580; align-self: center; }
     .nat-panel { width: 100%; height: auto; padding: 50px 24px 30px; }
     .nat-badge { position: absolute; left: 24px; top: -25px; }
     .nat-quote { position: static; width: auto; }
@@ -64,3 +84,12 @@
     .nat-photo { width: 200px; height: 200px; }
   }
 </style>
+
+<script>
+  // pins en pijl starten zodra de kaart in beeld komt
+  const map = document.querySelector('[data-nat]');
+  if (map) {
+    if (!('IntersectionObserver' in window)) map.classList.add('on');
+    else new IntersectionObserver((es, io) => { es.forEach((e) => { if (e.isIntersecting) { map.classList.add('on'); io.disconnect(); } }); }, { threshold: 0.35 }).observe(map);
+  }
+</script>

@@ -74,7 +74,7 @@ import { site } from '../../data/site.js';
   .ch-tabs button[aria-selected='true'] { background: var(--c-red-dark); font-weight: 500; }
   .ch-text p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-md); line-height: 1.25; margin-top: 19px; }
   .ch-text p + p { margin-top: 0; }
-  .ch-photo { position: absolute; left: 691px; top: -9px; width: 710px; height: 492px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
+  .ch-photo { position: absolute; left: 691px; top: -9px; right: min(-15px, calc((var(--w-page) - 100vw) / 2)); height: 492px; clip-path: polygon(51px 0, 100% 0, 100% 100%, 151px 100%); }
   .ch-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .ch-photo::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.31); }
   .ch-widget { position: absolute; left: 1231px; top: 101px; width: 155.3px; border-radius: 4px; overflow: hidden; box-shadow: var(--sh-card); font-family: var(--f-head); }

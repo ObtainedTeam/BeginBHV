@@ -32,8 +32,8 @@
   --t-h5: 26.7px;       /* 80 */
   --t-h6: 23.3px;       /* 70 */
   --t-lg: 21.3px;       /* 64  nav, knoppen, intro's */
-  --t-md: 16px;         /* 48  body */
-  --t-sm: 13.3px;       /* 40 */
+  --t-md: 17.3px;       /* 48  body (revisie: iets groter) */
+  --t-sm: 14.3px;       /* 40 (revisie: iets groter) */
   --t-xs: 10.7px;       /* 32 */
 
   /* layout */
@@ -48,12 +48,13 @@
   --r-2xl: 26.3px;/* 79 */
   --r-pill: 999px;
 
-  /* schaduwen (Figma / 3) */
-  --sh-btn: 0 1.3px 1.3px rgba(0,0,0,.25);
-  --sh-card: 1.3px 2.3px 1.3px rgba(0,0,0,.25);
-  --sh-card-strong: 1px 2.3px 1.3px rgba(0,0,0,.5);
-  --sh-input: 0 1.3px 1.3px rgba(0,0,0,.25);
-  --sh-text: 1.3px 2px 1.3px rgba(0,0,0,.25);
+  /* schaduwen: zacht en gelaagd (revisie, vervangt de harde Figma-schaduwen) */
+  --sh-btn: 0 2px 6px rgba(0,0,0,.14), 0 8px 18px -8px rgba(188,0,0,.45);
+  --sh-card: 0 1px 2px rgba(0,0,0,.04), 0 14px 32px -10px rgba(0,0,0,.16);
+  --sh-card-strong: 0 2px 6px rgba(0,0,0,.06), 0 24px 48px -14px rgba(0,0,0,.26);
+  --sh-float: 0 30px 60px -20px rgba(0,0,0,.3), 0 10px 20px -10px rgba(0,0,0,.12);
+  --sh-input: inset 0 1px 2px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --sh-text: 0 1px 2px rgba(0,0,0,.2);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -153,4 +154,9 @@ h1, h2, h3, h4 { font-family: var(--f-head); line-height: 1.15; }
 /* Animaties (gericht, respecteert reduced motion) ----------------- */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
+/* bento-grid: lagen schuiven om en om vanaf links en rechts de pagina in (met .reveal) */
+.reveal.from-left { transform: translateX(-80px); }
+.reveal.from-right { transform: translateX(80px); }
+.reveal.from-left, .reveal.from-right { transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.from-left.is-visible, .reveal.from-right.is-visible { transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }

@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+import { createServer } from 'http';
+import { readFile, stat } from 'fs/promises';
+import { join, extname } from 'path';
+const root = '/home/claude/beginbhv/dist';
+const mime = {'.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.jpg':'image/jpeg','.woff2':'font/woff2','.json':'application/json'};
+const srv = createServer(async (req,res)=>{ let p=decodeURIComponent(req.url.split('?')[0]); if(p.endsWith('/')) p+='index.html'; let f=join(root,p); try{ if((await stat(f)).isDirectory()) f=join(f,'index.html'); }catch{ f=join(root,p+'.html'); } try{ const b=await readFile(f); res.setHeader('Content-Type',mime[extname(f)]||'application/octet-stream'); res.end(b);}catch{res.statusCode=404;res.end('nf');} }).listen(4321);
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const pg = await b.newPage({ viewport:{width:1386,height:900} });
+await pg.goto('http://localhost:4321/'+(process.argv[2]||''), { waitUntil:'networkidle' });
+await pg.evaluate(()=>{ try{localStorage.setItem('bhv-cookies','functional')}catch{}; document.querySelector('[data-cookie]')?.setAttribute('hidden','') });
+const sel = process.argv[3] || '.national';
+const y = await pg.$eval(sel, e=>e.getBoundingClientRect().top + window.scrollY);
+await pg.evaluate((y)=>window.scrollTo(0,y-60), y); await pg.waitForTimeout(+(process.argv[4]||2500));
+await pg.screenshot({ path: process.argv[5] || '/tmp/nat.png' });
+await b.close(); srv.close();

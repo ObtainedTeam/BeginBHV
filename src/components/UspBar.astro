@@ -8,25 +8,30 @@ const icons = {
 };
 ---
 <section class="usp" aria-label="Waarom BeginBHV">
-  <div class="container inner">
-    {usps.map((u) => (
-      <div class="item">
-        <span class="icon" set:html={icons[u.icon]} />
-        <span>{u.label}</span>
+  <!-- langzame carousel: inhoud twee keer, schuift naar rechts en komt links weer binnen -->
+  <div class="track" aria-hidden="false">
+    {[0, 1].map((k) => (
+      <div class="group" aria-hidden={k === 1 ? 'true' : undefined}>
+        {usps.map((u) => (
+          <div class="item">
+            <span class="icon" set:html={icons[u.icon]} />
+            <span>{u.label}</span>
+          </div>
+        ))}
       </div>
     ))}
   </div>
 </section>
 <style>
-  .usp { background: var(--c-light); }
-  .inner {
-    min-height: 114px; display: flex; align-items: center; justify-content: space-between;
-    padding-left: max(var(--gutter), 36px); padding-right: max(var(--gutter), 18px);
-  }
-  @media (min-width: 1420px) { .inner { padding-left: 36px; padding-right: 18px; } }
-  .item { display: flex; align-items: center; gap: 2px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-lg); white-space: nowrap; }
-  .icon { width: 21px; height: 21px; color: var(--c-black); flex: none; }
+  .usp { background: var(--c-light); overflow: hidden; min-height: 114px; display: flex; align-items: center; box-shadow: inset 0 1px 0 rgba(0,0,0,.04); }
+  .track { display: flex; width: max-content; animation: usp-slide 38s linear infinite; }
+  .track:hover { animation-play-state: paused; }
+  .group { display: flex; align-items: center; gap: 96px; padding-right: 96px; }
+  .item { display: flex; align-items: center; gap: 8px; font-family: var(--f-head); font-weight: 300; font-size: var(--t-lg); white-space: nowrap; }
+  .icon { width: 22px; height: 22px; color: var(--c-black); flex: none; }
   .icon :global(svg) { width: 100%; height: 100%; }
-  @media (max-width: 1024px) { .inner { flex-wrap: wrap; gap: 12px 32px; justify-content: center; padding-block: 20px; } .item { font-size: 18px; } }
-  @media (max-width: 600px) { .inner { display: grid; grid-template-columns: 1fr; justify-items: start; } .item { white-space: normal; } }
+  /* naar rechts: begint op -50% (tweede kopie in beeld) en schuift naar 0 */
+  @keyframes usp-slide { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+  @media (max-width: 700px) { .usp { min-height: 80px; } .item { font-size: 18px; } .group { gap: 56px; padding-right: 56px; } }
 </style>

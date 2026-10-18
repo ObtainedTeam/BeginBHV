@@ -28,12 +28,10 @@ const ploegleider = getCourse('bhv-basis');
       <source src="/video/hero.mp4" type="video/mp4" />
     </video>
     <div class="hero-stage">
-      <img class="hero-dennis" src="/images/hero-dennis.webp" alt="Dennis Sluijmer, eigenaar en cursusleider van BeginBHV" width="1021" height="873" fetchpriority="high" />
       <h1 class="hero-logo">
         <img src="/images/logo-wordmark-white.png" alt="BeginBHV" width="1600" height="339" />
         <span class="sr-only">BeginBHV, erkende BHV-trainingen door heel Nederland</span>
       </h1>
-      <p class="signature" aria-hidden="true">Dennis Sluijmer</p>
       <div class="hero-cta"><DirectAanmelden /></div>
     </div>
   </section>
@@ -62,10 +60,11 @@ const ploegleider = getCourse('bhv-basis');
   <section class="funnel-sec">
     <div class="container">
       <h2 class="fs-title">{funnelSectionTitle}</h2>
-      <div class="reveal"><Funnel /></div>
-      <div class="kennis">
-        <div class="kennis-photo reveal">
-          <img src="/images/kennismaken-foto.webp" alt="Trainer van BeginBHV in het leslokaal" width="389" height="428" loading="lazy" />
+      <div class="fs-grid">
+      <div class="reveal from-left"><Funnel /></div>
+      <div class="kennis reveal from-right">
+        <div class="kennis-photo">
+          <img src="/images/kennismaken-foto.webp" alt="Dennis, oprichter van BeginBHV" width="389" height="428" loading="lazy" />
         </div>
         <div class="kennis-text">
           <h2>Maak kennis met Dennis!</h2>
@@ -73,8 +72,9 @@ const ploegleider = getCourse('bhv-basis');
           <blockquote>
             <p>“Na jaren in het vastgoed wilde ik iets doen dat er écht toe doet. Tijdens een BHV-inzet op een van mijn eigen panden zag ik hoeveel verschil een goed getrainde collega maakt. Sindsdien train ik teams door heel Nederland: praktisch, met realistische scenario’s en zonder onnodige theorie. Mijn doel is simpel: dat iedereen die bij mij een dag heeft gezeten, durft te handelen als het erop aankomt.”</p>
           </blockquote>
-          <p class="attribution">Dennis Sluijmer, Eigenaar en Cursusleider</p>
+          <p class="attribution">Dennis, oprichter en cursusleider</p>
         </div>
+      </div>
       </div>
     </div>
     <EcgDivider class="fs-ecg" />
@@ -116,8 +116,8 @@ const ploegleider = getCourse('bhv-basis');
       <h2 id="faq-title">Veel gestelde vragen</h2>
       {homeInfoCards.map((c, i) => (
         <div class={`info-row ${i % 2 === 1 ? 'rev' : ''}`}>
-          <img class="info-photo" src={c.image} alt={c.alt} width="629" height="410" loading="lazy" />
-          <article class="info-card reveal">
+          <img class={`info-photo reveal ${i % 2 === 1 ? "from-right" : "from-left"}`} src={c.image} alt={c.alt} width="629" height="410" loading="lazy" />
+          <article class={`info-card reveal ${i % 2 === 1 ? "from-left" : "from-right"}`}>
             <h3>{c.title}</h3>
             <p set:html={c.html} />
             <a class="btn btn-small" href={c.href}>Lees meer</a>
@@ -147,54 +147,54 @@ const ploegleider = getCourse('bhv-basis');
   /* donkere laag over de video */
   .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 50%, rgba(0,0,0,.45) 100%); z-index: 1; pointer-events: none; }
   .hero-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; z-index: 2; }
-  .hero-dennis { position: absolute; left: -18px; top: 86px; width: 510.3px; height: 436.3px; opacity: .95; }
-  .hero-logo { position: absolute; left: 391px; top: 236px; width: 520px; margin: 0; filter: drop-shadow(0 2px 6px rgba(0,0,0,.45)); }
+  .hero-logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 560px; margin: 0; filter: drop-shadow(0 2px 6px rgba(0,0,0,.45)); }
   .hero-logo img { width: 100%; height: auto; }
-  .signature { position: absolute; left: 275px; top: 390px; margin: 0; font-family: var(--f-script); font-size: var(--t-h3); letter-spacing: -1.28px; color: var(--c-white); opacity: .88; }
   .hero-cta { position: absolute; left: 1132px; top: 77.7px; }
 
   /* ---------- BHV2 pakketten (1386 x 552) ---------- */
-  .packages { position: relative; height: 552px; background: var(--c-white); }
+  .packages { position: relative; height: 600px; background: var(--c-white); }
   .pk-band { position: absolute; left: 0; right: 0; top: -1.3px; height: 43.3px; background: var(--c-red-dark); }
   .pk-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; }
-  .pk { position: absolute; top: 21.7px; width: 272.3px; padding-top: 51.7px; }
-  .pk:nth-child(1) { left: 176px; } .pk:nth-child(2) { left: 557px; } .pk:nth-child(3) { left: 937.7px; }
-  .pk-circle { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 109.3px; height: 109.3px; border-radius: 50%; background: var(--c-white); z-index: 1; display: flex; align-items: center; justify-content: center; }
-  .pk-circle img { width: 130px; height: auto; max-width: none; }
-  .pk:nth-child(1) .pk-circle img { width: 103px; }
-  .pk-card { height: 372px; background: var(--c-light); border-radius: var(--r-md); box-shadow: 1px 2.3px 1.3px rgba(0,0,0,.52); padding: 70px 20px 0 24px; }
+  .pk { position: absolute; top: 21.7px; width: 316px; padding-top: 62px; }
+  .pk:nth-child(1) { left: 153px; } .pk:nth-child(2) { left: 535px; } .pk:nth-child(3) { left: 917px; }
+  .pk-circle { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 124px; height: 124px; border-radius: 50%; background: var(--c-white); z-index: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px -6px rgba(0,0,0,.25); }
+  .pk-circle img { width: 84px; height: 84px; object-fit: contain; }
+  .pk-card { height: 404px; background: var(--c-light); border-radius: 14px; box-shadow: var(--sh-card-strong); padding: 78px 26px 0 28px; }
   .pk-card h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.6; }
   .pk-card ul { list-style: none; margin: 11px 0 0 0; padding: 0; font-family: var(--f-body); font-weight: 100; font-size: var(--t-md); line-height: 1.17; }
   .pk-card li { position: relative; padding-left: 18px; min-height: 17.6px; }
-  .pk-card li + li { margin-top: 16px; }
+  .pk-card li + li { margin-top: 15px; }
+  .pk-card li { padding-left: 26px; }
   .pk-card li::before { content: ''; position: absolute; left: 0; top: 1px; width: 17.6px; height: 17.4px; background: url('/images/icon-check.png') center / contain no-repeat; }
-  .pk-btn { position: absolute; left: 53.3px; bottom: -23px; }
+  .pk-btn { position: absolute; left: 50%; transform: translateX(-50%); bottom: -23px; }
 
   /* ---------- BHV3 funnel + kennismaken (1386 x 1481) ---------- */
   .funnel-sec { position: relative; background: linear-gradient(180deg, rgba(255,0,0,.1) 0%, rgba(0,0,0,0) 100%), #fff; padding-top: 75px; padding-bottom: 106px; }
-  .fs-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); color: var(--c-red-dark); text-align: center; text-shadow: 0 1.3px 1.3px rgba(0,0,0,.25); line-height: 1.25; margin-bottom: 34px; }
-  .kennis { display: grid; grid-template-columns: 389.3px 1fr; gap: 48px; margin-top: 130px; padding-left: max(var(--gutter), 177px); min-height: 428px; }
-  @media (min-width: 1420px) { .kennis { padding-left: 177px; } }
-  .kennis-photo { width: 389.3px; height: 428.3px; border-radius: 25px; overflow: hidden; box-shadow: 1.7px 1.3px 1.3px rgba(0,0,0,.25); }
-  .kennis-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .kennis-text { margin-top: -24px; }
-  .kennis-text h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-display); line-height: 1.6; }
-  .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h1); line-height: 1.07; max-width: 362px; margin-top: 10px; }
-  .kennis-text blockquote { margin: 30px 0 0 5px; max-width: 445px; }
-  blockquote p { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); line-height: 1.2; }
+  .fs-title { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); color: var(--c-red-dark); text-align: center; text-shadow: var(--sh-text); line-height: 1.25; margin-bottom: 34px; }
+  .fs-grid { display: grid; grid-template-columns: 640px 1fr; gap: 56px; align-items: start; max-width: 1240px; margin-inline: auto; }
+  .fs-grid :global(.funnel) { width: 100%; }
+  .kennis { display: grid; grid-template-columns: 1fr; gap: 26px; }
+  .kennis-photo { width: 100%; height: 300px; border-radius: 22px; overflow: hidden; box-shadow: var(--sh-card-strong); }
+  .kennis-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .kennis-text { margin-top: 0; }
+  .kennis-text h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h3); line-height: 1.2; }
+  .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h5); line-height: 1.15; margin-top: 8px; color: var(--c-red-dark); }
+  .kennis-text blockquote { margin: 18px 0 0; max-width: 520px; }
+  blockquote p { font-family: var(--f-body); font-weight: 200; font-style: italic; font-size: var(--t-md); line-height: 1.5; }
   .attribution { font-family: var(--f-body); font-weight: 100; font-style: italic; font-size: var(--t-md); margin: 8px 0 0 5px; }
   :global(.fs-ecg) { margin-top: 34px; }
 
   /* ---------- BHV4 reviews (1386 x 612) ---------- */
   .reviews { background: var(--c-white); }
-  .rv-inner { display: grid; grid-template-columns: 1fr 491px; gap: 40px; padding-top: 54px; padding-bottom: 60px; padding-left: max(var(--gutter), 157px); padding-right: max(var(--gutter), 157px); min-height: 498px; }
+  .rv-inner { display: grid; grid-template-columns: 1fr 491px; gap: 96px; padding-top: 54px; padding-bottom: 60px; padding-left: max(var(--gutter), 157px); padding-right: max(var(--gutter), 157px); min-height: 498px; }
   @media (min-width: 1420px) { .rv-inner { padding-left: 157px; padding-right: 157px; } }
   .rv-client { position: relative; }
   .rv-client h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.25; max-width: 460px; }
   .rv-client .rv-name { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin: 15px 0 0; line-height: 1.6; }
-  .rv-client blockquote { margin: 0; max-width: 423px; }
-  .rv-logo { position: absolute; left: 442px; top: 174px; width: 121px; height: auto; }
-  .rv-card { position: relative; min-height: 317px; background: var(--c-coral); color: var(--c-white); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.67); padding: 18px 14px 40px; margin-top: -4px; }
+  .rv-client blockquote { margin: 0; max-width: 440px; }
+  .rv-client blockquote p { line-height: 1.7; }
+  .rv-logo { position: static; margin-top: 18px; width: 110px; height: auto; }
+  .rv-card { position: relative; min-height: 317px; background: var(--c-coral); color: var(--c-white); border-radius: var(--r-md); box-shadow: var(--sh-card-strong); padding: 18px 14px 40px; margin-top: -4px; }
   .rv-card h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h3); line-height: 1.25; }
   .rv-card .rv-name { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); margin: 4px 0 0 9px; }
   .rv-card blockquote { margin: 6px 0 0 38px; max-width: 397px; }
@@ -213,29 +213,25 @@ const ploegleider = getCourse('bhv-basis');
   .info-row.rev { grid-template-columns: 466px 637px; gap: 20px; }
   .info-row.rev .info-card { order: -1; }
   .info-photo { width: 100%; height: 410px; object-fit: cover; border-radius: var(--r-md); }
-  .info-card { position: relative; height: 410px; background: var(--c-white); border-radius: var(--r-md); box-shadow: 1.3px 2.3px 1.3px rgba(0,0,0,.51); padding: 31px 35px 0 29px; }
+  .info-card { position: relative; height: 410px; background: var(--c-white); border-radius: var(--r-md); box-shadow: var(--sh-card-strong); padding: 31px 35px 0 29px; }
   .info-card h3 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h2); color: var(--c-red); line-height: 1.25; }
   .info-card p { font-family: var(--f-body); font-weight: 100; font-size: var(--t-lg); line-height: 1.2; margin-top: 24px; max-width: 392px; }
   .info-card p :global(a) { text-decoration: underline; }
   .info-card .btn { position: absolute; left: 29px; bottom: 25px; }
-  .faq-row { display: grid; grid-template-columns: 319px 760px; justify-content: center; gap: 45px; margin-top: 48px; }
+  .faq-row { display: grid; grid-template-columns: 480px 640px; justify-content: center; gap: 44px; margin-top: 56px; align-items: start; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 1100px) {
     .hero { height: auto; padding: 90px 0 0; }
     .hero-stage { display: flex; flex-direction: column; align-items: center; padding: 0 var(--gutter) 60px; }
-    .hero-dennis, .hero-logo, .signature, .hero-cta { position: static; }
+    .hero-logo, .hero-cta { position: static; transform: none; }
     .hero-logo { width: 300px; order: 1; margin: 30px 0 20px; }
-    .hero-dennis { width: 300px; height: auto; margin-top: 10px; order: 2; }
-    .signature { margin-top: -50px; order: 3; }
     .hero-cta { order: 4; margin: 24px 0 0; }
     .packages { height: auto; padding-bottom: 60px; }
     .pk-stage { display: flex; flex-wrap: wrap; justify-content: center; gap: 60px 24px; padding: 0 var(--gutter); }
     .pk, .pk:nth-child(1), .pk:nth-child(2), .pk:nth-child(3) { position: relative; left: auto; top: 21.7px; }
-    .kennis { grid-template-columns: 1fr; padding-left: var(--gutter); margin-top: 60px; }
-    .kennis-photo { width: 100%; max-width: 389px; height: auto; aspect-ratio: 389/428; }
-    .kennis-text { margin-top: 0; }
-    .kennis-text h2 { line-height: 1.2; margin-bottom: 10px; }
+    .fs-grid { grid-template-columns: 1fr; }
+    .kennis-photo { height: 260px; }
     :global(.fs-ecg) { margin-top: 20px; }
     .rv-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); }
     .rv-logo { position: static; margin: 16px 0 0; }
@@ -247,8 +243,6 @@ const ploegleider = getCourse('bhv-basis');
   }
   @media (max-width: 700px) {
     .hero-logo { width: 240px; }
-    .hero-dennis { width: 260px; }
-    .signature { font-size: 26px; }
     .fs-title, .kennis-text h2, .faq-section h2 { font-size: 30px; }
     .tagline { font-size: 30px; }
     .rv-client h2, .rv-card h2 { font-size: 26px; }

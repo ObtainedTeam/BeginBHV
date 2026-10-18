@@ -41,12 +41,12 @@ const blocks = [
     <div class="container">
       {blocks.map((b, i) => (
         <div class={`ob-row ${b.reverse ? 'rev' : ''}`}>
-          <article class="ob-card reveal">
+          <article class={`ob-card reveal ${b.reverse ? "from-right" : "from-left"}`}>
             <h2>{b.title}</h2>
             <p>{b.text}</p>
             <a class="btn btn-primary ob-btn" href={i === 0 ? "/over-dennis" : i === 1 ? "/incompany" : "/branches"}>Lees meer &gt;</a>
           </article>
-          <img class="ob-photo" src={b.image} alt="" width="474" height="316" loading="lazy" />
+          <img class={`ob-photo reveal ${b.reverse ? "from-left" : "from-right"}`} src={b.image} alt="" width="474" height="316" loading="lazy" />
         </div>
       ))}
     </div>
