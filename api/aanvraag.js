@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     quantity: 'Aantal', source: 'Via',
   };
   const courseNames = { 'bhv-basis': 'Basis BHV + e-learning', 'bhv-herhaling': 'Herhaling BHV + e-learning', 'bhv-nibhv': 'Basis BHV (NIBHV)', 'bhv-nibhv-herhaling': 'Herhaling BHV (NIBHV)', 'reanimatie-workshop': 'Reanimatie workshop', ontruimingsoefening: 'Ontruimingsoefening', incompany: 'Incompany' };
-  const locationNames = { own: 'Trainingslocatie BeginBHV', incompany: 'Incompany (op locatie klant)' };
+  const locationNames = { beginbhv: 'Trainingslocatie BeginBHV (Lelystad)', incompany: 'Incompany (op eigen locatie van de klant)', onbekend: 'Weet nog niet' };
   const sourceNames = { funnel: 'aanvraagfunnel (homepage/contact)', 'home-contact': 'contactformulier homepage', klantenservice: 'klantenservice', cursusboek: 'bestelling cursusboek' };
   const pretty = (k, v) => k === 'course' ? (courseNames[v] || v) : k === 'location' ? (locationNames[v] || v) : k === 'source' ? (sourceNames[v] || v) : v;
   const order = ['course', 'participants', 'location', 'company', 'name', 'email', 'phone', 'address', 'postcode', 'city', 'quantity', 'message', 'source'];
