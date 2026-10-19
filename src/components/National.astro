@@ -8,7 +8,7 @@ import pins from '../data/map-pins.json';
       <h2>Actief in het hele land, op elk moment.</h2>
       <div class="nat-stage">
         <div class="nat-map" data-nat>
-          <img src="/images/map-nl.webp" alt="Kaart van Nederland met trainingslocaties van BeginBHV" width="464" height="580" loading="lazy" />
+          <img src="/images/map-nl.svg" alt="Kaart van Nederland met trainingslocaties van BeginBHV" width="464" height="580" loading="lazy" />
           {pins.map(([x, y], i) => <span class="pin" style={`left:${x}%;top:${y}%;transition-delay:${i * 70}ms`}></span>)}
         </div>
         <div class="nat-panel">

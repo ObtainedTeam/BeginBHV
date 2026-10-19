@@ -16,7 +16,7 @@ export const site = {
   email: 'info@beginbhv.nl',
   googleRating: '9.6',
   description:
-    'BeginBHV verzorgt erkende BHV-trainingen door heel Nederland. Eendaagse praktijkcursussen op onze locatie of bij u op het bedrijf, met certificaat.',
+    'BeginBHV verzorgt erkende BHV-trainingen door heel Nederland. Eendaagse praktijkcursussen bij u op het bedrijf of op een externe locatie in overleg, met certificaat.',
   // GA4: vul het measurement-ID in (bijv. G-XXXXXXXXXX). Leeg = geen tracking.
   ga4: 'G-B21ESPKSZQ',
 };

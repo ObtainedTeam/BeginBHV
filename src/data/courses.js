@@ -124,7 +124,7 @@ export const courses = [
     short: 'Reanimatie',
     image: '/images/foto-reanimatie-uitleg.webp',
     icon: '/images/icon-bhv-standaard.png',
-    blurb: 'Twee uur intensief oefenen met reanimatie en AED, voor het hele team. Per groep, op onze locatie of bij jullie op het bedrijf.',
+    blurb: 'Twee uur intensief oefenen met reanimatie en AED, voor het hele team. Per groep, bij jullie op het bedrijf of op een externe locatie.',
     bullets: ['Circa 2 uur', 'Per groep, max 12 deelnemers'],
     price: '295,00',
     priceNote: 'per groep tot 6 deelnemers, excl. btw',
