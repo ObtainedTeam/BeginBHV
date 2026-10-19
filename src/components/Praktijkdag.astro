@@ -2,7 +2,7 @@
 // Figma Curs3: "Hoe ziet een praktijk dag er uit?" met drie chevron-panelen en de video-sectie.
 const { course } = Astro.props;
 const panels = [
-  { title: 'Realistische scenario’s', icon: '/images/icon-scenario.png', text: 'Je oefent met echte situaties: een onwel geworden collega, brand of een ontruiming.' },
+  { title: 'Realistische scenario’s', icon: '/images/icon-scenario-full.png', text: 'Je oefent met echte situaties: een onwel geworden collega, brand of een ontruiming.' },
   { title: 'Interactieve werkvormen', icon: '/images/icon-werkvormen.png', text: 'Geen dag luisteren, maar doen. Kleine groepen, veel oefenen en directe feedback.' },
   { title: 'Duidelijke stappenplannen', icon: '/images/icon-stappenplan.png', text: 'Elke handeling leer je als vast stappenplan, zodat je ook onder druk overzicht houdt.' },
 ];
@@ -19,15 +19,17 @@ const intro = course?.description ?? [
     </div>
     <div class="pd-panels">
       {panels.map((p, i) => (
-        <div class="panel-wrap reveal" style={`transition-delay:${i * 100}ms`}><div class="panel">
-          <h3>{p.title}</h3>
-          <img class="panel-icon" src={p.icon} alt="" width="134" height="134" loading="lazy" />
-          <svg class="panel-ecg" viewBox="0 0 336 106" fill="none" aria-hidden="true">
-            <path d="M0 60 H118 L128 50 L138 70 L148 20 L158 100 L168 44 L178 60 H336" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" />
-          </svg>
-          <p>{p.text}</p>
-          <a class="panel-btn" href={course ? `/contact?cursus=${course.slug}` : "/contact"}>Meer informatie</a>
-        </div></div>
+        <div class="panel-wrap reveal" style={`transition-delay:${i * 100}ms`}>
+          <div class="panel">
+            <h3>{p.title}</h3>
+            <img class="panel-icon" src={p.icon} alt="" width="134" height="134" loading="lazy" />
+            <svg class="panel-ecg" viewBox="0 0 336 120" fill="none" aria-hidden="true">
+              <path d="M0 60 H118 L128 48 L138 72 L148 14 L158 106 L168 40 L178 60 H336" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
+            <p>{p.text}</p>
+          </div>
+          <a class="panel-btn" href={course ? `/contact?cursus=${course.slug}` : "/contact"}><span>Meer informatie</span></a>
+        </div>
       ))}
     </div>
 
@@ -47,9 +49,13 @@ const intro = course?.description ?? [
         </ul>
         <a class="btn btn-plan" href="/contact">Plan met Dennis</a>
       </div>
-      <div class="pd-player">
-        <!-- Vervang door een <video> of embed zodra de video er is. -->
-        <img src="/images/video-thumb.webp" alt="Video: een dag bij BeginBHV" width="727" height="408" loading="lazy" />
+      <div class="pd-player" data-player>
+        <!-- Videoplaceholder: speelt nu de hero-video af. Vervang src door de echte video zodra die er is. -->
+        <video poster="/images/video-thumb.webp" preload="none" playsinline controls width="727" height="408" aria-label="Video: een dag bij BeginBHV">
+          <source src="/video/hero.webm" type="video/webm" />
+          <source src="/video/hero.mp4" type="video/mp4" />
+        </video>
+        <button type="button" class="pd-play" aria-label="Video afspelen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
       </div>
     </div>
   </div>
@@ -63,28 +69,29 @@ const intro = course?.description ?? [
   .panel {
     position: relative; width: 336px; height: 532.3px; color: var(--c-white);
     /* bovenste helft iets lichter, onderste helft iets donkerder (Figma Curs3) */
-    background: linear-gradient(180deg, #e86868 0%, #e86868 50%, #dc5252 50%, #dc5252 100%);
-    /* pijlvorm met afgeronde hoeken links en punt rechts */
-    clip-path: path('M26 0 H270 L336 266 L270 532.3 H26 Q0 532.3 0 506 V292 L28 266 L0 240 V26 Q0 0 26 0 Z');
+    /* twee tinten, de hartslaglijn ligt precies op de overgang (Figma Curs3) */
+    background: linear-gradient(180deg, #e86868 0%, #e86868 50%, #e25e5e 50%, #e25e5e 100%);
+    /* pijlvorm, alle hoeken afgerond */
+    clip-path: path('M26 0 H252 Q270 0 274.3 17.5 L331.7 248.5 Q336 266 331.7 283.5 L274.3 514.8 Q270 532.3 252 532.3 H26 Q0 532.3 0 506 V292 L28 266 L0 240 V26 Q0 0 26 0 Z');
     padding: 10px 24px 0 25px;
   }
-  .panel-wrap { filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)) drop-shadow(0 4px 6px rgba(0,0,0,.08)); }
+  .panel-wrap { position: relative; width: 336px; filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)) drop-shadow(0 4px 6px rgba(0,0,0,.08)); }
   .panel + .panel { margin-left: 0; }
   .panel h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h4); line-height: 1.1; color: var(--c-light); text-shadow: var(--sh-text); width: 262px; }
   .panel-icon { position: absolute; left: 108px; top: 84px; width: 134px; height: 134px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
-  .panel-ecg { position: absolute; left: 0; top: 218px; width: 100%; height: 106px; }
+  .panel-ecg { position: absolute; left: 0; top: 206px; width: 100%; height: 120px; }
   .panel p { position: absolute; left: 36px; top: 340px; width: 256px; font-family: var(--f-body); font-weight: 200; font-size: var(--t-md); color: var(--c-light); line-height: 1.3; }
+  /* knop ligt bovenop het paneel en steekt rechts uit (Figma Curs3) */
   .panel-btn {
-    position: absolute; left: 25.7px; top: 449px; width: 305.7px; height: 63.7px;
+    position: absolute; left: 26px; top: 449px; width: 316px; height: 63.7px; z-index: 1;
     background: var(--c-red-dark); color: var(--c-white);
-    clip-path: path('M12 0 H276 L305.7 31.85 L276 63.7 H12 Q0 63.7 0 51.7 V12 Q0 0 12 0 Z');
-    display: flex; align-items: center; padding-left: 28px; gap: 10px;
+    clip-path: path('M12 0 H284 L316 31.85 L284 63.7 H12 Q0 63.7 0 51.7 V12 Q0 0 12 0 Z');
+    display: flex; align-items: center; justify-content: center; padding-right: 28px;
     font-family: var(--f-body); font-weight: 900; font-size: 22px; white-space: nowrap; text-shadow: var(--sh-text);
-    transition: background .15s ease, transform .15s ease;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
+    transition: filter .15s ease, transform .15s ease;
   }
-  .panel-btn::after { content: '›'; font-weight: 700; margin-left: auto; margin-right: 44px; }
-  .panel-btn:hover { background: #d40000; transform: translateX(3px); }
-  .panel-btn:hover { filter: brightness(1.1); }
+  .panel-btn:hover { filter: brightness(1.12) drop-shadow(0 6px 10px rgba(0,0,0,.25)); transform: translateX(4px); }
   .pd-h2b { margin-top: 85px; }
   .pd-video { display: grid; grid-template-columns: 1fr 727px; gap: 53px; margin-top: 26px; padding-left: 69px; padding-right: 37px; }
   .pd-text h3 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-h3); line-height: 1.5; }
@@ -93,8 +100,12 @@ const intro = course?.description ?? [
   .pd-text .checklist { margin: 36px 0 0 12px; }
   .pd-text .checklist li + li { margin-top: 4.3px; }
   .pd-text .btn { margin-top: 48px; }
-  .pd-player { margin-top: 15px; }
-  .pd-player img { width: 100%; height: auto; aspect-ratio: 727 / 408; object-fit: cover; border-radius: 4px; box-shadow: var(--sh-card); }
+  .pd-player { position: relative; margin-top: 15px; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--sh-card); background: #000; }
+  .pd-player video { display: block; width: 100%; height: auto; aspect-ratio: 727 / 408; object-fit: cover; }
+  .pd-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 88px; height: 88px; border-radius: 50%; border: 0; background: var(--c-red); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: var(--sh-btn); transition: transform .2s ease; }
+  .pd-play svg { width: 44px; height: 44px; margin-left: 4px; }
+  .pd-play:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .pd-player.playing .pd-play { display: none; }
 
   @media (max-width: 1100px) {
     .pd-panels { flex-wrap: wrap; gap: 24px; }
@@ -103,7 +114,15 @@ const intro = course?.description ?? [
   }
   @media (max-width: 700px) {
     h2 { font-size: 28px; line-height: 1.3; }
-    .panel { width: 100%; max-width: 336px; }
+    .panel-wrap { max-width: 100%; } .panel { width: 100%; max-width: 336px; } .panel-btn { width: calc(100% - 26px); }
     .pd-text h3 { font-size: 26px; }
   }
 </style>
+
+<script>
+  const pl = document.querySelector<HTMLElement>('[data-player]');
+  const v = pl?.querySelector('video');
+  pl?.querySelector('.pd-play')?.addEventListener('click', () => { v?.play(); });
+  v?.addEventListener('play', () => pl!.classList.add('playing'));
+  v?.addEventListener('pause', () => pl!.classList.remove('playing'));
+</script>

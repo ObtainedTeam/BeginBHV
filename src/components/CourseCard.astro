@@ -41,10 +41,10 @@ const { course, delay = 0 } = Astro.props;
   .cc-date .d { display: block; height: 44px; line-height: 46px; font-weight: 700; font-size: 26px; color: #2b3a4a; }
   .cc-date .m { display: block; height: 34px; line-height: 34px; background: #2b3a4a; color: #fff; font-weight: 700; font-size: 12px; }
   .cc-body { padding: 10px 20px 0 27px; position: relative; height: 296px; }
-  h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.65; }
+  h3 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); line-height: 1.65; padding-right: 76px; }
   .cc-sub { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); line-height: 1.2; margin: -4px 0 0 7px; width: 238px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .cc-list { margin: 12px 0 0 19px; }
   .cc-list li + li { margin-top: 27px; }
   .cc-btn { position: absolute; left: 27px; bottom: 13px; }
-  @media (max-width: 420px) { .cc { width: 100%; } .cc-date { left: auto; right: 24px; } }
+  @media (max-width: 420px) { .cc { width: 100%; height: auto; } .cc-body { height: auto; padding-bottom: 76px; } h3 { line-height: 1.25; margin-bottom: 8px; } .cc-date { left: auto; right: 24px; } }
 </style>
