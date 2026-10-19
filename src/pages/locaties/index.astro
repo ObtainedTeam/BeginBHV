@@ -5,8 +5,8 @@ import National from '../../components/National.astro';
 import UspBar from '../../components/UspBar.astro';
 import { locaties } from '../../data/locaties.js';
 ---
-<Base title="Trainingslocaties" description="Volg je BHV-cursus op een van onze trainingslocaties, of laat ons naar jouw bedrijf komen. Overal in Nederland.">
-  <PageHero title="Trainingslocaties" intro="Kom naar een van onze locaties, de koffie en thee staan klaar. Of laat ons naar jullie toe komen: vanaf vijf deelnemers trainen we op jullie eigen werkvloer, overal in Nederland." />
+<Base title="Trainingslocaties" description="BeginBHV traint bij u op locatie, overal in Nederland. Kleinere groep? Dan regelen we in overleg een externe trainingslocatie in de buurt.">
+  <PageHero title="Waar we trainen" intro="Vanaf vijf deelnemers komen we naar jullie toe, overal in Nederland, met alle oefenmaterialen. Voor kleinere groepen of losse deelnemers regelen we in overleg een externe trainingslocatie bij jullie in de buurt." />
   <section class="lc">
     <div class="container">
       <div class="lc-grid">
@@ -23,9 +23,16 @@ import { locaties } from '../../data/locaties.js';
         ))}
         <a class="lc-card lc-incompany reveal" href="/incompany">
           <div class="lc-body">
-            <h2>Of bij jullie op locatie</h2>
-            <p>Vanaf vijf deelnemers komen we naar jullie bedrijf, met alle materialen. Oefen op de plek waar het straks moet gebeuren.</p>
+            <h2>Bij jullie op locatie</h2>
+            <p>Vanaf vijf deelnemers komen we naar jullie bedrijf, met alle materialen. Oefen op de plek waar het straks moet gebeuren, met jullie eigen vluchtroutes en blusmiddelen.</p>
             <span class="lc-more">Incompany-training ›</span>
+          </div>
+        </a>
+        <a class="lc-card lc-incompany reveal" href="/contact">
+          <div class="lc-body">
+            <h2>Externe locatie in overleg</h2>
+            <p>Kleinere groep of een losse deelnemer? Dan regelen we een trainingsruimte bij jullie in de buurt. Vraag het aan via het contactformulier, dan stemmen we datum en plek af.</p>
+            <span class="lc-more">Aanvragen ›</span>
           </div>
         </a>
       </div>

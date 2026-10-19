@@ -1,5 +1,5 @@
 // Alle cursusdata op één plek. Prijzen en aanbod volgens opgave van Dennis (okt 2026).
-// Alle trainingen: e-learning vooraf + praktijkdag op de trainingslocatie van BeginBHV in Lelystad.
+// Alle trainingen: e-learning vooraf + praktijkdag bij de klant op locatie of op een externe locatie in overleg.
 // Beeld: vaste bestandsnamen in public/images/ (bestand vervangen = klaar).
 
 export const priceNote = 'per deelnemer, excl. btw';
@@ -142,7 +142,7 @@ export const courses = [
       Groepsgrootte: 'Tot 6 deelnemers € 295, 6 tot 12 deelnemers € 450',
       Vooropleiding: 'Geen',
       Certificaat: 'Deelnamebewijs',
-      Locatie: 'Onze trainingslocatie of bij u op het bedrijf',
+      Locatie: 'Bij u op het bedrijf of op een externe locatie in overleg',
     },
     heroLabel: 'Elke minuut telt',
     heroTitle: 'Reanimatie workshop',

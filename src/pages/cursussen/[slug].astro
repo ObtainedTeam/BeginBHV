@@ -20,7 +20,7 @@ const courseLd = {
   image: new URL(course.image, Astro.site).href,
   provider: { '@type': 'Organization', name: 'BeginBHV', url: Astro.site.href },
   offers: { '@type': 'Offer', price: course.price.replace(',', '.'), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: new URL(`/contact?cursus=${course.slug}`, Astro.site).href },
-  hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Onsite', courseWorkload: 'P1D', location: { '@type': 'Place', name: 'BeginBHV trainingslocatie of incompany', address: { '@type': 'PostalAddress', addressCountry: 'NL' } } },
+  hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Onsite', courseWorkload: 'P1D', location: { '@type': 'Place', name: 'Op locatie van de klant of externe trainingslocatie', address: { '@type': 'PostalAddress', addressCountry: 'NL' } } },
 };
 ---
 <Base title={`${course.title} Cursus`} description={`${course.title}: ${course.blurb} Eendaagse praktijktraining met erkend certificaat, door heel Nederland.`} image={course.image}>

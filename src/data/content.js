@@ -3,7 +3,7 @@
 
 export const clientReview = {
   name: 'Cuckie in Amsterdam - De Amstel Business group',
-  logo: '/images/review-cuckie.png',
+  logo: '',
   quote:
     '“Dennis heeft ons hele team in één dag BHV-klaar gemaakt. Geen droge theorie maar echte scenario’s in onze eigen zaak: een collega die onwel wordt, een vetbrand in de keuken, de ontruiming via de achteruitgang. Iedereen ging naar huis met het gevoel dat ze het ook écht kunnen. De planning was flexibel en het certificaat hadden we dezelfde week binnen.”',
 };
@@ -89,8 +89,8 @@ export const funnel = {
       title: 'Waar wilt u de cursus volgen?',
       type: 'choice',
       options: [
-        { value: 'incompany', label: 'Op onze eigen locatie (incompany)' },
-        { value: 'beginbhv', label: 'Op een trainingslocatie van BeginBHV' },
+        { value: 'incompany', label: 'Bij ons op locatie (incompany)' },
+        { value: 'extern', label: 'Op een externe locatie, in overleg' },
         { value: 'onbekend', label: 'Weet ik nog niet' },
       ],
     },
@@ -168,7 +168,7 @@ export const faqGroups = [
   ]},
   { title: 'Locatie en planning', items: [
     { q: 'Kan de cursus op onze eigen locatie?', a: 'Ja, vanaf vijf deelnemers komen we naar jullie toe, overal in Nederland. Wij nemen alle materialen mee.' },
-    { q: 'Waar zijn jullie trainingslocaties?', a: 'We hebben vaste locaties verspreid over het land; zie de pagina Locaties. Koffie en thee staan klaar.' },
+    { q: 'Waar wordt de cursus gegeven?', a: 'Meestal bij u op locatie: vanaf vijf deelnemers komen we naar uw bedrijf, overal in Nederland. Voor kleinere groepen of losse deelnemers regelen we in overleg een externe trainingslocatie bij u in de buurt.' },
     { q: 'Hoe snel kan ik terecht?', a: 'Meestal binnen twee tot drie weken. Voor incompany-trainingen plannen we in overleg, ook ’s avonds of in het weekend.' },
     { q: 'Kan ik verplaatsen of annuleren?', a: 'Verplaatsen is kosteloos tot 7 dagen voor aanvang. Annuleren is kosteloos tot 14 dagen voor aanvang; daarna gelden de voorwaarden op de pagina Algemene voorwaarden.' },
   ]},

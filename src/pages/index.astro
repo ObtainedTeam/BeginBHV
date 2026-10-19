@@ -87,7 +87,7 @@ const ploegleider = getCourse('bhv-basis');
         <h2 id="rv-title">Wat klanten zeggen over BeginBHV</h2>
         <p class="rv-name">{clientReview.name}</p>
         <blockquote><p>{clientReview.quote}</p></blockquote>
-        <img class="rv-logo" src={clientReview.logo} alt="" width="121" height="113" loading="lazy" />
+        {clientReview.logo && <img class="rv-logo" src={clientReview.logo} alt="" width="121" height="113" loading="lazy" />}
       </div>
       <div class="rv-card reveal" data-carousel>
         <h2>Wat onze cursisten zeggen</h2>
