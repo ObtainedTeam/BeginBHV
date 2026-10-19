@@ -16,7 +16,7 @@ import { branches } from '../data/branches.js';
         </a>
       ))}
     </div>
-    <a class="btn btn-small br-all" href="/branches">Alle branches</a>
+    <p class="br-foot"><a class="btn btn-small br-all" href="/branches">Alle branches</a></p>
   </div>
 </section>
 
@@ -32,7 +32,8 @@ import { branches } from '../data/branches.js';
   .br-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.6) 100%); }
   .br-label { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; color: #fff; font-family: var(--f-head); font-weight: 800; font-size: var(--t-h6); display: flex; align-items: center; justify-content: space-between; text-shadow: var(--sh-text); }
   .br-label svg { background: var(--c-red); border-radius: 50%; padding: 6px; width: 32px; height: 32px; box-shadow: var(--sh-btn); }
-  .br-all { display: table; margin: 36px auto 0; }
+  .br-foot { text-align: center; margin: 36px 0 0; }
+  .br-all { height: 48px; padding: 0 32px; line-height: 1; }
   @media (max-width: 900px) { .br-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .br { padding: 56px 0 64px; } .br-grid { grid-template-columns: 1fr; gap: 16px; } }
 </style>

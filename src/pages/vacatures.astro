@@ -9,7 +9,10 @@ const vacatures = [];
 const sections = vacatures.length ? vacatures : [
   { h: 'Op dit moment geen openstaande vacatures', p: ['We groeien en zoeken regelmatig BHV-instructeurs die, net als wij, liever doen dan praten. Herken je jezelf daarin? Stuur een open sollicitatie.'] },
   { h: 'Wat we zoeken in een instructeur', list: ['Gecertificeerd BHV-instructeur of bereid om dat te worden', 'Ervaring in de praktijk: hulpverlening, brandweer, zorg, defensie of vergelijkbaar', 'Je legt rustig uit en laat mensen vooral zelf doen', 'Flexibel: trainingen zijn soms ’s avonds of op zaterdag, door het hele land', 'Rijbewijs B'] },
-  { h: 'Open sollicitatie', p: [`Mail je motivatie en cv naar <a href="mailto:${site.email}">${site.email}</a> onder vermelding van “instructeur”. We reageren binnen een week.`] },
+  { h: 'Open sollicitatie', p: [
+    'Ben je BHV-instructeur, EHBO-docent of brandweervrijwilliger met didactische ervaring en wil je trainen zoals wij dat doen: praktisch, met realistische scenario’s en kleine groepen? Dan horen we graag van je. Ook als je nog geen instructeursdiploma hebt maar wel de juiste instelling, kun je ons benaderen.',
+    `Mail je motivatie en cv naar <a href="mailto:${site.email}">${site.email}</a> onder vermelding van “instructeur”. We reageren binnen een week en plannen bij interesse een kennismaking in Lelystad of online.`,
+  ], list: ['Flexibele inzet, per trainingsdag', 'Reiskostenvergoeding', 'Trainen door heel Nederland', 'Eigen inbreng in scenario’s en werkvormen'] },
 ];
 ---
 <Base title="Werken bij BeginBHV" description="Vacatures en open sollicitaties bij BeginBHV. We zoeken BHV-instructeurs met praktijkervaring.">

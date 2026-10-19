@@ -2,7 +2,7 @@
 // vervangen door passende BeginBHV-copy. Pas aan waar nodig.
 
 export const clientReview = {
-  name: 'Cuckie in Amsterdam - De Amstel Business group',
+  name: 'Voorbeeldbedrijf - Amsterdam',
   logo: '',
   quote:
     '“Dennis heeft ons hele team in één dag BHV-klaar gemaakt. Geen droge theorie maar echte scenario’s in onze eigen zaak: een collega die onwel wordt, een vetbrand in de keuken, de ontruiming via de achteruitgang. Iedereen ging naar huis met het gevoel dat ze het ook écht kunnen. De planning was flexibel en het certificaat hadden we dezelfde week binnen.”',

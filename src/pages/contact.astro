@@ -41,6 +41,10 @@ import { funnel } from '../data/content.js';
   address a:hover { text-decoration: underline; }
   .ct-bar { height: 60.3px; background: var(--c-red); }
   .ct-funnel { min-width: 0; }
+  /* funnel donkerrood zodat hij afsteekt tegen de koraalrode hero (Loom 3) */
+  .ct-funnel :global(.funnel) { background: var(--c-red-dark); color: var(--c-white); }
+  .ct-funnel :global(.f-dots span) { background: rgba(255,255,255,.45); }
+  .ct-funnel :global(.f-dots span.on) { background: var(--c-white); }
   @media (max-width: 1250px) { .ct-stage { grid-template-columns: 1fr; padding: 90px var(--gutter) 40px; } }
   @media (max-width: 700px) { h1 { font-size: 30px; } .ct-stage { padding-top: 40px; } }
 </style>
