@@ -1,0 +1,37 @@
+---
+// "Waarom BeginBHV" met vier redenen (KAN-46). Data in src/data/home.js.
+import { whyUs } from '../data/home.js';
+const icons = {
+  person: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  badge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5 7 22l5-2.5L17 22l-1.5-7.5"/><path d="m9.5 9 1.8 1.8L14.5 7.5"/></svg>',
+  group: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M2.5 20c0-3.5 2.5-6 5.5-6s5.5 2.5 5.5 6"/><path d="M14 20c0-2.8 1.5-5 3.5-5s4 2.2 4 5"/></svg>',
+};
+---
+<section class="why" aria-labelledby="why-title">
+  <div class="container">
+    <h2 id="why-title">Waarom BeginBHV?</h2>
+    <div class="why-grid">
+      {whyUs.map((w, i) => (
+        <article class="why-card reveal" style={`transition-delay:${i * 100}ms`}>
+          <span class="why-icon" set:html={icons[w.icon]} />
+          <h3>{w.title}</h3>
+          <p>{w.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why { background: linear-gradient(180deg, #fff 0%, rgba(255,0,0,.06) 100%); padding: 72px 0 80px; }
+  .why h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.2; margin: 0 0 40px; text-align: center; }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .why-card { background: var(--c-white); border-radius: var(--r-lg); box-shadow: var(--sh-card); padding: 28px 24px 30px; border-top: 4px solid var(--c-red); }
+  .why-icon { display: block; width: 44px; height: 44px; color: var(--c-red); margin-bottom: 14px; }
+  .why-icon :global(svg) { width: 100%; height: 100%; }
+  .why-card h3 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-h6); margin: 0 0 8px; line-height: 1.2; }
+  .why-card p { margin: 0; font-weight: 200; line-height: 1.6; }
+  @media (max-width: 1000px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .why { padding: 56px 0 64px; } .why-grid { grid-template-columns: 1fr; } }
+</style>

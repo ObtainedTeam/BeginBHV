@@ -1,0 +1,56 @@
+---
+// Google-reviews widget (KAN-46). Haalt /api/reviews op; zonder configuratie blijft de sectie verborgen.
+// Zodra GOOGLE_PLACES_KEY en GOOGLE_PLACE_ID in Vercel staan, verschijnt hij vanzelf.
+---
+<section class="gr" aria-labelledby="gr-title" data-greviews hidden>
+  <div class="container">
+    <div class="gr-head">
+      <span class="gr-badge" aria-hidden="true">★</span>
+      <div>
+        <h2 id="gr-title">Reviews op Google</h2>
+        <p class="gr-score"><span class="gr-stars" aria-hidden="true"></span><strong data-rating></strong> <span data-count></span></p>
+      </div>
+      <a class="btn btn-small gr-btn" data-url href="#" target="_blank" rel="noopener">Bekijk op Google</a>
+    </div>
+    <div class="gr-grid" data-list></div>
+  </div>
+</section>
+
+<style>
+  .gr { background: var(--c-white); padding: 64px 0 72px; }
+  .gr-head { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+  .gr-badge { width: 48px; height: 48px; border-radius: 50%; background: var(--c-red); color: #fff; display: grid; place-items: center; font-size: 24px; box-shadow: var(--sh-btn); }
+  .gr-head h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h3); margin: 0; line-height: 1.2; }
+  .gr-score { margin: 4px 0 0; display: flex; align-items: center; gap: 8px; font-weight: 200; }
+  .gr-stars { color: #f5b301; letter-spacing: 2px; font-size: 18px; }
+  .gr-btn { margin-left: auto; }
+  .gr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .gr-card { background: var(--c-light); border-radius: var(--r-lg); padding: 20px 22px; box-shadow: var(--sh-card); }
+  .gr-who { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .gr-who img { width: 36px; height: 36px; border-radius: 50%; }
+  .gr-who b { font-family: var(--f-head); font-weight: 700; display: block; }
+  .gr-who small { color: #666; }
+  .gr-card p { margin: 6px 0 0; font-weight: 200; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+  @media (max-width: 900px) { .gr-grid { grid-template-columns: 1fr; } .gr-btn { margin-left: 0; } }
+</style>
+
+<script>
+  const sec = document.querySelector<HTMLElement>('[data-greviews]');
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
+  const stars = (n: number) => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
+  if (sec) fetch('/api/reviews').then((r) => r.json()).then((d) => {
+    if (!d?.configured || d.error || !d.reviews?.length) return;
+    const attr = [...sec.attributes].map((a) => a.name).find((n) => n.startsWith('data-astro-cid')) ?? '';
+    sec.querySelector('[data-rating]')!.textContent = String(d.rating).replace('.', ',');
+    sec.querySelector('[data-count]')!.textContent = `op basis van ${d.count} reviews`;
+    sec.querySelector('.gr-stars')!.textContent = stars(d.rating);
+    if (d.url) sec.querySelector<HTMLAnchorElement>('[data-url]')!.href = d.url;
+    sec.querySelector('[data-list]')!.innerHTML = d.reviews.map((r: any) => `
+      <article class="gr-card" ${attr}>
+        <div class="gr-who" ${attr}>${r.photo ? `<img src="${esc(r.photo)}" alt="" loading="lazy" referrerpolicy="no-referrer" ${attr}>` : ''}<span><b ${attr}>${esc(r.name)}</b><small ${attr}>${esc(r.when)}</small></span></div>
+        <span class="gr-stars" aria-label="${r.rating} van 5" ${attr}>${stars(r.rating)}</span>
+        <p ${attr}>${esc(r.text)}</p>
+      </article>`).join('');
+    sec.hidden = false;
+  }).catch(() => {});
+</script>

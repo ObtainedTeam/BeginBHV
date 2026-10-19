@@ -1,0 +1,39 @@
+---
+// Cijferbalk met tellende getallen (KAN-46). Demo-waarden in src/data/home.js.
+import { stats } from '../data/home.js';
+const fmt = (s) => (s.decimals ? s.value.toFixed(s.decimals).replace('.', ',') : s.value.toLocaleString('nl-NL'));
+---
+<section class="stats" aria-label="BeginBHV in cijfers" data-stats>
+  <div class="container stats-grid">
+    {stats.map((s) => (
+      <div class="stat">
+        <span class="stat-v"><span class="stat-pre">{s.prefix ?? ''}</span><span class="stat-n" data-count={s.value} data-decimals={s.decimals ?? 0}>{fmt(s)}</span><span class="stat-suf">{s.suffix ?? ''}</span></span>
+        <span class="stat-l">{s.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stats { background: var(--c-red-dark); color: #fff; padding: 40px 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+  .stat-v { display: block; font-family: var(--f-head); font-weight: 900; font-size: var(--t-h1); line-height: 1; text-shadow: var(--sh-text); font-variant-numeric: tabular-nums; }
+  .stat-l { display: block; margin-top: 8px; font-size: var(--t-md); font-weight: 200; opacity: .92; }
+  @media (max-width: 760px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .stat-v { font-size: var(--t-h3); } }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-stats]');
+  const nums = [...document.querySelectorAll<HTMLElement>('.stat-n')];
+  const fmt = (v: number, d: number) => d ? v.toFixed(d).replace('.', ',') : Math.round(v).toLocaleString('nl-NL');
+  const run = () => nums.forEach((el) => {
+    const to = Number(el.dataset.count), d = Number(el.dataset.decimals), t0 = performance.now(), dur = 1600;
+    const tick = (t: number) => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(to * e, d); if (p < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  });
+  if (root && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    nums.forEach((el) => { el.textContent = fmt(0, Number(el.dataset.decimals)); });
+    const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { run(); io.disconnect(); } }, { threshold: .4 });
+    io.observe(root);
+  }
+</script>

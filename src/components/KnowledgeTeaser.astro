@@ -1,0 +1,41 @@
+---
+// Kennisbank-teaser: drie artikelen (KAN-46).
+import { kennisbank } from '../data/kennisbank.js';
+const items = kennisbank.slice(0, 3);
+---
+<section class="kb" aria-labelledby="kb-title">
+  <div class="container">
+    <div class="kb-head">
+      <h2 id="kb-title">Uit de kennisbank</h2>
+      <a class="kb-more" href="/kennisbank">Alle artikelen</a>
+    </div>
+    <div class="kb-grid">
+      {items.map((a, i) => (
+        <a class="kb-card reveal" href={`/kennisbank/${a.slug}`} style={`transition-delay:${i * 100}ms`}>
+          <img src={a.image} alt="" width="440" height="260" loading="lazy" />
+          <div class="kb-body">
+            <h3>{a.title}</h3>
+            <p>{a.description}</p>
+            <span class="kb-link">Lees verder</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .kb { background: var(--c-light); padding: 72px 0 80px; }
+  .kb-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+  .kb-head h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.2; margin: 0; }
+  .kb-more { font-family: var(--f-head); font-weight: 700; color: var(--c-red-dark); white-space: nowrap; }
+  .kb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .kb-card { display: flex; flex-direction: column; background: var(--c-white); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); color: inherit; transition: transform .3s ease, box-shadow .3s ease; }
+  .kb-card:hover { transform: translateY(-4px); box-shadow: var(--sh-card-strong); }
+  .kb-card img { width: 100%; aspect-ratio: 440 / 260; object-fit: cover; }
+  .kb-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+  .kb-body h3 { font-family: var(--f-head); font-weight: 800; font-size: var(--t-h6); margin: 0 0 8px; line-height: 1.2; }
+  .kb-body p { margin: 0 0 16px; font-weight: 200; line-height: 1.6; flex: 1; }
+  .kb-link { font-family: var(--f-head); font-weight: 700; color: var(--c-red-dark); }
+  @media (max-width: 900px) { .kb-grid { grid-template-columns: 1fr; } .kb { padding: 56px 0 64px; } }
+</style>

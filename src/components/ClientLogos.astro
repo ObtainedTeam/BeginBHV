@@ -1,0 +1,23 @@
+---
+// Klantlogo-balk "Zij gingen je voor" (KAN-46). Logo's in src/data/home.js; nu placeholders.
+import { clientLogos } from '../data/home.js';
+---
+<section class="logos" aria-labelledby="logos-title">
+  <div class="container">
+    <h2 id="logos-title">Zij gingen je voor</h2>
+    <ul class="logos-row">
+      {clientLogos.map((l, i) => (
+        <li class="reveal" style={`transition-delay:${i * 60}ms`}><img src={l.src} alt={l.name} width="180" height="60" loading="lazy" /></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .logos { background: var(--c-white); padding: 48px 0 56px; text-align: center; }
+  .logos h2 { font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); color: #555; margin: 0 0 24px; letter-spacing: .02em; }
+  .logos-row { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 40px; }
+  .logos-row img { height: 52px; width: auto; max-width: 160px; object-fit: contain; filter: grayscale(1); opacity: .8; transition: filter .25s, opacity .25s; }
+  .logos-row li:hover img { filter: none; opacity: 1; }
+  @media (max-width: 700px) { .logos-row { gap: 16px 24px; } .logos-row img { height: 40px; max-width: 120px; } }
+</style>

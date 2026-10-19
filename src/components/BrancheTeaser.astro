@@ -1,0 +1,38 @@
+---
+// "Voor welke branche" teaser: zes tegels naar de branchepagina's (KAN-46).
+import { branches } from '../data/branches.js';
+---
+<section class="br" aria-labelledby="br-title">
+  <div class="container">
+    <div class="br-head">
+      <h2 id="br-title">BHV voor jouw branche</h2>
+      <p>Elke werkvloer heeft eigen risico’s. Daarom stemmen we de scenario’s af op jouw sector.</p>
+    </div>
+    <div class="br-grid">
+      {branches.map((b, i) => (
+        <a class={`br-tile reveal ${i % 2 ? 'from-right' : 'from-left'}`} href={`/branches/${b.slug}`} style={`transition-delay:${i * 70}ms`}>
+          <img src={b.image} alt="" width="440" height="300" loading="lazy" />
+          <span class="br-label">{b.short}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      ))}
+    </div>
+    <a class="btn btn-small br-all" href="/branches">Alle branches</a>
+  </div>
+</section>
+
+<style>
+  .br { background: var(--c-white); padding: 72px 0 80px; }
+  .br-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+  .br-head h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h2); line-height: 1.2; margin: 0 0 10px; }
+  .br-head p { margin: 0; font-size: var(--t-lg); font-weight: 200; line-height: 1.5; }
+  .br-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .br-tile { position: relative; display: block; aspect-ratio: 440 / 300; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-card); }
+  .br-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .br-tile:hover img { transform: scale(1.05); }
+  .br-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.6) 100%); }
+  .br-label { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; color: #fff; font-family: var(--f-head); font-weight: 800; font-size: var(--t-h6); display: flex; align-items: center; justify-content: space-between; text-shadow: var(--sh-text); }
+  .br-label svg { background: var(--c-red); border-radius: 50%; padding: 6px; width: 32px; height: 32px; box-shadow: var(--sh-btn); }
+  .br-all { display: table; margin: 36px auto 0; }
+  @media (max-width: 900px) { .br-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .br { padding: 56px 0 64px; } .br-grid { grid-template-columns: 1fr; gap: 16px; } }
+</style>

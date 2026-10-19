@@ -9,6 +9,13 @@ import National from '../components/National.astro';
 import Funnel from '../components/Funnel.astro';
 import CourseHero from '../components/CourseHero.astro';
 import CourseDetails from '../components/CourseDetails.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ClientLogos from '../components/ClientLogos.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
+import WhyUs from '../components/WhyUs.astro';
+import BrancheTeaser from '../components/BrancheTeaser.astro';
+import KnowledgeTeaser from '../components/KnowledgeTeaser.astro';
 import { getCourse } from '../data/courses.js';
 import { clientReview, studentReviews, faq, homeInfoCards, funnelSectionTitle } from '../data/content.js';
 
@@ -56,6 +63,9 @@ const ploegleider = getCourse('bhv-basis');
     </div>
   </section>
 
+  <!-- KAN-46: zo werkt het -->
+  <HowItWorks />
+
   <!-- BHV3: funnel + Maak kennis met Dennis -->
   <section class="funnel-sec">
     <div class="container">
@@ -79,6 +89,9 @@ const ploegleider = getCourse('bhv-basis');
     </div>
     <EcgDivider class="fs-ecg" />
   </section>
+
+  <!-- KAN-46: cijferbalk (demo-waarden) -->
+  <StatsBar />
 
   <!-- BHV4: reviews -->
   <section class="reviews" aria-labelledby="rv-title">
@@ -105,11 +118,18 @@ const ploegleider = getCourse('bhv-basis');
         </div>
       </div>
     </div>
-    <div class="rv-band"></div>
   </section>
+
+  <!-- KAN-46: Google-reviews (verschijnt zodra de koppeling in Vercel staat) + klantlogo's -->
+  <GoogleReviews />
+  <ClientLogos />
 
   <!-- Page: landelijk actief + FAQ + contact -->
   <National />
+
+  <!-- KAN-46: waarom + branches -->
+  <WhyUs />
+  <BrancheTeaser />
 
   <section class="faq-section" aria-labelledby="faq-title">
     <div class="container">
@@ -134,6 +154,9 @@ const ploegleider = getCourse('bhv-basis');
       </div>
     </div>
   </section>
+
+  <!-- KAN-46: kennisbank-teaser -->
+  <KnowledgeTeaser />
 
   <!-- BHV5 + Training details: uitgelichte cursus -->
   <CourseHero course={ploegleider} />
@@ -204,7 +227,6 @@ const ploegleider = getCourse('bhv-basis');
   .rv-dots button[aria-selected='true'] { background: var(--c-white); opacity: 1; }
   .rv-slide { animation: fade .4s ease; }
   @keyframes fade { from { opacity: 0; } }
-  .rv-band { height: 114px; background: var(--c-light); }
 
   /* ---------- Page: FAQ ---------- */
   .faq-section { background: linear-gradient(180deg, rgba(255,0,0,.04) 0%, rgba(255,0,0,.07) 100%), #fff; padding: 20px 0 126px; }
