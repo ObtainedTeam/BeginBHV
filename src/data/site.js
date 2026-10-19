@@ -18,7 +18,7 @@ export const site = {
   description:
     'BeginBHV verzorgt erkende BHV-trainingen door heel Nederland. Eendaagse praktijkcursussen op onze locatie of bij u op het bedrijf, met certificaat.',
   // GA4: vul het measurement-ID in (bijv. G-XXXXXXXXXX). Leeg = geen tracking.
-  ga4: 'G-RLFGBMFXEH',
+  ga4: 'G-B21ESPKSZQ',
 };
 
 // Hoofdmenu met dropdowns. `children` = submenu; het hoofditem zelf linkt naar de overzichtspagina.
