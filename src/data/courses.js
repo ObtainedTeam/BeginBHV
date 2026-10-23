@@ -97,7 +97,7 @@ export const courses = [
     title: 'Herhaling BHV (NIBHV)',
     subtitle: '+ e-learning',
     short: 'NIBHV herhaling',
-    image: '/images/foto-aed.webp',
+    image: '/images/sfeer-reanimatie-aed.webp',
     icon: '/images/icon-bhv-nibhv.png',
     blurb: 'Verleng je NIBHV-diploma: e-learning vooraf en een praktijkdagdeel van circa vier uur met examen, zodat je registratie in het NIBHV-register doorloopt.',
     bullets: ['E-learning + dagdeel (circa 4 uur)', 'Verlenging NIBHV-diploma'],

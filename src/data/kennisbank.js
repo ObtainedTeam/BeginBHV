@@ -7,7 +7,7 @@ export const kennisbank = [
     title: 'Wat is BHV?',
     metaTitle: 'Wat is BHV? Bedrijfshulpverlening uitgelegd',
     description: 'Wat BHV precies inhoudt, wat een BHV’er doet en waarom elk bedrijf in Nederland bedrijfshulpverlening moet regelen.',
-    image: '/images/foto-reanimatie-uitleg.webp',
+    image: '/images/sfeer-ehbo-cursus.webp',
     intro: 'BHV staat voor bedrijfshulpverlening: de hulp die collega’s verlenen bij een ongeval, brand of ontruiming totdat de professionele hulpdiensten er zijn.',
     course: 'bhv-basis',
     sections: [
@@ -36,7 +36,7 @@ export const kennisbank = [
     title: 'Het BHV-plan',
     metaTitle: 'BHV-plan opstellen: wat erin moet en hoe je het bijhoudt',
     description: 'Een BHV-plan beschrijft wie wat doet bij een noodsituatie. Wat er in een goed BHV-plan staat en hoe je het praktisch houdt.',
-    image: '/images/foto-ehbo-detail.webp',
+    image: '/images/sfeer-blusser.webp',
     intro: 'Een BHV-plan is de uitwerking van je bedrijfshulpverlening op papier: wie zijn de BHV’ers, hoe wordt gealarmeerd, waar liggen de middelen en hoe verloopt een ontruiming. Het is geen wettelijk verplicht document, maar het is wel de enige manier om aan te tonen dat je BHV op orde is.',
     course: 'ontruimingsoefening',
     sections: [
@@ -50,7 +50,7 @@ export const kennisbank = [
     title: 'RI&E en BHV',
     metaTitle: 'RI&E en BHV: hoe de risico-inventarisatie je BHV bepaalt',
     description: 'De risico-inventarisatie en -evaluatie (RI&E) is de basis voor je BHV-organisatie. Zo gebruik je de RI&E om het aantal BHV’ers en de middelen te bepalen.',
-    image: '/images/foto-blusser-detail.webp',
+    image: '/images/sfeer-blusoefening.webp',
     intro: 'Elke werkgever is verplicht een RI&E te hebben: een overzicht van de risico’s op de werkvloer en een plan van aanpak. De RI&E bepaalt wat je BHV-organisatie moet kunnen.',
     course: 'ontruimingsoefening',
     sections: [
@@ -78,7 +78,7 @@ export const kennisbank = [
     title: 'AED op de werkvloer',
     metaTitle: 'AED op de werkvloer: verplicht, nodig en hoe je ermee omgaat',
     description: 'Een AED is niet verplicht maar wel verstandig. Wat een AED doet, waar je hem ophangt en hoe BHV’ers ermee leren werken.',
-    image: '/images/foto-aed.webp',
+    image: '/images/sfeer-reanimatie-aed.webp',
     intro: 'Een AED (automatische externe defibrillator) geeft bij een hartstilstand een elektrische schok die het hart weer in het juiste ritme kan brengen. Gecombineerd met reanimatie verdubbelt het de overlevingskans.',
     course: 'bhv-basis',
     sections: [

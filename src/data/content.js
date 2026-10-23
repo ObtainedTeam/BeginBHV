@@ -125,14 +125,14 @@ export const homeInfoCards = [
     title: 'BHV certificaat en BHV pasje',
     html: 'Na het volgen van de BHV cursus ontvang je een <a href="/cursussen/bhv-basis">BHV certificaat</a> en BHV pasje. De BHV certificaat en BHV pasje is 1 jaar geldig.',
     href: '/cursussen/bhv-basis',
-    image: '/images/foto-ehbo.webp',
-    alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
+    image: '/images/sfeer-ehbo-cursus.webp',
+    alt: 'Collega’s tijdens een EHBO-cursus met verbanddoos',
   },
   {
     title: 'Plan nu je BHV-cursus',
     html: 'Binnen één werkdag reactie. Je ontvangt een factuur, de getoonde tarieven zijn alle kosten.',
     href: '/cursussen',
-    image: '/images/foto-blusser.webp',
+    image: '/images/sfeer-blusoefening.webp',
     alt: 'Blusoefening met een brandblusser',
   },
   {
