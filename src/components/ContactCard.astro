@@ -89,6 +89,12 @@ const fields = [
   .wide .right label { margin-top: 26px; }
   .wide textarea { height: 88px; border-radius: var(--r-md); padding: 6px 9px; font-size: var(--t-xs); }
   .wide .right .btn { align-self: center; margin-top: 19px; }
+  @media (max-width: 520px) {
+    .wide .cols { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .wide input { height: 42px; font-size: 16px; }
+    .wide textarea { height: 110px; font-size: 16px; }
+    .wide .right label { margin-top: 0; }
+  }
 
   /* narrow: herontworpen contactblok (home naast FAQ) */
   .narrow { width: 100%; max-width: 480px; padding: 28px 28px 24px; border-radius: 16px; text-align: left; }

@@ -36,7 +36,7 @@ const { course } = Astro.props;
 
 <style>
   .ds { background: var(--c-white); }
-  .ds-inner { display: grid; grid-template-columns: 1fr 715px; gap: 40px; padding-top: 29px; padding-bottom: 20px; padding-left: max(var(--gutter), 61px); padding-right: max(var(--gutter), 56px); min-height: 495px; }
+  .ds-inner { display: grid; grid-template-columns: minmax(373px, 1fr) minmax(0, 715px); gap: 40px; padding-top: 29px; padding-bottom: 20px; padding-left: max(var(--gutter), 61px); padding-right: max(var(--gutter), 56px); min-height: 495px; }
   @media (min-width: 1420px) { .ds-inner { padding-left: 61px; padding-right: 56px; } }
   .ds-price { font-family: var(--f-head); font-weight: 800; font-size: var(--t-display); line-height: 1.6; }
   .ds-price span { font-size: var(--t-h3); }
@@ -46,19 +46,20 @@ const { course } = Astro.props;
   .ds-plan { margin: 20px 0 0 17px; }
   .ds-card { position: relative; width: 373px; margin-top: 21px; background: var(--c-light); border-radius: var(--r-lg); box-shadow: var(--sh-card-strong); padding: 15px 18px 22px 18px; }
   .ds-card .ds-card-title { margin: 0; font-family: var(--f-head); font-weight: 700; font-size: var(--t-lg); line-height: 1.9; }
-  .ds-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); width: 270px; line-height: 1.35; margin: 4px 0 16px; }
+  .ds-card p { font-family: var(--f-head); font-weight: 300; font-size: var(--t-sm); width: 270px; max-width: 100%; line-height: 1.35; margin: 4px 0 16px; }
   .ds-card .btn-outline { display: flex; width: 100%; }
   .ds-rating { display: flex; align-items: center; gap: 11px; margin: 18px 0 0 -40px; }
   .ds-score { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: var(--c-light); box-shadow: var(--sh-btn); font-family: var(--f-head); font-weight: 900; font-size: var(--t-md); }
   .ds-score-label { font-family: var(--f-head); font-weight: 300; font-size: var(--t-xs); }
-  .ds-specs { border-collapse: collapse; width: 715px; max-width: 100%; align-self: start; margin-top: 56px; font-family: var(--f-head); font-size: var(--t-md); }
+  .ds-specs { border-collapse: collapse; width: 100%; max-width: 715px; align-self: start; margin-top: 56px; font-family: var(--f-head); font-size: var(--t-md); }
   .ds-specs tr:nth-child(odd) { background: var(--c-light); }
   .ds-specs th, .ds-specs td { height: 54.3px; text-align: left; vertical-align: middle; padding: 8px 0; }
   .ds-specs th { font-weight: 700; width: 207px; padding-left: 12.3px; }
   .ds-specs td { font-weight: 300; }
   @media (max-width: 1100px) {
     .ds-inner { grid-template-columns: 1fr; padding-inline: var(--gutter); }
-    .ds-specs { width: 100%; margin-top: 50px; }
+    .ds-specs { width: 100%; max-width: none; margin-top: 50px; }
+    .ds-rating { margin-left: 0; }
   }
   @media (max-width: 700px) { .ds-price { font-size: 32px; } .ds-card { width: 100%; } .ds-card .btn-outline { width: 100%; } .ds-specs th { width: 130px; padding-right: 8px; } .ds-specs td { padding-right: 8px; } }
 </style>

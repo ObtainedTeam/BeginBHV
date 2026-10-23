@@ -47,5 +47,5 @@ const quick = faqGroups.find((g) => g.title === 'Locatie en planning').items.con
   .ks-faq h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h5); margin-bottom: 12px; }
   .ks-all { display: inline-block; margin-top: 14px; font-family: var(--f-head); font-weight: 700; font-size: var(--t-md); color: var(--c-red-dark); }
   .ks-form { position: sticky; top: 24px; }
-  @media (max-width: 1000px) { .ks-inner { grid-template-columns: 1fr; } .ks-form { position: static; } }
+  @media (max-width: 1000px) { .ks-inner { grid-template-columns: minmax(0, 1fr); } .ks-form { position: static; } }
 </style>
