@@ -22,8 +22,8 @@ import { clientReview, studentReviews, faq, homeInfoCards, funnelSectionTitle } 
 const featured = ['bhv-basis', 'bhv-nibhv', 'bhv-herhaling'].map((s) => getCourse(s));
 const packageLines = {
   'bhv-basis': ['E-learning vooraf, in eigen tempo', 'Eerste hulp en reanimatie met AED', 'Beginnende brand blussen', 'Ontruiming begeleiden', 'Erkend certificaat, één jaar geldig'],
-  'bhv-nibhv': ['Alles van Basis BHV', 'Officieel NIBHV examen', 'Landelijk erkend diploma', 'Registratie in NIBHV-register', 'Diploma en pasje inbegrepen'],
-  'bhv-herhaling': ['E-learning: theorie opfrissen', 'Reanimatie en AED oefenen', 'Brand en ontruiming', 'Certificaat één jaar verlengd', 'Nieuw BHV-pasje inbegrepen'],
+  'bhv-nibhv': ['Alles van Basis BHV', 'Officieel NIBHV examen', 'Landelijk erkend diploma', 'Registratie in NIBHV-register', 'Digitaal diploma inbegrepen'],
+  'bhv-herhaling': ['E-learning: theorie opfrissen', 'Reanimatie en AED oefenen', 'Brand en ontruiming', 'Certificaat één jaar verlengd', 'Digitaal certificaat bij verlenging'],
 };
 const ploegleider = getCourse('bhv-basis');
 ---
@@ -74,13 +74,13 @@ const ploegleider = getCourse('bhv-basis');
       <div class="reveal from-left"><Funnel /></div>
       <div class="kennis reveal from-right">
         <div class="kennis-photo">
-          <img src="/images/kennismaken-foto.webp" alt="Dennis, oprichter van BeginBHV" width="389" height="428" loading="lazy" />
+          <img src="/images/kennismaken-foto.webp" alt="Dennis, oprichter van BeginBHV" width="1000" height="1100" loading="lazy" />
         </div>
         <div class="kennis-text">
           <h2>Maak kennis met Dennis!</h2>
-          <p class="tagline">Van vastgoed, naar doet goed.</p>
+          <p class="tagline">Maak van kennis een reflex.</p>
           <blockquote>
-            <p>“Na jaren in het vastgoed wilde ik iets doen dat er écht toe doet. Tijdens een BHV-inzet op een van mijn eigen panden zag ik hoeveel verschil een goed getrainde collega maakt. Sindsdien train ik teams door heel Nederland: praktisch, met realistische scenario’s en zonder onnodige theorie. Mijn doel is simpel: dat iedereen die bij mij een dag heeft gezeten, durft te handelen als het erop aankomt.”</p>
+            <p>“Opgegroeid in een ondernemersfamilie leerde ik al vroeg hoe belangrijk mensen en relaties zijn. Na jaren in sales wilde ik met BeginBHV iets betekenen: mensen niet alleen kennis geven, maar vooral het vertrouwen om te handelen wanneer iedere seconde telt. Praktisch, persoonlijk en met realistische scenario’s. Want BHV draait niet om een certificaat, maar om durven handelen wanneer iemand je nodig heeft.”</p>
           </blockquote>
           <p class="attribution">Dennis, oprichter en cursusleider</p>
         </div>
@@ -172,14 +172,15 @@ const ploegleider = getCourse('bhv-basis');
   .hero-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; z-index: 2; }
   .hero-logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 560px; margin: 0; filter: drop-shadow(0 2px 6px rgba(0,0,0,.45)); }
   .hero-logo img { width: 100%; height: auto; }
-  .hero-cta { position: absolute; left: 1132px; top: 77.7px; }
+  /* Rechtsonder in de video, los van de paginabreedte (ook goed op laptops) */
+  .hero-cta { position: absolute; right: max(var(--gutter), 40px); bottom: 40px; }
 
   /* ---------- BHV2 pakketten (1386 x 552) ---------- */
   .packages { position: relative; height: 600px; background: var(--c-white); }
   .pk-band { position: absolute; left: 0; right: 0; top: -1.3px; height: 43.3px; background: var(--c-red-dark); }
-  .pk-stage { position: relative; width: var(--w-page); max-width: 100%; height: 100%; margin-inline: auto; }
-  .pk { position: absolute; top: 21.7px; width: 316px; padding-top: 62px; }
-  .pk:nth-child(1) { left: 153px; } .pk:nth-child(2) { left: 535px; } .pk:nth-child(3) { left: 917px; }
+  /* Drie kaarten altijd precies in het midden, ongeacht de schermbreedte */
+  .pk-stage { position: relative; display: flex; justify-content: center; gap: 66px; width: 100%; height: 100%; margin-inline: auto; padding: 21.7px var(--gutter) 0; }
+  .pk { position: relative; width: 316px; flex: 0 0 316px; padding-top: 62px; align-self: flex-start; }
   .pk-circle { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 124px; height: 124px; border-radius: 50%; background: var(--c-white); z-index: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px -6px rgba(0,0,0,.25); }
   .pk-circle img { width: 84px; height: 84px; object-fit: contain; }
   .pk-card { height: 404px; background: var(--c-light); border-radius: 14px; box-shadow: var(--sh-card-strong); padding: 78px 26px 0 28px; }
@@ -198,7 +199,7 @@ const ploegleider = getCourse('bhv-basis');
   .fs-grid :global(.funnel) { width: 100%; }
   .kennis { display: grid; grid-template-columns: 1fr; gap: 26px; }
   .kennis-photo { width: 100%; height: 300px; border-radius: 22px; overflow: hidden; box-shadow: var(--sh-card-strong); }
-  .kennis-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .kennis-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
   .kennis-text { margin-top: 0; }
   .kennis-text h2 { font-family: var(--f-head); font-weight: 900; font-size: var(--t-h3); line-height: 1.2; }
   .tagline { font-family: var(--f-head); font-weight: 400; font-size: var(--t-h5); line-height: 1.15; margin-top: 8px; color: var(--c-red-dark); }
@@ -250,8 +251,7 @@ const ploegleider = getCourse('bhv-basis');
     .hero-logo { width: 300px; order: 1; margin: 30px 0 20px; }
     .hero-cta { order: 4; margin: 24px 0 0; }
     .packages { height: auto; padding-bottom: 60px; }
-    .pk-stage { display: flex; flex-wrap: wrap; justify-content: center; gap: 60px 24px; padding: 0 var(--gutter); }
-    .pk, .pk:nth-child(1), .pk:nth-child(2), .pk:nth-child(3) { position: relative; left: auto; top: 21.7px; }
+    .pk-stage { flex-wrap: wrap; gap: 60px 24px; }
     .fs-grid { grid-template-columns: 1fr; }
     .kennis-photo { height: 260px; }
     :global(.fs-ecg) { margin-top: 20px; }

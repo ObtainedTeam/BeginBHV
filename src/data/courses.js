@@ -23,7 +23,7 @@ export const courses = [
     ],
     description: [
       'Je begint thuis met de e-learning, zodat de theorie al zit als je bij ons binnenstapt. Op de praktijkdag oefen je reanimatie met AED, eerste hulp, het blussen van een beginnende brand en een ontruiming in realistische scenario’s. Geen dag luisteren, maar doen.',
-      'De cursus voldoet aan de eisen uit de Arbowet en is geschikt voor iedereen zonder eerdere BHV-ervaring. Na afloop ontvang je een erkend BHV-certificaat en BHV-pasje. Ook beschikbaar in het Engels en Spaans.',
+      'De cursus voldoet aan de eisen uit de Arbowet en is geschikt voor iedereen zonder eerdere BHV-ervaring. Na afloop ontvang je een digitaal BHV-certificaat of BHV-pasje (voor het pasje rekenen we circa € 8 p.p. extra). Ook beschikbaar in het Engels en Spaans.',
     ],
     content: ['E-learning: theorie in eigen tempo', 'Levensreddende eerste handelingen', 'Reanimatie en AED', 'Beginnende brand bestrijden', 'Ontruiming en communicatie'],
     specs: {
@@ -46,17 +46,17 @@ export const courses = [
     image: '/images/foto-blussen-actie.webp',
     icon: '/images/icon-bhv-ploegleider.png',
     featured: true,
-    blurb: 'Houd je BHV-kennis actueel: e-learning vooraf en een praktijkdag waarin je alle vaardigheden opfrist en je certificaat verlengt.',
-    bullets: ['E-learning + 1 praktijkdag', 'Verlenging BHV-certificaat'],
+    blurb: 'Houd je BHV-kennis actueel: e-learning vooraf en een praktijkdagdeel van circa vier uur waarin je alle vaardigheden opfrist en je certificaat verlengt.',
+    bullets: ['E-learning + dagdeel (circa 4 uur)', 'Verlenging BHV-certificaat'],
     price: '125,00',
     description: [
-      'Een BHV-certificaat is één jaar geldig. Tijdens de herhaling fris je via de e-learning de theorie op en oefen je op de praktijkdag reanimatie, AED, verbandleer, brandbestrijding en ontruiming. De nadruk ligt op doen, niet op luisteren.',
-      'Na afloop wordt je certificaat met een jaar verlengd en ontvang je een nieuw BHV-pasje.',
+      'Een BHV-certificaat is één jaar geldig. Tijdens de herhaling fris je via de e-learning de theorie op en oefen je tijdens het praktijkdagdeel reanimatie, AED, verbandleer, brandbestrijding en ontruiming. De nadruk ligt op doen, niet op luisteren.',
+      'Na afloop ontvang je een nieuw certificaat, dat weer één jaar geldig is.',
     ],
     content: ['E-learning: opfrissen theorie', 'Eerste hulp en reanimatie met AED', 'Brandbestrijding', 'Ontruimingsoefening'],
     specs: {
-      Duur: 'E-learning + 1 praktijkdag',
-      Tijdsduur: '09:00 - 16:00',
+      Duur: 'E-learning + praktijkdagdeel',
+      Tijdsduur: 'Circa 4 uur',
       Studiebelasting: 'Circa 1 uur e-learning vooraf',
       Vooropleiding: 'Geldig of maximaal 6 maanden verlopen BHV-certificaat',
       Certificaat: 'Verlenging BHV-certificaat met één jaar',
@@ -99,17 +99,17 @@ export const courses = [
     short: 'NIBHV herhaling',
     image: '/images/foto-aed.webp',
     icon: '/images/icon-bhv-nibhv.png',
-    blurb: 'Verleng je NIBHV-diploma: e-learning vooraf en een praktijkdag met examen, zodat je registratie in het NIBHV-register doorloopt.',
-    bullets: ['E-learning + 1 praktijkdag', 'Verlenging NIBHV-diploma'],
+    blurb: 'Verleng je NIBHV-diploma: e-learning vooraf en een praktijkdagdeel van circa vier uur met examen, zodat je registratie in het NIBHV-register doorloopt.',
+    bullets: ['E-learning + dagdeel (circa 4 uur)', 'Verlenging NIBHV-diploma'],
     price: '185,00',
     description: [
-      'Het NIBHV-diploma is één jaar geldig. In de herhaling fris je de theorie op via de e-learning en oefen je op de praktijkdag alle vaardigheden, afgesloten met het NIBHV-examen.',
+      'Het NIBHV-diploma is één jaar geldig. In de herhaling fris je de theorie op via de e-learning en oefen je tijdens het praktijkdagdeel alle vaardigheden, afgesloten met het NIBHV-examen.',
       'Na afloop wordt je diploma verlengd en blijft je registratie in het NIBHV-register actief.',
     ],
     content: ['E-learning: opfrissen theorie', 'Eerste hulp en reanimatie met AED', 'Brandbestrijding en ontruiming', 'NIBHV-examen'],
     specs: {
-      Duur: 'E-learning + 1 praktijkdag',
-      Tijdsduur: '09:00 - 16:00',
+      Duur: 'E-learning + praktijkdagdeel',
+      Tijdsduur: 'Circa 4 uur',
       Studiebelasting: 'Circa 1 uur e-learning vooraf',
       Vooropleiding: 'Geldig of maximaal 6 maanden verlopen NIBHV-diploma',
       Certificaat: 'Verlenging NIBHV-diploma met één jaar',
@@ -163,7 +163,7 @@ export const courses = [
     ],
     content: ['Voorbereiding en scenario', 'Begeleide oefening op locatie', 'Waarneming en tijdmeting', 'Evaluatie met het team', 'Schriftelijk verslag'],
     specs: {
-      Duur: 'Circa een dagdeel',
+      Duur: 'Circa 2 uur',
       Locatie: 'Op uw eigen locatie',
       Vooropleiding: 'Geen',
       Certificaat: 'Verslag en evaluatie',
@@ -183,5 +183,4 @@ export const travelCost = '€ 0,33 per kilometer naar de locatie';
 
 export const getCourse = (slug) => courses.find((c) => c.slug === slug);
 
-// Datum-badge op de cursuskaarten (eerstvolgende startdatum). Voorbeeldwaarde.
-export const nextDate = { day: '13', month: 'NOV' };
+

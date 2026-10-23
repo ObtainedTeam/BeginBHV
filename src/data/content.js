@@ -129,8 +129,8 @@ export const homeInfoCards = [
     alt: 'BHV-cursus in een klaslokaal met reanimatieoefening',
   },
   {
-    title: 'Boek nu een BHV cursus en betaal achteraf',
-    html: 'Het is mogelijk om de BHV cursus via iDeal, vooraf- of achteraf te betalen. De getoonde tarieven zijn alle kosten.',
+    title: 'Plan nu je BHV-cursus',
+    html: 'Binnen één werkdag reactie. Je ontvangt een factuur, de getoonde tarieven zijn alle kosten.',
     href: '/cursussen',
     image: '/images/foto-blusser.webp',
     alt: 'Blusoefening met een brandblusser',
@@ -155,8 +155,8 @@ export const faqGroups = [
   ]},
   { title: 'Certificaat en geldigheid', items: [
     { q: 'Hoe lang is een BHV-certificaat geldig?', a: 'Eén jaar. Met de jaarlijkse herhalingscursus verleng je de geldigheid telkens met een jaar.' },
-    { q: 'Wanneer ontvang ik mijn certificaat?', a: 'Binnen een week na de cursus, digitaal en als pasje per post.' },
-    { q: 'Is het certificaat erkend?', a: 'Ja. BeginBHV is Kiwa-gecertificeerd en aangesloten bij BVBN. Het certificaat voldoet aan de eisen van de Arbowet en de Arbeidsinspectie.' },
+    { q: 'Wanneer ontvang ik mijn certificaat?', a: 'Binnen een week na de cursus, digitaal. Een BHV-pasje kan ook, daarvoor rekenen we circa € 8 per deelnemer extra.' },
+    { q: 'Is het certificaat erkend?', a: 'Ja. BeginBHV is een gecertificeerd opleider met kwaliteitskeurmerk van NIBHV. Het certificaat is geldig voor de Arbo-inspectie en je verzekeraar.' },
     { q: 'Wat is NIBHV en is het verplicht?', a: 'NIBHV is een keurmerk met een landelijk erkend diploma en examen. Het is niet wettelijk verplicht, maar sommige opdrachtgevers vragen erom. Wij bieden beide varianten.' },
     { q: 'Mijn certificaat is verlopen. Moet ik de hele cursus opnieuw doen?', a: 'Is het certificaat maximaal zes maanden verlopen, dan volstaat de herhalingscursus. Daarna adviseren we de volledige cursus.' },
   ]},
@@ -174,7 +174,7 @@ export const faqGroups = [
   ]},
   { title: 'Kosten en betalen', items: [
     { q: 'Wat kost een BHV-cursus?', a: 'Basis BHV € 150, Herhaling BHV € 125, Basis BHV (NIBHV) € 225 en Herhaling BHV (NIBHV) € 185 per deelnemer, inclusief e-learning. Engelstalig € 180 en Spaanstalig € 220. Incompany rekenen we per groep: Basis BHV € 1.250 (tot 8) of € 1.650 (8 tot 12), NIBHV € 1.800 of € 2.700, plus € 0,33 per kilometer voorrijkosten. Alle prijzen exclusief btw.' },
-    { q: 'Hoe kan ik betalen?', a: 'Via iDEAL, vooraf op factuur of achteraf binnen 14 dagen na de cursus.' },
+    { q: 'Hoe kan ik betalen?', a: 'Je ontvangt een factuur. De getoonde tarieven zijn alle kosten.' },
     { q: 'Is BHV-training aftrekbaar?', a: 'Als werkgever zijn de kosten bedrijfskosten. Vraag je boekhouder naar de mogelijkheden binnen de werkkostenregeling.' },
   ]},
 ];

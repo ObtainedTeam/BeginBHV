@@ -12,7 +12,7 @@ export const branches = [
     risks: ['Verslikking en verstikking bij baby’s en peuters', 'Koortsstuipen, allergische reacties en vallen', 'Ontruimen van groepen kinderen die niet zelf kunnen lopen', 'Wettelijk: altijd één volwassene met kinder-EHBO per locatie (Wet IKK)'],
     sections: [
       { h: 'Wat je leert', list: ['Reanimatie van baby’s en kinderen, met AED', 'Verslikking verhelpen bij elke leeftijd', 'Eerste hulp bij de meest voorkomende kinderongevallen', 'Ontruimen met evacuatiebedjes, wandeltouwen en verzamelprotocol', 'Alarmeren en communiceren met ouders en hulpdiensten'] },
-      { h: 'Op jullie locatie', p: ['We trainen het liefst in jullie eigen pand: zo oefen je de ontruiming via de echte uitgangen, met de echte bedjes. Vanaf vijf deelnemers komen we naar jullie toe, ook ’s avonds of op een studiedag. Het certificaat voldoet aan de eisen van de GGD-inspectie.'] },
+      { h: 'Op jullie locatie', p: ['We trainen het liefst in jullie eigen pand: zo oefen je de ontruiming via de echte uitgangen, met de echte bedjes. Vanaf vijf deelnemers komen we naar jullie toe, ook ’s avonds of op een studiedag.'] },
     ],
   },
   {
@@ -26,7 +26,7 @@ export const branches = [
     course: 'bhv-basis',
     risks: ['Vetbrand en brand in de keuken', 'Snijwonden, brandwonden en onwelwordingen van gasten', 'Ontruimen van volle zalen, ook ’s avonds en bij alcohol', 'Wisselende diensten: altijd een BHV’er aanwezig'],
     sections: [
-      { h: 'Wat je leert', list: ['Vetbrand blussen met blusdeken en de juiste blusser', 'Eerste hulp bij snij- en brandwonden', 'Reanimatie en AED, ook bij een gast die onwel wordt', 'Ontruimen van een restaurant of hotel met gasten', 'Veilig afsluiten: gas, apparatuur, nooduitgangen'] },
+      { h: 'Wat je leert', list: ['Hoe te handelen bij een vetbrand', 'Eerste hulp bij snij- en brandwonden', 'Reanimatie en AED, ook bij een gast die onwel wordt', 'Ontruimen van een restaurant of hotel met gasten', 'Veilig afsluiten: gas, apparatuur, nooduitgangen'] },
       { h: 'Praktisch voor horeca', p: ['Wij plannen de training op momenten die passen bij jullie bedrijfsvoering, bijvoorbeeld op een maandag of in de ochtend. Door de vele parttimers en wisselende diensten adviseren we horecabedrijven om meer BHV’ers op te leiden dan de vuistregel van één per vijftig. We rekenen graag met je mee.'] },
     ],
   },
@@ -41,7 +41,7 @@ export const branches = [
     course: 'bhv-nibhv',
     risks: ['Vallen van hoogte en bekneld raken', 'Ernstig bloedverlies en botbreuken', 'Elektrocutie en brand bij slijp- en laswerk', 'Bouwplaatsen die slecht bereikbaar zijn voor hulpdiensten'],
     sections: [
-      { h: 'Wat je leert', list: ['Stelpen van ernstig bloedverlies, inclusief tourniquet', 'Handelen bij val van hoogte en wervelletsel', 'Reanimatie en AED op de bouwplaats', 'Brand bij slijpen, lassen en gasflessen', 'Alarmeren met een duidelijke locatieaanduiding voor hulpdiensten'] },
+      { h: 'Wat je leert', list: ['Stelpen van ernstig bloedverlies', 'Handelen bij val van hoogte en wervelletsel', 'Reanimatie en AED op de bouwplaats', 'Brand bij slijpen, lassen en gasflessen', 'Alarmeren met een duidelijke locatieaanduiding voor hulpdiensten'] },
       { h: 'In combinatie met VCA', p: ['BHV vervangt geen VCA en andersom. VCA gaat over veilig werken, BHV over wat je doet als het toch misgaat. Veel opdrachtgevers eisen beide. Wij trainen op de bouwplaats of in de keet, op een dag die jullie planning niet verstoort.'] },
     ],
   },

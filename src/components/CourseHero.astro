@@ -23,7 +23,7 @@ const photo = course.image === '/images/cursus-ontruiming.webp' ? '/images/cursu
         <ul class="dh-list">{course.content.map((c) => <li>{c}</li>)}</ul>
       </div>
       <div id={`${uid}-kosten`} role="tabpanel" aria-labelledby={`${uid}-t3`} hidden>
-        <p>€ {course.price} {course.priceNote ?? priceNote}{course.variants ? ' (' + course.variants.map((v) => `${v.label} € ${v.price}`).join(', ') + ')' : ''}. Inclusief e-learning, lesmateriaal, certificaat en pasje, koffie, thee en lunch. Betalen kan via iDEAL, vooraf of achteraf. Voor groepen maken we een incompany-offerte op maat.</p>
+        <p>€ {course.price} {course.priceNote ?? priceNote}{course.variants ? ' (' + course.variants.map((v) => `${v.label} € ${v.price}`).join(', ') + ')' : ''}. Inclusief e-learning, digitaal certificaat, koffie, thee en lunch (BHV-pasje optioneel, circa € 8 p.p. extra). Je ontvangt een factuur. Voor groepen maken we een incompany-offerte op maat.</p>
       </div>
     </div>
     <div class="dh-photo">

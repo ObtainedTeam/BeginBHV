@@ -10,8 +10,8 @@ export const steps = [
 // Cijferbalk. DEMO-WAARDEN: vervangen door echte cijfers van Dennis.
 // value = getal om naar toe te tellen, suffix/prefix zijn tekst, decimals bepaalt de weergave.
 export const stats = [
-  { value: 1250, suffix: '+', label: 'BHV’ers getraind' },
-  { value: 340, suffix: '+', label: 'bedrijven geholpen' },
+  { value: 300, suffix: '+', label: 'BHV’ers getraind' },
+  { value: 80, suffix: '+', label: 'bedrijven geholpen' },
   { value: 9.6, decimals: 1, label: 'gemiddelde beoordeling' },
   { value: 98, suffix: '%', label: 'slaagt in één keer' },
 ];
@@ -30,7 +30,7 @@ export const clientLogos = [
 export const whyUs = [
   { icon: 'person', title: 'Eén vaste trainer', text: 'Je traint met Dennis zelf, niet met een wisselende freelancer. Hij kent jullie situatie en de afspraken.' },
   { icon: 'pin', title: 'Bij jullie op locatie', text: 'We komen naar je toe, overal in Nederland, met alle oefenmaterialen. Je oefent waar het straks moet gebeuren.' },
-  { icon: 'badge', title: 'Erkend certificaat', text: 'Kiwa-gecertificeerd opleider, erkend door BVBN, met NIBHV-variant. Geldig voor Arbo-inspectie en verzekeraar.' },
+  { icon: 'badge', title: 'Erkend certificaat', text: 'Gecertificeerd opleider met kwaliteitskeurmerk van NIBHV. Geldig voor Arbo-inspectie en verzekeraar.' },
   { icon: 'group', title: 'Kleine groepen', text: 'Maximaal twaalf deelnemers, dus iedereen komt aan bod op de pop, bij de blusbak en in de ontruiming.' },
 ];
 

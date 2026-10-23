@@ -34,7 +34,6 @@ export const nav = [
       { label: 'Herhaling BHV (NIBHV)', href: '/cursussen/bhv-nibhv-herhaling' },
       { label: 'Reanimatie workshop', href: '/cursussen/reanimatie-workshop' },
       { label: 'Ontruimingsoefening', href: '/cursussen/ontruimingsoefening' },
-      { label: 'Cursusboek bestellen', href: '/cursusboek' },
     ],
   },
   {
@@ -79,6 +78,6 @@ export const navRight = [
 export const usps = [
   { icon: 'map', label: 'Landelijke dekking' },
   { icon: 'certificate', label: 'Trainingen met erkend certificaat' },
-  { icon: 'cap', label: 'Kiwa gecertificeerd opleider' },
+  { icon: 'cap', label: 'Kwaliteitskeurmerk NIBHV' },
   { icon: 'advice', label: 'Advies op maat' },
 ];
