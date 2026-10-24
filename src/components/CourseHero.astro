@@ -27,7 +27,7 @@ const photo = course.image === '/images/cursus-ontruiming.webp' ? '/images/cursu
       </div>
     </div>
     <div class="dh-photo">
-      <img src={photo} alt={`${course.title} in de praktijk`} width="661" height="443" loading="lazy" />
+      <img src={photo} alt={`${course.title} in de praktijk`} width="661" height="443" fetchpriority="high" />
     </div>
   </div>
   <UspBar />
